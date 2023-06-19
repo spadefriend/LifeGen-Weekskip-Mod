@@ -3390,14 +3390,9 @@ class TalkScreen(Screens):
         self.next_frame_time = pygame.time.get_ticks() + self.typing_delay
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 32)
-        self.scroll_container = pygame_gui.elements.UIScrollingContainer(scale(pygame.Rect((300, 900), (1400, 1000))))
-        self.text = pygame_gui.elements.UITextBox("", 
-                                                  scale(pygame.Rect((0, 0), (1100, -1))),
-                                                  object_id=get_text_box_theme("#text_box_30_horizleft"),
-                                                  container=self.scroll_container, manager=MANAGER)
-        self.text.disable()
+    
         self.profile_elements = {}
-        self.talk_box_img = image_cache.load_image("resources/images/talk_box.png").convert_alpha()
+        self.talk_box_img = None
         
 
 
