@@ -1776,7 +1776,7 @@ class Events:
         elif clan_size < 30:
             base_chance = 300
 
-        reputation = game.clan.reputation
+        reputation = 80
         # hostile
         if 1 <= reputation <= 30:
             if clan_size < 10:
