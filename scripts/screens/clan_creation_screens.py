@@ -689,7 +689,7 @@ class MakeClanScreen(Screens):
         """Update the image of the cat selected in the middle. Info and image.
         Also updates the location of selected cats. """
 
-        column_poss = [100, 200]
+        return f"<b>{cat.name}</b><br>{cat.gender}<br>{cat.age}<br>{cat.personality.trait}"
 
         # updates selected cat info
         self.refresh_selected_cat_info(selected)
@@ -873,6 +873,7 @@ class MakeClanScreen(Screens):
         self.elements['select_cat'] = UIImageButton(scale(pygame.Rect((706, 720), (190, 60))),
                                                     "",
                                                     object_id="#recruit_button",
+                                                    starting_height=2,
                                                     visible=False,
                                                     manager=MANAGER)
         
