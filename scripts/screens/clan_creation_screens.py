@@ -689,7 +689,7 @@ class MakeClanScreen(Screens):
         """Update the image of the cat selected in the middle. Info and image.
         Also updates the location of selected cats. """
 
-        return f"<b>{cat.name}</b><br>{cat.gender}<br>{cat.age}<br>{cat.personality.trait}"
+        column_poss = [100, 200]
 
         # updates selected cat info
         self.refresh_selected_cat_info(selected)

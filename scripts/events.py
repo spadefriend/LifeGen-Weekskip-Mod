@@ -1885,12 +1885,13 @@ class Events:
         
         # If at war, grab enemy clans
         enemy_clan = None
-        if game.clan.war["at_war"] is True:
-            
-            for other_clan in game.clan.all_clans:
-                if other_clan.name == game.clan.war["enemy"]:
-                    enemy_clan = other_clan
-                    break
+        if "at_war" in game.clan.war:
+            if game.clan.war["at_war"] is True:
+                
+                for other_clan in game.clan.all_clans:
+                    if other_clan.name == game.clan.war["enemy"]:
+                        enemy_clan = other_clan
+                        break
             
 
 
@@ -1938,6 +1939,8 @@ class Events:
             self.death_events.handle_deaths(cat, other_cat, game.clan.war["at_war"], enemy_clan, alive_kits)
             return True
         else:
+            if "at_war" not in game.clan.war:
+                game.clan.war["at_war"] = False
             triggered_death = self.condition_events.handle_injuries(cat, other_cat, alive_kits, game.clan.war["at_war"],
                                                                     enemy_clan, game.clan.current_season)
             return triggered_death
