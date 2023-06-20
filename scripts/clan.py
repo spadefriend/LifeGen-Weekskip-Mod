@@ -432,53 +432,7 @@ class Clan():
                  starting_season='Newleaf',
                  your_cat=None):
         self.history = History()
-<<<<<<< HEAD
         self.your_cat = your_cat
-        if name != "":
-            self.name = name
-            self.leader = leader
-            if self.leader:
-                self.leader.status_change('leader')
-                self.clan_cats.append(self.leader.ID)
-            self.leader_lives = 9
-            self.leader_predecessors = 0
-            self.deputy = deputy
-            if deputy is not None:
-                self.deputy.status_change('deputy')
-                self.clan_cats.append(self.deputy.ID)
-            self.deputy_predecessors = 0
-            self.medicine_cat = medicine_cat
-            self.med_cat_list = []
-            self.med_cat_predecessors = 0
-            if medicine_cat is not None:
-                self.clan_cats.append(self.medicine_cat.ID)
-                self.med_cat_list.append(self.medicine_cat.ID)
-                if medicine_cat.status != 'medicine cat':
-                    Cat.all_cats[medicine_cat.ID].status_change('medicine cat')
-            self.med_cat_number = len(
-                self.med_cat_list
-            )  # Must do this after the medicine cat is added to the list.
-            self.herbs = {}
-            self.age = 0
-            self.current_season = 'Newleaf'
-            self.starting_season = starting_season
-            self.instructor = None
-            # This is the first cat in starclan, to "guide" the other dead cats there.
-            self.biome = biome
-            self.camp_bg = camp_bg
-            self.game_mode = game_mode
-            self.pregnancy_data = {}
-            self.inheritance = {}
-            self._reputation = 80
-            self.starting_members = starting_members
-            if game_mode in ['expanded', 'cruel season']:
-                self.freshkill_pile = Freshkill_Pile()
-            else:
-                self.freshkill_pile = None
-            self.primary_disaster = None
-            self.secondary_disaster = None
-            self.war = {}
-=======
         if name == "":
             return
         
@@ -536,7 +490,6 @@ class Clan():
             "enemy": None, 
             "duration": 0,
         }
->>>>>>> development
 
         self.faded_ids = [
         ]  # Stores ID's of faded cats, to ensure these IDs aren't reused.
