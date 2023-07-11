@@ -425,6 +425,7 @@ class Clan():
                  leader=None,
                  deputy=None,
                  medicine_cat=None,
+                 mediator=None,
                  biome='Forest',
                  camp_bg=None,
                  game_mode='classic',
@@ -454,6 +455,10 @@ class Clan():
             self.med_cat_list.append(self.medicine_cat.ID)
             if medicine_cat.status != 'medicine cat':
                 Cat.all_cats[medicine_cat.ID].status_change('medicine cat')
+        if mediator is not None:
+            self.clan_cats.append(self.mediator.ID)
+            if mediator.status != 'mediator':
+                Cat.all_cats[mediator.ID].status_change('mediator')
         self.med_cat_number = len(
             self.med_cat_list
         )  # Must do this after the medicine cat is added to the list.
@@ -468,6 +473,7 @@ class Clan():
         self.game_mode = game_mode
         self.pregnancy_data = {}
         self.inheritance = {}
+        self.beasts = 0
         
         """
         Reputation is for loners/kittypets/outsiders in general that wish to join the clan. 
@@ -741,7 +747,8 @@ class Clan():
             "temperament": self.temperament,
             "version_name": SAVE_VERSION_NUMBER,
             "version_commit": get_version_info().version_number,
-            "source_build": get_version_info().is_source_build
+            "source_build": get_version_info().is_source_build,
+            "beasts": self.beasts if self.beasts else 0
         }
 
         # LEADER DATA
@@ -1084,6 +1091,11 @@ class Clan():
         if game.clan.game_mode != "classic":
             self.load_freshkill_pile(game.clan)
         game.switches['error_message'] = ''
+        
+        if "beasts" in clan_data:
+            game.clan.beasts = clan_data["beasts"]
+        else:
+            game.clan.beasts = 0
 
         # Return Version Info. 
         return {

@@ -207,6 +207,8 @@ class Cat():
         self.df = False
         self.experience_level = None
         self.no_kits = False
+        self.is_beast = False
+        self.sus = False
         
         self.prevent_fading = False  # Prevents a cat from fading.
         self.faded_offspring = []  # Stores of a list of faded offspring, for family page purposes.
@@ -2835,6 +2837,8 @@ class Cat():
                 "opacity": self.pelt.opacity,
                 "prevent_fading": self.prevent_fading,
                 "favourite": self.favourite,
+                "is_beast": self.is_beast if self.is_beast else False,
+                "sus": self.sus if self.sus else False
             }
 
 
