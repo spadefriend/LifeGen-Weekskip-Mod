@@ -1252,6 +1252,7 @@ class MakeClanScreen(Screens):
                 member.sus = False
         self.med_cat.is_beast = True
         self.mediator.is_beast = True
+        self.med_cat.set_mate(self.mediator)
         game.clan = Clan(self.clan_name,
                          self.leader,
                          self.deputy,
@@ -1262,6 +1263,7 @@ class MakeClanScreen(Screens):
                          self.game_mode, self.members,
                          starting_season=self.selected_season)
         game.clan.create_clan()
+        game.clan.beasts +=2
         #game.clan.starclan_cats.clear()
         game.cur_events_list.clear()
         game.herb_events_list.clear()

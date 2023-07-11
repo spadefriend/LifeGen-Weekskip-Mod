@@ -455,6 +455,7 @@ class Clan():
             self.med_cat_list.append(self.medicine_cat.ID)
             if medicine_cat.status != 'medicine cat':
                 Cat.all_cats[medicine_cat.ID].status_change('medicine cat')
+        self.mediator = mediator
         if mediator is not None:
             self.clan_cats.append(mediator.ID)
             if mediator.status != 'mediator':
@@ -528,7 +529,7 @@ class Clan():
                     not_found = False
             if Cat.all_cats[i] != self.leader and Cat.all_cats[i] != \
                     self.medicine_cat and Cat.all_cats[i] != \
-                    self.deputy and Cat.all_cats[i] != \
+                    self.deputy and Cat.all_cats[i] != self.mediator and Cat.all_cats[i] != \
                     self.instructor \
                     and not_found:
                 Cat.all_cats[i].example = True

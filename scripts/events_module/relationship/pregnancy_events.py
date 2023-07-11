@@ -200,6 +200,9 @@ class Pregnancy_Events():
             amount = self.get_amount_of_kits(cat)
             kits = self.get_kits(amount, cat, None, clan)
             insert = 'this should not display'
+            b = False
+            if cat.is_beast or other_cat.is_beast:
+                b = True
             if amount == 1:
                 insert = 'a single kitten'
             if amount > 1:
@@ -208,6 +211,9 @@ class Pregnancy_Events():
             cats_involved = [cat.ID]
             for kit in kits:
                 cats_involved.append(kit.ID)
+                if b:
+                    kit.is_beast = True
+                    game.clan.beasts+=1
             game.cur_events_list.append(Single_Event(print_event, "birth_death", cats_involved))
             return
 
