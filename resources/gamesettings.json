@@ -64,17 +64,17 @@
         "disasters": [
             "Allow mass extinction events",
             "This may result in up to 1/3rd of your Clan dying in one moon.",
-            false
+            true
         ],
         "retirement": [
             "Cats will never retire due to a permanent condition",
             "When this setting is off, cats with permanent conditions will choose whether or not they want to retire.",
-            false
+            true
         ],
         "shaders": [
             "Enable Shaders",
             "This will add a shading layer onto the cat sprites.",
-            false
+            true
         ],
         "deputy": [
             "Allow leaders to automatically choose a new deputy",
@@ -141,7 +141,7 @@
         "affair": [
             "Allow cats to breed with cats that aren't their mates.",
             "This will allow mated and unmated cats to have kits with other cats they are not mated with. This includes, but is not limited to, affairs/cheating.",
-            false
+            true
         ],
         "same sex birth": [
             "Allow same-sex breeding",
