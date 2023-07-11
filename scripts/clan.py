@@ -456,7 +456,7 @@ class Clan():
             if medicine_cat.status != 'medicine cat':
                 Cat.all_cats[medicine_cat.ID].status_change('medicine cat')
         if mediator is not None:
-            self.clan_cats.append(self.mediator.ID)
+            self.clan_cats.append(mediator.ID)
             if mediator.status != 'mediator':
                 Cat.all_cats[mediator.ID].status_change('mediator')
         self.med_cat_number = len(

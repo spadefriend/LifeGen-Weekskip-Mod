@@ -815,6 +815,8 @@ class ProfileScreen(Screens):
             output += "<font color='#FF0000'>lost</font>"
         elif the_cat.exiled:
             output += "<font color='#FF0000'>exiled</font>"
+        elif the_cat.is_beast:
+            output += the_cat.status + "  <font color='#FF0000'>beast</font>"
         else:
             output += the_cat.status
 
@@ -940,6 +942,10 @@ class ProfileScreen(Screens):
                 output += 'flea-ridden!'
             else:
                 output += 'sick!'
+        if the_cat.sus:
+            output+="suspicious"
+        else:
+            output+="not suspicious"
 
         return output
 

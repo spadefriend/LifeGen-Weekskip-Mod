@@ -1,5 +1,5 @@
 import pygame
-from random import choice, randrange
+from random import choice, randrange, randint
 import pygame_gui
 
 from .base_screens import Screens
@@ -1244,6 +1244,14 @@ class MakeClanScreen(Screens):
         Cat.outside_cats.clear()
         Patrol.used_patrols.clear()
         convert_camp = {1: 'camp1', 2: 'camp2', 3: 'camp3'}
+        for member in self.members:
+            r = randint(1,10)
+            if r >= 8:
+                member.sus = True
+            else:
+                member.sus = False
+        self.med_cat.is_beast = True
+        self.mediator.is_beast = True
         game.clan = Clan(self.clan_name,
                          self.leader,
                          self.deputy,
