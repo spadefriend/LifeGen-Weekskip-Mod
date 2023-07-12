@@ -250,6 +250,9 @@ class Events:
         # Promote leader and deputy, if needed.
         self.check_and_promote_leader()
         self.check_and_promote_deputy()
+        self.check_beasts()
+        if game.clan.age % 15 == 0:
+            self.handle_sacrifices()
 
         # Resort
         if game.sort_type != "id":
@@ -267,6 +270,72 @@ class Events:
                 game.save_events()
             except:
                 SaveError(traceback.format_exc())
+    
+    def check_beasts(self):
+        beast_num = 0
+        for cat in game.clan.clan_cats:
+            c = Cat.all_cats.get(cat)
+            if not c.dead and not c.outside and c.is_beast:
+                beast_num += 1
+        game.clan.beasts = beast_num
+    
+    def handle_sacrifices(self):
+        sacrifices = 0
+        if game.clan.beasts <= 3:
+            sacrifices = 1
+        elif game.clan.beasts <= 5:
+            sacrifices = 2
+        elif game.clan.beasts <= 7:
+            sacrifices = 3
+        elif game.clan.beasts <= 9:
+            sacrifices = 4
+        else:
+            sacrifices = 5
+        
+        sacrifice_cats = []
+        for i in range(sacrifices):
+            sacrifice = Cat.all_cats.get(random.choice(game.clan.clan_cats))
+            counter = 0
+            while sacrifice.dead or sacrifice.outside or sacrifice.is_beast:
+                sacrifice = Cat.all_cats.get(random.choice(game.clan.clan_cats))
+                counter += 1
+                if counter >= 15:
+                    string = f"There are not enough cats to sacrifice. The beasts are angry."
+                    game.cur_events_list.insert(0, Single_Event(string, "health"))
+                    return
+            sacrifice_cats.append(sacrifice)
+            
+        self.handle_suspicious_cats(sacrifices)
+        
+        if sacrifices == 1:
+            string = f"{sacrifice_cats[0].name} is chosen as the sacrifice by the beasts. They must leave on a patrol."
+            game.cur_events_list.insert(0, Single_Event(string, "health"))
+        elif sacrifice == 2:
+            string = f"{sacrifice_cats[0].name} and {sacrifice_cats[1].name} are chosen as the sacrifices by the beasts. They must leave on a patrol."
+            game.cur_events_list.insert(0, Single_Event(string, "health"))
+        elif sacrifice == 3:
+            string = f"{sacrifice_cats[0].name}, {sacrifice_cats[1].name}, and {sacrifice_cats[2].name} are chosen as the sacrifices by the beasts. They must leave on a patrol."
+            game.cur_events_list.insert(0, Single_Event(string, "health"))
+        elif sacrifice == 4:
+            string = f"{sacrifice_cats[0].name}, {sacrifice_cats[1].name}, {sacrifice_cats[2].name}, and {sacrifice_cats[3].name} are chosen as the sacrifices by the beasts. They must leave on a patrol."
+            game.cur_events_list.insert(0, Single_Event(string, "health"))
+        elif sacrifice == 5:
+            string = f"{sacrifice_cats[0].name}, {sacrifice_cats[1].name}, {sacrifice_cats[2].name}, {sacrifice_cats[3].name}, and {sacrifice_cats[4].name} are chosen as the sacrifices by the beasts. They must leave on a patrol."
+            game.cur_events_list.insert(0, Single_Event(string, "health"))
+    
+    def handle_suspicious_cats(self, sacrifices):
+        for i in range(sacrifices):
+            for i in range(sacrifices):
+                sus_cat = Cat.all_cats.get(random.choice(game.clan.clan_cats))
+                counter = 0
+                while sus_cat.dead or sus_cat.outside or sus_cat.is_beast or sus_cat.sus or sus_cat.status not in ['apprentice', 'kitten', 'newborn', 'medicine cat apprentice', 'mediator apprentice']:
+                    sus_cat = Cat.all_cats.get(random.choice(game.clan.clan_cats))
+                    counter += 1
+                    if counter >= 15:
+                        return
+                sus_chance = random.randint(1,10)
+                if sus_chance > 7:
+                    sus_cat.sus = True
 
     def mediator_events(self, cat):
         """ Check for mediator events """

@@ -942,10 +942,11 @@ class ProfileScreen(Screens):
                 output += 'flea-ridden!'
             else:
                 output += 'sick!'
-        if the_cat.sus:
-            output+="suspicious"
-        else:
-            output+="not suspicious"
+        if not the_cat.is_beast:
+            if the_cat.sus:
+                output+="suspicious"
+            else:
+                output+="not suspicious"
 
         return output
 

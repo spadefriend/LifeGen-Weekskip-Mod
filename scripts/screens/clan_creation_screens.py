@@ -1263,7 +1263,7 @@ class MakeClanScreen(Screens):
                          self.game_mode, self.members,
                          starting_season=self.selected_season)
         game.clan.create_clan()
-        game.clan.beasts +=2
+        game.clan.beasts += 2
         #game.clan.starclan_cats.clear()
         game.cur_events_list.clear()
         game.herb_events_list.clear()

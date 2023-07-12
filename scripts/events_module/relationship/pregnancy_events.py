@@ -203,6 +203,9 @@ class Pregnancy_Events():
             b = False
             if cat.is_beast or other_cat.is_beast:
                 b = True
+            s = False
+            if cat.sus or other_cat.sus:
+                s = True
             if amount == 1:
                 insert = 'a single kitten'
             if amount > 1:
@@ -214,6 +217,9 @@ class Pregnancy_Events():
                 if b:
                     kit.is_beast = True
                     game.clan.beasts+=1
+                elif s:
+                    if random.randint(1,10) < 5:
+                        kit.sus = True
             game.cur_events_list.append(Single_Event(print_event, "birth_death", cats_involved))
             return
 
