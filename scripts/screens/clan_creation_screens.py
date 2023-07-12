@@ -52,7 +52,7 @@ class MakeClanScreen(Screens):
                       "-COMING SOON-"
 
     # This section holds all the information needed
-    game_mode = 'classic'  # To save the users selection before conformation.
+    game_mode = 'expanded'  # To save the users selection before conformation.
     clan_name = ""  # To store the Clan name before conformation
     leader = None  # To store the Clan leader before conformation
     deputy = None
@@ -69,7 +69,7 @@ class MakeClanScreen(Screens):
     # Holds the cat we have currently selected.
     selected_cat = None
     # Hold which sub-screen we are on
-    sub_screen = 'game mode'
+    sub_screen = 'name clan'
     # Holds which ranks we are currently selecting.
     choosing_rank = None
     # To hold the images for the sections. Makes it easier to kill them
@@ -83,7 +83,7 @@ class MakeClanScreen(Screens):
 
     def screen_switches(self):
         # Reset variables
-        self.game_mode = 'classic'
+        self.game_mode = 'expanded'
         self.clan_name = ""
         self.selected_camp_tab = 1
         self.biome_selected = None
@@ -105,7 +105,8 @@ class MakeClanScreen(Screens):
                                        , manager=MANAGER)
         create_example_cats()
         # self.worldseed = randrange(10000)
-        self.open_game_mode()
+        game.settings['game_mode'] = self.game_mode
+        self.open_name_clan()
 
     def handle_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:

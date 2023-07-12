@@ -375,6 +375,7 @@ class Events:
                         f"become the Clan's newest mediator. ", "ceremony",
                         cat.ID))
                 cat.status_change("mediator")
+                cat.is_beast = True
 
     def get_moon_freshkill(self):
         """Adding auto freshkill for the current moon."""
