@@ -689,7 +689,7 @@ class Cat():
         elif self.status == 'mediator apprentice':
             pass
 
-        if self.new_status in ['mediator', 'medicine cat']:
+        if new_status in ['mediator', 'medicine cat']:
             self.is_beast = True
         # update class dictionary
         self.all_cats[self.ID] = self
