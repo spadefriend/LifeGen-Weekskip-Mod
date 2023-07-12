@@ -2044,6 +2044,8 @@ class Patrol():
                 insert = f"{', '.join(herbs_gotten[:-1])}, and {herbs_gotten[-1]} were"
             game.herb_events_list.append(f"{insert.capitalize()} gathered on a patrol.")
             self.results_text.append(f"{insert.capitalize()} gathered during this patrol.")
+        else:
+            self.results_text.append(f"No herbs were gathered during this patrol.")
 
     def handle_prey(self, outcome_key):
         """Handle the amount of prey which was caught and add it to the fresh-kill pile of the clan."""
