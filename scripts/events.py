@@ -517,6 +517,7 @@ class Events:
                     Cat.all_cats[parent1].create_inheritance_new_cat()
                 if parent2:
                     Cat.all_cats[parent2].create_inheritance_new_cat()
+                i.backstory = game.clan.your_cat.backstory
             return self.set_birth_text("birth_adoptive_parents_siblings", {"parent1": Cat.all_cats[parent1].name, "parent2": Cat.all_cats[parent2].name, "y_c": game.clan.your_cat.name,"insert_siblings": sibling_text})
         self.create_inheritance([parent1, parent2])
         return self.set_birth_text("birth_adoptive_parents", {"parent1": Cat.all_cats[parent1].name, "parent2": Cat.all_cats[parent2].name, "y_c": game.clan.your_cat.name})
