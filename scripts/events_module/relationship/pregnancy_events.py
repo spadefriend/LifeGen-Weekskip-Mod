@@ -679,6 +679,10 @@ class Pregnancy_Events():
             elif cat and other_cat:
                 # Two parents provided
                 kit = Cat(parent1=cat.ID, parent2=other_cat.ID, moons=0, status='newborn')
+                if cat.is_beast:
+                    kit.is_beast = True
+                elif other_cat.is_beast:
+                    kit.is_beast = True
                 
                 if cat.gender == 'female':
                     kit.thought = f"Snuggles up to the belly of {cat.name}"
@@ -689,6 +693,8 @@ class Pregnancy_Events():
             else:
                 # A one blood parent litter is the only option left. 
                 kit = Cat(parent1=cat.ID, moons=0, backstory=backstory, status='newborn')
+                if cat.is_beast:
+                    kit.is_beast = True
                 kit.thought = f"Snuggles up to the belly of {cat.name}"
                 
             kit.adoptive_parents = all_adoptive_parents  # Add the adoptive parents. 
