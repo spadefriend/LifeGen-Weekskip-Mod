@@ -201,11 +201,18 @@ class Pregnancy_Events():
             kits = self.get_kits(amount, cat, None, clan)
             insert = 'this should not display'
             b = False
-            if cat.is_beast or other_cat.is_beast:
+            
+            if cat.is_beast:
                 b = True
+            if other_cat:
+                if other_cat.is_beast:
+                    b = True
             s = False
-            if cat.sus or other_cat.sus:
+            if cat.sus:
                 s = True
+            if other_cat:
+                if other_cat.sus:
+                    s = True
             if amount == 1:
                 insert = 'a single kitten'
             if amount > 1:
