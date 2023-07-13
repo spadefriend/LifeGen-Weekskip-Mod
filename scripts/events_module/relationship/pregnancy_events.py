@@ -683,6 +683,10 @@ class Pregnancy_Events():
                     kit.is_beast = True
                 elif other_cat.is_beast:
                     kit.is_beast = True
+                if cat.sus:
+                    kit.sus = True
+                elif other_cat.sus:
+                    other_cat.sus = True
                 
                 if cat.gender == 'female':
                     kit.thought = f"Snuggles up to the belly of {cat.name}"
@@ -695,6 +699,8 @@ class Pregnancy_Events():
                 kit = Cat(parent1=cat.ID, moons=0, backstory=backstory, status='newborn')
                 if cat.is_beast:
                     kit.is_beast = True
+                if cat.sus:
+                    kit.sus = True
                 kit.thought = f"Snuggles up to the belly of {cat.name}"
                 
             kit.adoptive_parents = all_adoptive_parents  # Add the adoptive parents. 
