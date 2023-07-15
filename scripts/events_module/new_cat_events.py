@@ -133,7 +133,8 @@ class NewCatEvents:
         for new_cat in created_cats:
             
             involved_cats.append(new_cat.ID)
-            
+            if random.randint(1,5) == 1:
+                new_cat.is_beast = True
             # Set the blood parent, if one was created.
             # Also set adoptive parents if needed. 
             new_cat.parent1 = blood_parent.ID if blood_parent else None
