@@ -2044,7 +2044,7 @@ class Patrol():
                 insert = f"{', '.join(herbs_gotten[:-1])}, and {herbs_gotten[-1]} were"
             game.herb_events_list.append(f"{insert.capitalize()} gathered on a patrol.")
             self.results_text.append(f"{insert.capitalize()} gathered during this patrol.")
-        elif 'herb_gathering' in self.patrol_events.tags:
+        elif 'herb_gathering' in self.patrol_event.tags:
             self.results_text.append(f"No herbs were gathered during this patrol.")
 
     def handle_prey(self, outcome_key):
