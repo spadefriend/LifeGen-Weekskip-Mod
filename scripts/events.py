@@ -299,7 +299,7 @@ class Events:
             while sacrifice.dead or sacrifice.outside or sacrifice.is_beast or sacrifice.status in ['newborn', 'kitten']:
                 sacrifice = Cat.all_cats.get(random.choice(game.clan.clan_cats))
                 counter += 1
-                if counter >= 15:
+                if counter >= 50:
                     string = f"There are not enough cats to sacrifice. The beasts are angry."
                     game.cur_events_list.insert(0, Single_Event(string, "misc"))
                     return
@@ -310,16 +310,16 @@ class Events:
         if sacrifices == 1:
             string = f"{sacrifice_cats[0].name} is chosen as the sacrifice by the beasts. They must leave on a patrol."
             game.cur_events_list.insert(0, Single_Event(string, "misc"))
-        elif sacrifice == 2:
+        elif sacrifices == 2:
             string = f"{sacrifice_cats[0].name} and {sacrifice_cats[1].name} are chosen as the sacrifices by the beasts. They must leave on a patrol."
             game.cur_events_list.insert(0, Single_Event(string, "misc"))
-        elif sacrifice == 3:
+        elif sacrifices == 3:
             string = f"{sacrifice_cats[0].name}, {sacrifice_cats[1].name}, and {sacrifice_cats[2].name} are chosen as the sacrifices by the beasts. They must leave on a patrol."
             game.cur_events_list.insert(0, Single_Event(string, "misc"))
-        elif sacrifice == 4:
+        elif sacrifices == 4:
             string = f"{sacrifice_cats[0].name}, {sacrifice_cats[1].name}, {sacrifice_cats[2].name}, and {sacrifice_cats[3].name} are chosen as the sacrifices by the beasts. They must leave on a patrol."
             game.cur_events_list.insert(0, Single_Event(string, "misc"))
-        elif sacrifice == 5:
+        elif sacrifices == 5:
             string = f"{sacrifice_cats[0].name}, {sacrifice_cats[1].name}, {sacrifice_cats[2].name}, {sacrifice_cats[3].name}, and {sacrifice_cats[4].name} are chosen as the sacrifices by the beasts. They must leave on a patrol."
             game.cur_events_list.insert(0, Single_Event(string, "misc"))
     
