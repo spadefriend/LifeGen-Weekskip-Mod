@@ -198,8 +198,6 @@ class MakeClanScreen(Screens):
             self.elements['select_cat'].hide()
             create_example_cats()  # create new cats
             self.selected_cat = None  # Your selected cat now no longer exists. Sad. They go away.
-            # if self.elements['error_message']:
-            #     self.elements['error_message'].kill()
             self.refresh_cat_images_and_info()  # Refresh all the images.
             self.rolls_left -= 1
             if game.config["clan_creation"]["rerolls"] == 3:
@@ -230,6 +228,11 @@ class MakeClanScreen(Screens):
                 return
             self.your_cat.name.prefix = new_name
             self.open_choose_background()
+        elif event.ui_element == self.elements["random"]:
+            self.elements["name_entry"].set_text(choice(names.names_dict["normal_prefixes"]))
+        elif event.ui_element == self.elements['previous_step']:
+            self.selected_cat = None
+            self.open_choose_leader()
     
     def handle_create_other_cats(self):
         self.create_example_cats2()
@@ -257,8 +260,25 @@ class MakeClanScreen(Screens):
             if a in e:
                 game.choose_cats[a] = Cat(status='warrior', biome=None)
             else:
-                game.choose_cats[a] = Cat(status=choice(
-                    ['kitten', 'apprentice', 'apprentice', 'apprentice', 'apprentice', 'warrior', 'warrior', "warrior", 'warrior', 'warrior', "warrior", 'elder', "queen", "mediator", "queen's apprentice", "mediator apprentice"]), biome=None)
+                r = random.randint(1,60)
+                s = "warrior"
+                if r > 45:
+                    s = "warrior"
+                elif r > 30:
+                    s = "apprentice"
+                elif r > 25:
+                    s = "kitten"
+                elif r > 20:
+                    s = "elder"
+                elif r > 15:
+                    s = "mediator"
+                elif r > 10:
+                    s = "mediator apprentice"
+                elif r > 5:
+                    s = "queen"
+                elif r >= 0:
+                    s = "queen's apprentice"
+                game.choose_cats[a] = Cat(status=s, biome=None)
             if game.choose_cats[a].moons >= 160:
                 game.choose_cats[a].moons = choice(range(120, 155))
             elif game.choose_cats[a].moons == 0:
@@ -631,15 +651,15 @@ class MakeClanScreen(Screens):
                 self.elements['cat_name'].set_text(str(selected.name))
             self.elements['cat_name'].show()
             self.elements['cat_info'].set_text(selected.gender + "\n" +
-                                               str(selected.age + "\n" +
+                                               "fur length: " + str(selected.pelt.length) + "\n" +
                                                    str(selected.personality.trait) + "\n" +
-                                                   str(selected.skills.skill_string())))
+                                                   str(selected.skills.skill_string()))
             if selected.permanent_condition:
                 self.elements['cat_info'].set_text(selected.gender + "\n" +
-                                               str(selected.age + "\n" +
+                                               "fur length: " + str(selected.pelt.length) + "\n" +
                                                    str(selected.personality.trait) + "\n" +
                                                    str(selected.skills.skill_string()) + "\n" +
-                                                   "has a permanent condition"))
+                                                   "permanent condition: " + list(selected.permanent_condition.keys())[0])
             self.elements['cat_info'].show()
 
 
@@ -658,7 +678,7 @@ class MakeClanScreen(Screens):
                 self.elements["cat" + str(u)].kill()
             if game.choose_cats[u] == selected:
                 self.elements["cat" + str(u)] = self.elements["cat" + str(u)] = UISpriteButton(
-                    scale(pygame.Rect((540, 400), (300, 300))),
+                    scale(pygame.Rect((540, 350), (300, 300))),
                     pygame.transform.scale(game.choose_cats[u].sprite, (300, 300)),
                     cat_object=game.choose_cats[u])
             elif game.choose_cats[u] in [self.leader, self.deputy, self.med_cat] + self.members:
@@ -676,7 +696,7 @@ class MakeClanScreen(Screens):
                 self.elements["cat" + str(u)].kill()
             if game.choose_cats[u] == selected:
                 self.elements["cat" + str(u)] = self.elements["cat" + str(u)] = UISpriteButton(
-                    scale(pygame.Rect((540, 400), (300, 300))),
+                    scale(pygame.Rect((540, 350), (300, 300))),
                     pygame.transform.scale(game.choose_cats[u].sprite, (300, 300)),
                     cat_object=game.choose_cats[u], manager=MANAGER)
             elif game.choose_cats[u] in [self.leader, self.deputy, self.med_cat] + self.members:
@@ -734,6 +754,10 @@ class MakeClanScreen(Screens):
         self.refresh_cat_images_and_info2()
         
         self.sub_screen = 'choose name'
+        
+        self.elements["random"] = UIImageButton(scale(pygame.Rect((520, 995), (68, 68))), "",
+                                                object_id="#random_dice_button"
+                                                , manager=MANAGER)
 
         self.elements["error"] = pygame_gui.elements.UITextBox("", scale(pygame.Rect((506, 1310), (596, -1))),
                                                                manager=MANAGER,
@@ -865,11 +889,11 @@ class MakeClanScreen(Screens):
 
         # info for chosen cats:
         if game.settings['dark mode']:
-            self.elements['cat_info'] = pygame_gui.elements.UITextBox("", scale(pygame.Rect((880, 500), (230, 250))),
+            self.elements['cat_info'] = pygame_gui.elements.UITextBox("", scale(pygame.Rect((880, 450), (230, 250))),
                                                                     visible=False, object_id="#text_box_22_horizleft_spacing_95_dark",
                                                                     manager=MANAGER)
         else:
-            self.elements['cat_info'] = pygame_gui.elements.UITextBox("", scale(pygame.Rect((880, 500), (230, 250))),
+            self.elements['cat_info'] = pygame_gui.elements.UITextBox("", scale(pygame.Rect((880, 450), (230, 250))),
                                                                     visible=False, object_id=get_text_box_theme("#text_box_22_horizleft_spacing_95"),
                                                                     manager=MANAGER)
         self.elements['cat_name'] = pygame_gui.elements.UITextBox("", scale(pygame.Rect((300, 350), (1000, 110))),

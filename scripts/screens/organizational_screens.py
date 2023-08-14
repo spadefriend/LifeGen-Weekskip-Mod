@@ -52,7 +52,7 @@ class StartScreen(Screens):
     def __init__(self, name=None):
         super().__init__(name)
         self.warning_label = None
-        bg = random.randint(1,30)
+        bg = random.randint(1,35)
         self.bg = pygame.image.load("resources/images/menu" + str(bg) + ".png").convert()
         self.bg = pygame.transform.scale(self.bg, (screen_x, screen_y))
         self.social_buttons = {}
@@ -292,7 +292,7 @@ class StartScreen(Screens):
                         show_changelog = False
 
             if show_changelog:
-                ChangelogPopup(game.switches['last_screen'], lastCommit)
+                ChangelogPopup(game.switches['last_screen'])
                 with open(f"{get_cache_dir()}/changelog_popup_shown", 'w') as write_file:
                     write_file.write(get_version_info().version_number)
 

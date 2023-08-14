@@ -1157,6 +1157,8 @@ class Cat():
                 rank = giver_cat.status
                 if victim_in_lifegiver and "murdered" not in tags:
                     continue
+                if not victim_in_lifegiver and "murdered" in tags:
+                    continue
                 if "unknown_blessing" in tags:
                     continue
                 if "guide" in tags and giver_cat != game.clan.instructor:
@@ -1643,15 +1645,15 @@ class Cat():
         if duration == 0:
             duration = 1
 
-        if game.clan.game_mode == "cruel season":
-            if mortality != 0:
-                mortality = int(mortality * 0.5)
-                med_mortality = int(med_mortality * 0.5)
+        # if game.clan.game_mode == "cruel season":
+        #     if mortality != 0:
+        #         mortality = int(mortality * 0.5)
+        #         med_mortality = int(med_mortality * 0.5)
 
-                # to prevent an illness gets no mortality, check and set it to 1 if needed
-                if mortality == 0 or med_mortality == 0:
-                    mortality = 1
-                    med_mortality = 1
+        #         # to prevent an illness gets no mortality, check and set it to 1 if needed
+        #         if mortality == 0 or med_mortality == 0:
+        #             mortality = 1
+        #             med_mortality = 1
         if lethal is False:
             mortality = 0
 
@@ -1706,12 +1708,12 @@ class Cat():
         if duration == 0:
             duration = 1
 
-        if mortality != 0:
-            if game.clan.game_mode == "cruel season":
-                mortality = int(mortality * 0.5)
+        # if mortality != 0:
+        #     if game.clan.game_mode == "cruel season":
+        #         mortality = int(mortality * 0.5)
 
-                if mortality == 0:
-                    mortality = 1
+        #         if mortality == 0:
+        #             mortality = 1
         if lethal is False:
             mortality = 0
 
