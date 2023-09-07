@@ -5,13 +5,44 @@
             "jealousy"
         ],
         [
-            "There you are, prancing around like you're the Clan leader's kit or something. Just because you caught a beetle today doesn't mean you're the best at everything.",
-            "Look at you, always the center of attention. Everyone always cooing and pawing at you. Well, I don't need all that. I'm going to be the greatest warrior this Clan has ever seen, just you wait.",
-            "So, you climbed to the top of the elders' den, big deal! I can do that too, I just... don't want to. Yeah, that's it. I've got better things to do than show off like you do.",
-            "Oh, don't give me that look. You think you're so great, don't you? Well, one day I'll show you. I'll be the one everyone is talking about. And then we'll see who's the best.",
-            "Just you wait, one day I'll be an apprentice, and then a warrior. And I won't forget how you've been. You'll see. I'll prove to you and to everyone that I'm just as good... No, I'm better!"
+            "There you are, prancing around like you're l_n's kit or something.",
+            "Just because you caught a beetle today doesn't mean you're the best at everything!"
         ]
     ],
+
+    "kit_1_1": [
+        [
+            "kitten",
+            "jealousy"
+        ],
+        [
+            "Look at you, always the center of attention. Everyone cooing and pawing at you.",
+            "Well, I don't need all that. I'm going to be the greatest warrior c_nClan has ever seen, just you wait!"
+        ]
+    ],
+
+    "kit_1_2": [
+        [
+            "kitten",
+            "jealousy"
+        ],
+        [
+            ""So, you climbed to the top of the elders' den, big deal! I can do that too, I just... don't want to.",
+            "Yeah, that's it. I've got better things to do than show off like you do."
+        ]
+    ]
+
+    "kit_1_3": [
+        [
+            "kitten",
+            "jealousy"
+        ],
+        [
+            "Oh, don't give me that look. You think you're so great, don't you?",
+            "Well, one day I'll show you. I'll be the one everyone is talking about! And then we'll see who's the best."
+        ]
+    ],
+    
     "kit_2": [
         [
             "kitten",
@@ -19,47 +50,101 @@
         ],
         [
             "There you are, acting like you own the nursery again.",
-            "Always hogging the best spots in the den, always first in line for fresh-kill. Well, I've had enough of it. You're not the only kit in this Clan, you know!",
-            "And stop telling me what to do! I'll explore the camp if I want to. I don't care if it's against the rules. You're not my mother!",
-            "I hope StarClan makes you a medicine cat. Then you won't be able to boss anyone around anymore. You'll have to deal with stinky herbs and heal tick bites all day long!"
-        ]
+            "Always hogging the best spots in the den, always first in line for fresh-kill. You're not the only kit in this Clan, you know!"
     ],
-    "kit_3": [
+    "kit_2_1": [
         [
-            "kitten"
+            "kitten",
+            "dislike",
+            "queen",
+            "queen's apprentice",
+            "assertive",
+            "unlawful",
+            "silly"
         ],
         [
-            "Hey! There you are! I've been looking all over for you! I found the most amazing bug today by the nursery. It was huge! You have to come see it.",
+             "Stop telling me what to do! I'll explore the camp if I want to.",
+            "I don't care if it's against the rules. You're not my mother!"
+        ]
+    ],
+    "kit_2_2": [
+        [
+            "kitten",
+            "dislike",
+            "you_upstanding"
+        ],
+        [
+            "I hope StarClan makes you a medicine cat. Then you won't be able to boss anyone around anymore.",
+            "You'll have to deal with stinky herbs and heal tick bites all day long!"
+        ]
+    ],
+        
+    "kit_3": [
+        [
+            "kitten",
+            "assertive",
+            "sweet",
+            "silly",
+            "cool",
+            "platonic_like",
+            "upstanding"
+        ],
+        [
+            "Hey! There you are! I've been looking all over for you!",
+            "I found the most amazing bug today by the nursery. It was huge! You have to come see it."
+        ]
+    ],
+
+    "kit_3_1": [
+        [
+            "kitten",
+            "platonic_like",
+            "upstanding",
+            "assertive",
+            "sweet",
+            "silly",
+            "cool",
+            "sweet"
+        ],
+        [
             "Do you remember that time when we pretended to be Clan leaders and started giving orders to the elders? They were so surprised! That was the best day ever.",
             "You're the best thing about the nursery. Even better than fresh moss and feathers! And when we're warriors, we'll be the best in the Clan, I know it. No mouse will be safe from us!"
         ]
     ],
+        
     "kit_4": [
         [
             "kitten",
             "respect"
         ],
         [
-            "Hi there! I saw you standing up to that older kit earlier, the one who keeps stealing our moss balls. That was really brave of you. I don't think I could have done that.",
-            "I really look up to you, you know? You're always fair, and you never let anyone push you around. When we play 'Clans,' I always want to be your deputy. Even though you always make me the medicine cat.",
-            "I hope that when I become an apprentice, I'll be as brave as you. But until then, I'm glad you're my friend. Cause I know you'll always lead me in the right direction!"
+            "y_c! I saw you standing up to that older kit earlier, the one who keeps stealing our moss balls?",
+            "That was really brave of you. I don't think I could have done that.",
+            "We should play together! You can be the leader. You deserve it, since you're so strong!"
         ]
     ],
     "kit_5": [
         [
-            "kitten",
+            "any",
             "trust"
         ],
         [
-            "Hey, it's you! I was hoping to find you here. I've got something to tell you...",
-            "You remember that dream I told you about, right? The one where I was an apprentice, catching my first mouse? I had it again last night, but this time, there was an owl, too.",
-            "It was so scary... but knowing I could tell you about it makes it less frightening.",
-            "You're always there for me, like when I fell into that thorn bush, and you helped me get out. Or when we got lost outside camp, and you led us back home. You never laugh at me or tell me I'm silly. You just... listen. And that means a lot."
+            "y_c! y_c! I've got something to tell you...",
+            "You remember that dream I told you about, right? The one where I was an apprentice, and catching my first mouse? I had it again last night, but this time, there was an owl, too.",
+            "It was so scary... but knowing I could tell you about it made me feel more brave.",
+            "You're always there for me, like when I fell into that thorn bush, and you helped me get out. Or when we got lost outside camp, and you led us back home.",
+            "I hope we stay best friends forever and ever!"
         ]
     ],
     "kit_6": [
         [
-            "kitten"
+            "kitten",
+            "assertive",
+            "upstanding",
+            "silly",
+            "sweet",
+            "cool",
+            "introspective"
         ],
         [
             "Hey, do you want to play warriors?",
@@ -71,31 +156,57 @@
     ],
     "kit_7": [
         [
-            "apprentice"
+            "apprentice",
+            "medicine cat apprentice",
+            "mediator apprentice",
+            "upstanding",
+            "assertive"
         ],
         [
             "Wow, you get to train and leave the camp! That must be so cool!",
-            "Do you think I'll be a good apprentice too? I want to be the best!",
-            "Can you teach me a battle move? Just a small one! I promise I won't use it on anyone... not much anyway.",
-            "Imagine, me catching my first mouse! I can't wait to be an apprentice like you!",
-            "Thanks for talking to me! I can't wait to join you in the apprentice's den soon!"
+            "Do you think I'll be a good apprentice, too? I want to be the best!"
         ]
     ],
+
+    "kit_7_1": [
+        [
+            "apprentice",
+            "unlawful",
+            "assertive",
+            "cool",
+            "brooding",
+            "unabashed"
+        ],
+        [
+            "Can you teach me a battle move? Just a small one!",
+            "I promise I won't use it on anyone... not much, anyway!"
+        ]
+    ],
+        
     "kit_8": [
         [
-            "medicine cat apprentice"
+            "medicine cat apprentice",
+            "medicine cat",
+            "platonic_like",
+            "neutral"
         ],
         [
             "You know all the herbs, right? That's so cool!",
             "Can you show me some? I promise I won't eat any, even if they smell nice!",
             "I heard that you can talk to StarClan! Is that true? What do they sound like?",
-            "Being a medicine cat apprentice sounds hard... but I think you're really brave for doing it.",
+            "Being a medicine cat sounds hard... but I think you're really brave for doing it.",
             "I hope I can be as smart and brave as you one day!"
         ]
     ],
     "kit_9": [
         [
-            "mediator apprentice"
+            "mediator apprentice",
+            "mediator",
+            "assertive",
+            "cool",
+            "sweet",
+            "introspective",
+            "unlawful"
         ],
         [
             "You're always so calm and peaceful, how do you do it?",
@@ -107,11 +218,33 @@
     ],
     "kit_10": [
         [
-            "warrior"
+            "warrior",
+            "neutral",
+            "respect",
+            "platonic_like",
+            "assertive",
+            "silly",
+            "unlawful",
+            "cool",
+            "unabashed"
         ],
         [
             "Wow! You're so strong and fast! I want to be just like you one day!",
-            "Will you teach me a cool move? Please, please, please!",
+            "Will you teach me a cool move? Please, please, please!"
+        ]
+    ],
+
+    "kit_10_1": [
+        [
+            "warrior",
+            "assertive",
+            "silly",
+            "unlawful",
+            "cool",
+            "unabashed",
+            "upstanding"
+        ],
+        [
             "Can I see your battle scars? They look so fierce!",
             "You must have been so brave to earn them. I can't wait to earn my own!",
             "I'm going to be the bravest warrior ever, just like you!"
@@ -119,7 +252,11 @@
     ],
     "kit_113": [
         [
-            "medicine cat"
+            "medicine cat",
+            "platonic_like",
+            "resect",
+            "sweet",
+            "introspective"
         ],
         [
             "You're always so kind and caring, it's really nice!",
@@ -130,7 +267,10 @@
     ],
     "kit_112": [
         [
-            "mediator"
+            "mediator",
+            "mediator apprentice"
+            "respect",
+            "platonic_like"
         ],
         [
             "You're always so good at stopping fights, even better than my mother!",
@@ -142,7 +282,10 @@
     ],
     "kit_132": [
         [
-            "leader"
+            "leader",
+            "platonic_like",
+            "respect",
+            "neutral"
         ],
         [
             "You're the most important cat in the clan! It's so amazing to talk to you!",
@@ -154,10 +297,13 @@
     ],
     "kit_134": [
         [
-            "deputy"
+            "deputy",
+            "respect",
+            "platonic_like",
+            "neutral"
         ],
         [
-            "You're like almost the most important cat in the clan! It's so cool to talk to you!",
+            "You're, like, almost the most important cat in the clan! It's so cool to talk to you!",
             "Do you think I could be a deputy one day? I would get to go on patrol every day!",
             "Being a deputy must be hard, but you're so good at it!",
             "I want to be just as strong and smart as you are one day!"
@@ -165,7 +311,9 @@
     ],
     "kit_115": [
         [
-            "elder"
+            "elder",
+            "unabashed",
+            "assertive"
         ],
         [
             "Your stories are the best! Can you tell me one?",
@@ -176,19 +324,29 @@
     ],
     "kit_150": [
         [
-            "kitten"
+            "kitten",
+            "platonic_like",
+            "neutral",
+            "unabashed",
+            "assertive",
+            "silly"
         ],
         [
             "Hey, do you know any new games we could play?",
             "I'm tired of playing the same old games. I bet you know some fun ones!",
             "Can you teach me? I promise not to be too clumsy!",
-            "Awesome! Let's call the other kits as well. The more, the merrier, right?",
-            "Wait for me, I'll bring my lucky pebble! Can't start a game without it!"
+            "Awesome! Wait for me, I'll bring my lucky pebble! Can't start a game without it!"
         ]
     ],
     "kit_136": [
         [
-            "apprentice"
+            "apprentice",
+            "unlawful",
+            "assertive",
+            "upstanding",
+            "unabashed",
+            "sweet",
+            "cool"
         ],
         [
             "Hey, when you're done with your duties, could you take me to the apprentice den?",
@@ -200,7 +358,11 @@
     ],
     "kit_147": [
         [
-            "medicine cat apprentice"
+            "medicine cat apprentice",
+            "sweet",
+            "introspective",
+            "cool",
+            "upstanding"
         ],
         [
             "Do you have anything for a pretend tummy ache? I'm playing a sick warrior!",
@@ -211,11 +373,12 @@
     ],
     "kit_158": [
         [
-            "mediator apprentice"
+            "mediator apprentice",
+            "mediator"
         ],
         [
-            "Can you help me settle a debate? I think moss-ball is better than hide-and-seek, but my denmate disagrees!",
-            "Do you think you could explain to her why moss-ball is the superior game?",
+            "Can you help me settle a debate? I think moss-ball is better than hide-and-seek, but r_k disagrees!",
+            "Do you think you could explain to them why moss-ball is the superior game?",
             "I promise to listen if you say that hide-and-seek is better, but you're wrong!",
             "Okay, let's get this sorted then! Thanks for helping us!",
             "Hey, why don't you join us for a game after? It'll be fun!"
@@ -223,7 +386,15 @@
     ],
     "kit_149": [
         [
-            "warrior"
+            "warrior",
+            "platonic_like",
+            "respect",
+            "neutral",
+            "assertive",
+            "unlawful",
+            "silly",
+            "unabashed",
+            "upstanding"
         ],
         [
             "Do you remember your first battle? Were you as brave as you are now?",
@@ -235,7 +406,9 @@
     ],
     "kit_1149": [
         [
-            "kitten"
+            "any",
+            "upstanding",
+            "assertive"
         ],
         [
             "Hey! Did you hear about yesterday?",
@@ -246,48 +419,53 @@
     ],
     "kit_11439": [
         [
-            "kitten"
+            "kitten",
+            "neurotic",
+            "introspective"
         ],
         [
             "The apprentices told me that the forest is full of monsters!",
             "They said that there are ones that eat young kits and apprentices for breakfast!",
-            "I don't think I want to be able to leave the camp anymore, if I have to go out there..."
+            "I don't think I want to leave the camp anymore, if I have to go out there..."
         ]
     ],
     "kit_20": [
         [
-            "medicine cat"
+            "medicine cat",
+            "medicine cat apprentice"
         ],
         [
             "Can you ask StarClan if they have any messages for me? I promise to be a good listener!",
             "Does StarClan like moss-ball? I bet they do!",
-            "Do you think you can teach me how to dream like you do? It must be exciting to speak to StarClan!",
-            "Imagine being a medicine cat! Then no one can order me to bed early, right?",
-            "I can't wait to have StarClan dreams. Until then, I'll just dream of the biggest fresh-kill pile!"
+            "Do you think you can teach me how to dream like you do? It must be exciting to speak to StarClan!"
         ]
     ],
     "kit_21": [
         [
-            "mediator"
+            "mediator",
+            "mediator apprentice"
         ],
         [
             "Can you help me tell the other kits it's my turn with the moss-ball? They don't seem to listen to me!",
             "You're really good at making everyone agree. I bet you can make them see it's only fair!",
-            "Do you think I could learn to speak like you? Then no one can ignore me!",
+            "Do you think I could learn to speak like you? Then, no one could ignore me!",
             "Alright, let's tell them it's my turn! After you, of course!",
             "Thanks for helping! One day, I'll be a great speaker like you."
         ]
     ],
     "kit_22": [
         [
-            "leader"
+            "leader",
+            "assertive",
+            "upstanding",
+            "unabashed"
         ],
         [
             "Hey, do you think I could have a peek at the leader's den? I bet it's full of exciting things!",
             "I promise not to touch anything. I'm just curious!",
             "Do you think I could be a leader one day? I'd make sure kits have a say in everything!",
             "Do you think the Clan would listen to a kit leader? We could have moss-ball every evening!",
-            "Alright, I can dream! One day, I'll have my own den and you can visit!"
+            "One day, I'll have my own den and you can visit!"
         ]
     ],
     "kit_23": [
@@ -297,42 +475,30 @@
         [
             "Do you have any stories about brave kits? I want to hear something exciting!",
             "I bet the elders' den is full of old secrets and tales. Could you share one?",
-            "Promise I won't tell the other kits. It'll be our little secret!",
             "Is it true that apprentices used to wrestle badgers for fun? That's what my denmate said!",
             "Thanks for the story! It was the best I've ever heard!"
         ]
     ],
     "kit_11": [
         [
-            "Any"
+            "Any",
+            "assertive",
+            "upstanding",
+            "brooding"
         ],
         [
             "Did you know I'm going to be the best warrior ever? I'm going to catch the biggest mice and run faster than any cat!",
-            "I can't wait until I'm an apprentice. I'll learn all the warrior moves, and no one will be able to beat me!",
-            "Sometimes, when no one is watching, I pretend I'm fighting other Clan cats! I always win, of course!",
-            "I know it'll be hard work, but I can handle it. You'll see! I'll make our Clan proud.",
-            "Just wait until my name is called at my warrior ceremony. It will be the loudest cheer you've ever heard!"
+            "I can't wait until I'm an apprentice. I'll learn all the warrior moves, and no one will be able to beat me!"
         ]
     ],
-    "kit_12": [
-        [
-            "Any"
-        ],
-        [
-            "Do you know what's my favorite game? Moss-ball! It's the best game ever!",
-            "I love chasing the moss-ball and catching it. It's like hunting, but without the bugs and dirt.",
-            "And the best part is when I score a point! I feel like I can do anything!",
-            "Someday, I'll teach my own kits how to play moss-ball. They'll love it as much as I do!",
-            "Will you play moss-ball with me? I promise I won't go easy on you!"
-        ]
-    ],
+  
     "kit_121": [
         [
             "murder",
             "Any"
         ],
         [
-            "Uh, sorry! The queens told me to stay away from you."
+            "Eep! The queens told me to stay away from you!"
         ]
     ],
     "kit_129": [
@@ -347,10 +513,14 @@
     ],
     "kit_13": [
         [
-            "Any"
+            "Any",
+            "assertive",
+            "platonic_like",
+            "introspective",
+            "unabashed"
         ],
         [
-            "Have you ever wondered what's outside the territory? Like, really far away? Where no Clan cat has ever been?",
+            "Have you ever wondered what it's like really, really far away? Where no Clan cat has ever been?",
             "I bet it's full of exciting things! Like giant trees and weird creatures and... and... maybe even monsters!",
             "I know, I know... the warrior code says we should stick to our territory. But it's fun to imagine, isn't it?",
             "Someday, when I'm a warrior, maybe I'll explore those unknown places. But for now, I'll just dream about it."
@@ -358,7 +528,9 @@
     ],
     "kit_14": [
         [
-            "Any"
+            "Any",
+            "sweet",
+            "upstanding"
         ],
         [
             "You know what's the yummiest thing in the world? Fresh-kill! Especially when it's a juicy vole. Mmm!",
@@ -369,13 +541,15 @@
     ],
     "KIT32132": [
         [
-            "newborn"
+            "newborn",
+            "sweet",
+            "introspective"
         ],
         [
             "Oops-! Careful there y_c! I don't think you're supposed to leave the nursery just yet, your just a bit too young",
             "The older cats wouldn't be too happy if they found out I let you out into the camp, but hey! There are tons of things to do here! We could play moss ball, Hunt the Feather, Invasion, anything!",
             "You might be a little shaky on your paws, but that's alright! You're still getting used to them. Don't worry, I was like that too once. You'll find your balance soon enough, maybe you can go outside by then!",
-            "There's a lot that I want to show you, but in the meanwhile, what do you want to play first?"
+            "There's a lot that I want to show you. What do you want to play first?"
         ]
     ],
     "kit2314": [
@@ -394,7 +568,10 @@
     ],
     "kit21": [
         [
-            "elder"
+            "no_kit",
+            "unlawful",
+            "assertive",
+            "brooding"
         ],
         [
             "y_c, help! I'm playing hide and seek with my den mates, and I need to hide, quick!",
@@ -406,11 +583,15 @@
     ],
     "kit_15": [
         [
-            "Any"
+            "Any",
+            "sweet",
+            "introspective",
+            "platonic_like",
+            "trust"
         ],
         [
             "Did you ever notice how pretty the stars are? They're like shiny bugs in the sky!",
-            "Elders say those are our ancestors looking down at us. I hope when I join StarClan, I'll be a shiny star too!",
+            "The elders say those are our ancestors looking down at us. I hope when I join StarClan, I'll be a shiny star too!",
             "Do you think the stars play with each other? Like how we play with moss-balls?",
             "I like to imagine they do. It makes the night feel less scary. Like we're never really alone.",
             "Next time you look at the stars, wave at them! I bet they'll wave back!"
@@ -425,26 +606,16 @@
             "There are big battles, heroic warriors, mysterious places... It's like a dream!",
             "Sometimes I pretend I'm in those stories. Like I'm the hero who saves the day!",
             "Do you think I could be in a story someday? Like a real hero?",
-            "I'll make sure to do something amazing. Then the elders will tell stories about me!"
+            "I'll make sure to do something amazing. Then, all the elders will tell stories about me!"
         ]
     ],
-    "kit_17": [
-        [
-            "Any"
-        ],
-        [
-            "Have you ever tried climbing trees? It's so much fun!",
-            "I like to pretend I'm a bird, looking at the world from up high.",
-            "Of course, it's a little scary. But that's what makes it exciting!",
-            "Maybe when I'm a warrior, I'll sleep in a tree. Then I could watch the stars all night!"
-        ]
-    ],
+   
     "kit_18": [
         [
             "Any"
         ],
         [
-            "Do you know how to swim? I heard some other cats do it all the time!",
+            "y_c, we should go swimming! I heard some other cats do it all the time!",
             "I tried it once in a puddle. It was... um... a little wet.",
             "But I bet it's fun when you get the hang of it. Like being a fish!",
             "Maybe I could learn to swim properly when I'm a warrior. I'd be the first cat who can swim super fast!",
@@ -453,7 +624,8 @@
     ],
     "kit_183": [
         [
-            "elder"
+            "elder",
+            "unabashed"
         ],
         [
             "Wow, you're so old... Are you going to join StarClan soon?"
@@ -461,7 +633,9 @@
     ],
     "kit_182": [
         [
-            "elder"
+            "elder",
+            "unabashed",
+            "you_brooding"
         ],
         [
             "Wow, you're so old... Are you going to join the Dark Forest soon? The queens say that's where grumpy cats go!"
@@ -473,7 +647,7 @@
         ],
         [
             "Have you ever met a kittypet? I heard they live in Twoleg nests and eat weird food!",
-            "I can't imagine not living in the forest. No trees to climb, no streams to play in... It must be so boring!",
+            "I can't imagine not living outside. No trees to climb, no streams to play in... It must be so boring!",
             "But I guess they don't have to worry about badgers or foxes. That's a good thing, right?",
             "Still, I wouldn't trade my life for a kittypet's. The forest is the best place to be!",
             "Would you ever want to be a kittypet? I bet you wouldn't!"
@@ -481,7 +655,10 @@
     ],
     "kit_210": [
         [
-            "Any"
+            "Any",
+            "neurotic",
+            "upstanding",
+            "sweet"
         ],
         [
             "I can't wait until I have my own den! It'll be the coziest den ever!",
@@ -493,7 +670,11 @@
     ],
     "kit13123": [
         [
-            "newborn"
+            "newborn",
+            "silly",
+            "unabashed",
+            "unlawful",
+            "assertive"
         ],
         [
             "Hurry and open your eyes! It's getting really, really boring!",
@@ -537,10 +718,30 @@
         ],
         [
             "Hey, that's not nice! I may be small, but I'm going to be a big strong warrior someday. You'll see!",
-            "Just because I'm a kit doesn't mean you can talk to me like that.",
-            "You hurt my feelings. That wasn't a nice thing to say...",
-            "Why would you say something like that anyway? Is this how older cats talk to kits?",
-            "I'm telling my mother on you! She won't like it when she hears what you said."
+        ]
+    ],
+
+    "kit321_1": [
+        [
+            "insult",
+            "sweet",
+            "introspective",
+            "assertive",
+            "neurotic"
+        ],
+        [
+            "You hurt my feelings! That wasn't a nice thing to say...",
+        ]
+    ],
+    "kit321_2": [
+        [
+            "insult",
+            "upstanding",
+            "neurotic"
+        ],
+        [
+            "I'm telling on you! l_n won't like it when they hear what you said!"
         ]
     ]
+
 }
