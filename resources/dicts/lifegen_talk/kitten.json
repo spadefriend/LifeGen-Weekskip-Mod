@@ -2,7 +2,11 @@
     "kit_1": [
         [
             "kitten",
-            "jealousy"
+            "jealousy",
+            "assertive",
+            "upstanding",
+            "brooding",
+            "silly"
         ],
         [
             "There you are, prancing around like you're l_n's kit or something.",
@@ -13,7 +17,9 @@
     "kit_1_1": [
         [
             "kitten",
-            "jealousy"
+            "jealousy",
+            "upstanding",
+            "assertive"
         ],
         [
             "Look at you, always the center of attention. Everyone cooing and pawing at you.",
@@ -24,7 +30,9 @@
     "kit_1_2": [
         [
             "kitten",
-            "jealousy"
+            "jealousy",
+            "brooding",
+            "introspective"
         ],
         [
             "So, you climbed to the top of the elders' den, big deal! I can do that too, I just... don't want to.",
@@ -35,7 +43,10 @@
     "kit_1_3": [
         [
             "kitten",
-            "jealousy"
+            "jealousy",
+            "assertive",
+            "silly",
+            "upstanding"
         ],
         [
             "Oh, don't give me that look. You think you're so great, don't you?",
