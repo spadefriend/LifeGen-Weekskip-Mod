@@ -1721,7 +1721,8 @@
         ],
         [
             "Hey, y_c. Want to share tongues?",
-            "[You and t_c cuddle up together, pelts brushing, soaking up the bright sunlight coming into camp. Their fur is so soft, and smells wonderful, you bury your face into it. Suddenly, they stopped grooming you, like their attention was stolen by something.",
+            "[You and t_c cuddle up together, pelts brushing, soaking up the bright sunlight coming into camp. Their fur is so soft, and smells wonderful, you bury your face into it.",
+            "Suddenly, they stopped grooming you, like their attention was stolen by something.",
             "...",
             "Huh? Oh! You want to know if something's wrong?",
             "Oh, no. Nothing's wrong! I was just thinking...",
@@ -2607,14 +2608,6 @@
             "Hmph... expecting kits I see? Better keep those rascals under control."
         ]
     ],
-    "they_pregnant1": [
-        [
-            "any",
-            "they_pregnant",
-            "assertive"
-        ],
-        []
-    ],
     "they_pregnant2": [
         [
             "any",
@@ -3036,7 +3029,7 @@
             "you_grieving"
         ],
         [
-            "Oh t_c... don't worry about your chores- unless you want to worry about them?",
+            "Oh y_c... don't worry about your chores- unless you want to worry about them?",
             "Ah- what I'm trying to say is... If you need a break, please let me know. I'm more than willing to do anything to make sure you rest, okay?"
         ]
     ],
@@ -3970,7 +3963,8 @@
         ],
         [
             "Hey, y_c. Want to share tongues?",
-            "[You and t_c cuddle up together, pelts brushing, soaking up the bright sunlight coming into camp. Their fur is so soft, and smells wonderful, you bury your face into it. Suddenly, they stopped grooming you, like their attention was stolen by something.",
+            "[You and t_c cuddle up together, pelts brushing, soaking up the bright sunlight coming into camp. Their fur is so soft, and smells wonderful, you bury your face into it.",
+            "Suddenly, they stopped grooming you, like their attention was stolen by something.",
             "...",
             "Huh? Oh! You want to know if something's wrong?",
             "Oh, no. Nothing's wrong! I was just thinking...",
@@ -4071,7 +4065,8 @@
         ],
         [
             "You wanna learn something really stupid about plants? No? Well, too bad, y_c!",
-            "When I was a little younger I would sneak out to the Twoleg houses with r_c and investigate all their plants. One house had a bunch of berries, and the kittypet who lives there informed me that most of them were poisonous, but the Twolegs ate them anyway, and nothing happened.",
+            "When I was a little younger I would sneak out to the Twoleg houses with r_c and investigate all their plants.",
+            "One house had a bunch of berries, and the kittypet who lives there informed me that most of them were poisonous, but the Twolegs ate them anyway, and nothing happened.",
             "Which, come on! Why can't I eat the long red berries? They look so tasty!",
             "And there were some they called \"cacao beans\" that smelled delightful...",
             "Man, sometimes I wish I were a Twoleg. They have it so easy, and so... weird. I bet they can eat rocks and be just fine.",
@@ -4243,7 +4238,8 @@
             "Refused to share the largest piece of fresh-kill during leaf-bare.",
             "Borrowed and lost something important.",
             "[You try to walk away from t_c slowly, giving them a \"courteous\" nod, but they walk after you while continuing to talk vaguely about your sins.]",
-            "[As you hasten, they only follow faster and faster, scaring the everliving Dark Forest out of you. Once the two of you leave c_nClan's camp, they laugh and turn back unceremoniously, but you're too confused and fearful to do the same, so you end up hiding in a tree until you fall asleep.]"
+            "[As you hasten, they only follow faster and faster, scaring the everliving Dark Forest out of you.]",
+            "[Once the two of you leave c_nClan's camp, they laugh and turn back unceremoniously, but you're too confused and fearful to do the same, so you end up hiding in a tree until you fall asleep.]"
         ]
     ],
     "silly_leafbare_warmth": [
@@ -4967,7 +4963,8 @@
         [
             "[t_c seems to have kits clinging onto them, clearly having wanted to go out on a patrol... Seems these kits had other plans, though.]",
             "Help-",
-            "[As you pluck each and every kit off of them and send them scurrying back to the Nursery, you can't help but notice them staring at you in wonder out of the corner of your eye. However, when you look towards them, they quickly shake that look off of their face.]",
+            "[As you pluck each and every kit off of them and send them scurrying back to the Nursery, you can't help but notice them staring at you in wonder out of the corner of your eye.]",
+            "[However, when you look towards them, they quickly shake that look off of their face.]",
             "Thanks, y_c! I thought I'd never make it to the patrol on time."
         ]
     ]

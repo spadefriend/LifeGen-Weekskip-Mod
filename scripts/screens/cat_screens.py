@@ -3829,7 +3829,7 @@ class TalkScreen(Screens):
             "upstanding": ["righteous", "ambitious", "strict", "competitive", "responsible", "bossy", "know-it-all"],
             "introspective": ["lonesome", "righteous", "calm", "gloomy", "wise", "thoughtful", "quiet", "daydreamer"],
             "neurotic": ["nervous", "insecure", "lonesome", "quiet"],
-            "silly": ["troublesome", "childish", "playful", "careful", "strange", "noisy", "attention-seeking"],
+            "silly": ["troublesome", "childish", "playful", "careful", "strange", "noisy", "attention-seeker"],
             "stable": ["loyal", "responsible", "wise", "faithful"],
             "sweet": ["compassionate", "faithful", "loving", "oblivious", "sincere", "sweet", "polite", "daydreamer"],
             "unabashed": ["childish", "confident", "bold", "shameless", "strange", "oblivious", "flamboyant", "impulsive", "noisy"],
@@ -4198,7 +4198,7 @@ class TalkScreen(Screens):
             injured_cats = []
             
             for c in Cat.all_cats.values():
-                if not c.dead and not c.outside:
+                if not c.dead and not c.outside and c.ID != you.ID and c.ID != cat.ID:
                     if c.status == "medicine cat":
                         living_meds.append(c)
                     elif c.status == "warrior":
