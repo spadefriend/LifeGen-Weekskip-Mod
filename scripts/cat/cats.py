@@ -133,7 +133,7 @@ class Cat():
         self.history = None
         if faded:
             self.ID = ID
-            self.name = Name(status, prefix=prefix, suffix=suffix)
+            self.name = Name(status, prefix=prefix, suffix=suffix, id=ID)
             self.parent1 = None
             self.parent2 = None
             self.adoptive_parents = []
@@ -360,10 +360,11 @@ class Cat():
                              self.pelt.tortiepattern,
                              biome=biome,
                              specsuffix_hidden=self.specsuffix_hidden,
-                             load_existing_name=loading_cat)
+                             load_existing_name=loading_cat,
+                             id=ID)
         else:
             self.name = Name(status, prefix, suffix, eyes=self.pelt.eye_colour, specsuffix_hidden=self.specsuffix_hidden,
-                             load_existing_name = loading_cat)
+                             load_existing_name = loading_cat, id=ID)
 
         # Private Sprite
         self._sprite = None

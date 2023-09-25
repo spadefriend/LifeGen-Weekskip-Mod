@@ -696,10 +696,28 @@ class MakeClanScreen(Screens):
         if selected is not None:
 
             if self.sub_screen == 'choose leader':
-                self.elements['cat_name'].set_text(str(selected.name) +
+                if selected.genderalign == 'male':
+                    self.elements['cat_name'].set_text(str(selected.name) +
                                                    ' --> ' +
-                                                   selected.name.prefix +
+                                                   'King ' + selected.name.prefix +
                                                    'star')
+                elif selected.genderalign == 'female':
+                    self.elements['cat_name'].set_text(str(selected.name) +
+                                                    ' --> ' +
+                                                    'Queen ' + selected.name.prefix +
+                                                    'star')
+                else:
+                    self.elements['cat_name'].set_text(str(selected.name) +
+                                                    ' --> ' +
+                                                    'Monarch ' + selected.name.prefix +
+                                                    'star')
+            elif self.sub_screen == 'choose deputy':
+                if selected.genderalign == 'male':
+                    self.elements['cat_name'].set_text("King " + str(selected.name))
+                elif selected.genderalign == 'female':
+                    self.elements['cat_name'].set_text("Queen " + str(selected.name))
+                else:
+                    self.elements['cat_name'].set_text("Monarch " + str(selected.name))
             else:
                 self.elements['cat_name'].set_text(str(selected.name))
             self.elements['cat_name'].show()

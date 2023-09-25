@@ -316,7 +316,7 @@ class Pregnancy_Events():
                 if cat.exiled:
                     kit.status = 'loner'
                     name = choice(names.names_dict["normal_prefixes"])
-                    kit.name = Name('loner', prefix=name, suffix="")
+                    kit.name = Name('loner', prefix=name, suffix="", id=kit.ID)
                 if other_cat and not other_cat.outside:
                     kit.backstory = "outsider2"
                 if cat.outside and not cat.exiled:

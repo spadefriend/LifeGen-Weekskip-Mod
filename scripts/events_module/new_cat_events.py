@@ -51,7 +51,7 @@ class NewCatEvents:
                                             eyes=outside_cat.pelt.eye_colour,
                                             pelt=outside_cat.pelt.name,
                                             tortiepattern=outside_cat.pelt.tortiepattern,
-                                            biome=game.clan.biome)
+                                            biome=game.clan.biome, id=outside_cat.ID)
                     
                     event_text = event_text + f" They decide to take a new name, {outside_cat.name}."
                 outside_cat.thought = "Is looking around the camp with wonder"

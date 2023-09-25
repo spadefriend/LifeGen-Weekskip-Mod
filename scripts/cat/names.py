@@ -5,8 +5,7 @@ import ujson
 from scripts.housekeeping.datadir import get_save_dir
 
 from scripts.game_structure.game_essentials import game
-
-
+from . import cats
 class Name():
     if os.path.exists('resources/dicts/names/names.json'):
         with open('resources/dicts/names/names.json') as read_file:
@@ -64,11 +63,15 @@ class Name():
                  tortiepattern=None,
                  biome=None,
                  specsuffix_hidden=False,
-                 load_existing_name=False):
+                 load_existing_name=False,
+                 id=None):
         self.status = status
         self.prefix = prefix
         self.suffix = suffix
         self.specsuffix_hidden = specsuffix_hidden
+        self.cat = None
+        if id:
+            self.cat = cats.cat_class.fetch_cat(id)
 
         name_fixpref = False
         # Set prefix
@@ -173,12 +176,81 @@ class Name():
                 self.suffix = random.choice(self.names_dict["normal_suffixes"])
 
     def __repr__(self):
+        
+        title_prefix = self.get_title_prefix()
+        
+        self.prefix = title_prefix
+        
         if self.status in self.names_dict["special_suffixes"] and not self.specsuffix_hidden:
             return self.prefix + self.names_dict["special_suffixes"][self.status]
         else:
-            if game.config['fun']['april_fools']:
-                return self.prefix + 'egg'
             return self.prefix + self.suffix
 
+    def get_title_prefix(self):
+        titles = ["King", "Queen", "Monarch", "Princess", "Prince", "Princev", "Duke", "Duchess", "Dukess", "Lord", "Lady", "Noble", "Healer", "Healer Apprentice", "Advisor", "Advisor Apprentice", "Guard", "Sir", "Hunter"]
+        
+        if game.clan:
+        
+            for t in titles:
+                if t in self.prefix:
+                    return self.prefix
+                
+            title = ""
+            
+            if not self.cat:
+                for c in cats.cat_class.all_cats_list:
+                    if c.status == self.status and c.name.prefix == self.prefix and c.name.suffix == self.suffix:
+                        self.cat = c
+                        break
+            
+            if self.cat:
+                title = self.get_title()
 
+            return title + " " + self.prefix
+        else:
+            return self.prefix
+
+    def get_title(self):
+        gender = self.cat.genderalign
+        inheritance = self.cat.inheritance
+        
+        if self.status == 'leader' or self.status == 'deputy':
+            if gender == 'female':
+                return "Queen"
+            elif gender == 'male':
+                return "King"
+            else:
+                return "Monarch"
+        
+        if self.status == 'medicine cat':
+            return "Healer"
+        
+        if self.status == 'medicine cat apprentice':
+            return "Healer Apprentice"
+                
+        if self.status == 'mediator':
+            return "Advisor"
+        
+        if self.status == 'mediator apprentice':
+            return "Advisor Apprentice"
+        
+        if inheritance:
+            if game.clan.leader.ID in inheritance.get_parents() or game.clan.deputy.ID in inheritance.get_parents():
+                if gender == 'female':
+                    return "Princess"
+                elif gender == 'male':
+                    return "Prince"
+                else:
+                    return "Princev"
+
+        if game.clan.leader.is_related(self.cat, False) or game.clan.deputy.is_related(self.cat, False):
+            if gender == 'female':
+                return "Duchess"
+            elif gender == 'male':
+                return "Duke"
+            else:
+                return "Dukess"
+        
+        return ""
+    
 names = Name()
