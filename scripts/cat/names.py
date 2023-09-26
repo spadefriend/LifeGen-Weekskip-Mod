@@ -193,10 +193,9 @@ class Name():
         
         if game.clan:
             
-            if self.status != "leader" and self.status != "deputy":
-                for t in titles:
-                    if t in self.prefix:
-                        return self.prefix
+            for t in titles:
+                if t in self.prefix:
+                    return self.prefix
                 
             title = ""
             
