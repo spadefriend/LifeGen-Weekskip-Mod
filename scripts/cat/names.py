@@ -5,7 +5,6 @@ import ujson
 from scripts.housekeeping.datadir import get_save_dir
 
 from scripts.game_structure.game_essentials import game
-from . import cats
 class Name():
     if os.path.exists('resources/dicts/names/names.json'):
         with open('resources/dicts/names/names.json') as read_file:
@@ -70,8 +69,7 @@ class Name():
         self.suffix = suffix
         self.specsuffix_hidden = specsuffix_hidden
         self.cat = None
-        if id:
-            self.cat = cats.cat_class.fetch_cat(id)
+        self.id = id
 
         name_fixpref = False
         # Set prefix
@@ -187,18 +185,23 @@ class Name():
             return self.prefix + self.suffix
 
     def get_title_prefix(self):
+        from .cats import cat_class
+        
+        if id:
+            self.cat = cat_class.fetch_cat(id)
         titles = ["King", "Queen", "Monarch", "Princess", "Prince", "Princev", "Duke", "Duchess", "Dukess", "Lord", "Lady", "Noble", "Healer", "Healer Apprentice", "Advisor", "Advisor Apprentice", "Guard", "Sir", "Hunter"]
         
         if game.clan:
-        
-            for t in titles:
-                if t in self.prefix:
-                    return self.prefix
+            
+            if self.status != "leader" and self.status != "deputy":
+                for t in titles:
+                    if t in self.prefix:
+                        return self.prefix
                 
             title = ""
             
             if not self.cat:
-                for c in cats.cat_class.all_cats_list:
+                for c in cat_class.all_cats_list:
                     if c.status == self.status and c.name.prefix == self.prefix and c.name.suffix == self.suffix:
                         self.cat = c
                         break
@@ -214,6 +217,8 @@ class Name():
             return self.prefix
 
     def get_title(self):
+        from .cats import cat_class
+
         gender = self.cat.genderalign
         inheritance = self.cat.inheritance
         
@@ -240,7 +245,7 @@ class Name():
         if inheritance:
             if inheritance.get_parents():
                 for c in inheritance.get_parents():
-                    parent = cats.cat_class.fetch_cat(c)
+                    parent = cat_class.fetch_cat(c)
                     if parent.status == 'leader' or parent.status == 'deputy':
                         if gender == 'female':
                             return "Princess"
