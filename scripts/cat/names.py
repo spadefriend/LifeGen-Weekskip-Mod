@@ -205,8 +205,11 @@ class Name():
             
             if self.cat:
                 title = self.get_title()
-
-            return title + " " + self.prefix
+            
+            if title:
+                return title + " " + self.prefix
+            else:
+                return self.prefix
         else:
             return self.prefix
 
@@ -235,21 +238,27 @@ class Name():
             return "Advisor Apprentice"
         
         if inheritance:
-            if game.clan.leader.ID in inheritance.get_parents() or game.clan.deputy.ID in inheritance.get_parents():
+            if inheritance.get_parents():
+                for c in inheritance.get_parents():
+                    parent = cats.cat_class.fetch_cat(c)
+                    if parent.status == 'leader' or parent.status == 'deputy':
+                        if gender == 'female':
+                            return "Princess"
+                        if gender == 'male':
+                            return "Prince"
+                        else:
+                            return "Princev"
+        if game.clan.leader and game.clan.deputy:
+            if game.clan.leader.is_related(self.cat, False) or game.clan.deputy.is_related(self.cat, False):
                 if gender == 'female':
-                    return "Princess"
+                    return random.choice(["Duchess", "Lady", "Guard"])
                 elif gender == 'male':
-                    return "Prince"
+                    return random.choice(["Duke", "Lord", "Guard"])
                 else:
-                    return "Princev"
-
-        if game.clan.leader.is_related(self.cat, False) or game.clan.deputy.is_related(self.cat, False):
-            if gender == 'female':
-                return "Duchess"
-            elif gender == 'male':
-                return "Duke"
-            else:
-                return "Dukess"
+                    return random.choice(["Dukess", "Noble", "Guard"])
+            
+        if self.status in ['warrior', 'elder']:
+            return random.choice(['Sir', "Hunter"])
         
         return ""
     
