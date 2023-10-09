@@ -294,25 +294,7 @@
             {
                 "text": "The training session doesn't go as planned, as a Dark Forest warrior interrupts and demands that you spar with your claws unsheathed. You and r_c hesitantly agree and both of you wake up with several scratches.",
                 "exp": 0,
-                "weight": 20,
-                "injury": [
-                    {
-                        "cats": [
-                            "r_c",
-                            "s_c"
-                        ],
-                        "injuries": [
-                            "claw-wound"
-                        ],
-                        "scars": [
-                            "SNOUT",
-                            "ONE"
-                        ]
-                    }
-                ],
-                "history_text": {
-                    "scar": "This cat is scarred from training in the Dark Forest"
-                }
+                "weight": 20
             }
         ]
     },
