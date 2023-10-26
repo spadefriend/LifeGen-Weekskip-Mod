@@ -727,7 +727,7 @@ class Events:
             alive_cats = self.get_living_cats()
             alive_cat = random.choice(alive_cats)
             while alive_cat.ID == game.clan.your_cat.ID:
-                alive_cat = random.choice(alive_cat)
+                alive_cat = random.choice(alive_cats)
             text = text.replace("r_c", str(alive_cat.name))
         if "r_k" in text:
             alive_kits = get_alive_kits(Cat)
