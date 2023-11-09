@@ -16,6 +16,7 @@ from scripts.patrol.patrol import Patrol
 import ujson
 
 from scripts.cat.cats import Cat, cat_class
+from scripts.cat.pelts import Pelt
 from scripts.clan import HERBS
 from scripts.clan_resources.freshkill import FRESHKILL_ACTIVE, FRESHKILL_EVENT_ACTIVE
 from scripts.conditions import medical_cats_condition_fulfilled, get_amount_cat_for_one_medic
@@ -847,11 +848,52 @@ class Events:
         game.switches['skip_conditions'].clear()
     
     def gain_accessory(self, cat):
-        acc = random.choice(["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "LAUREL", "RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "MOTH WINGS", "CICADA WINGS", "CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME", "GREEN", "RAINBOW", "BLACK", "SPIKES", "WHITE", "CRIMSONBELL", "BLUEBELL", "YELLOWBELL", "CYANBELL", "REDBELL",
-            "LIMEBELL"])
-        print(f"{cat.name} gained an accessory: {acc}")
-        if acc not in cat.pelt.accessories:
-            cat.pelt.accessories.append(acc)
+        possible_accs = ["WILD", "PLANT", "COLLAR", "FLOWER", "PLANT2", "SNAKE", "SMALLANIMAL", "DEADINSECT", "ALIVEINSECT", "FRUIT", "CRAFTED", "TAIL2"]
+        acc_list = []
+        if "WILD" in possible_accs:
+            acc_list.extend(Pelt.wild_accessories)
+        if "PLANT" in possible_accs:
+            acc_list.extend(Pelt.plant_accessories)
+        if "COLLAR" in possible_accs:
+            acc_list.extend(Pelt.collars)
+        if "FLOWER" in possible_accs:
+            acc_list.extend(Pelt.flower_accessories)
+        if "PLANT2" in possible_accs:
+            acc_list.extend(Pelt.plant2_accessories)
+        if "SNAKE" in possible_accs:
+            acc_list.extend(Pelt.snake_accessories)
+        if "SMALLANIMAL" in possible_accs:
+            acc_list.extend(Pelt.smallAnimal_accessories)
+        if "DEADINSECT" in possible_accs:
+            acc_list.extend(Pelt.deadInsect_accessories)
+        if "ALIVEINSECT" in possible_accs:
+            acc_list.extend(Pelt.aliveInsect_accessories)
+        if "FRUIT" in possible_accs:
+            acc_list.extend(Pelt.fruit_accessories)
+        if "CRAFTED" in possible_accs:
+            acc_list.extend(Pelt.crafted_accessories)
+        if "TAIL2" in possible_accs:
+            acc_list.extend(Pelt.tail2_accessories)
+        if "NOTAIL" in cat.pelt.scars or "HALFTAIL" in cat.pelt.scars:
+            for acc in Pelt.tail_accessories + Pelt.tail2_accessories:
+                if acc in acc_list:
+                    try:
+                        acc_list.remove(acc)
+                    except ValueError:
+                        print(f'attempted to remove {acc} from possible acc list, but it was not in the list!')
+
+        if not cat.pelt.inventory:
+            cat.pelt.inventory = []
+        acc = random.choice(acc_list)
+        counter = 0
+        while acc in cat.pelt.inventory:
+            counter+=1
+            if counter == 30:
+                break
+            acc = random.choice(acc_list)
+        cat.pelt.inventory.append(acc)
+        string = f"{cat.name} found a new accessory: {acc}! They choose to store it in a safe place for now."
+        game.cur_events_list.insert(0, Single_Event(string, "health"))
 
     def load_war_resources(self):
         resource_dir = "resources/dicts/events/"
