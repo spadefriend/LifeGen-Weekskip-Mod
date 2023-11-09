@@ -824,6 +824,7 @@ class Events:
         self.invite_new_cats(cat)
         self.other_interactions(cat)
         self.gain_accessories(cat)
+        self.gain_accessory(cat)
 
         # switches between the two death handles
         if random.getrandbits(1):
@@ -844,6 +845,12 @@ class Events:
         self.handle_murder(cat)
 
         game.switches['skip_conditions'].clear()
+    
+    def gain_accessory(self, cat):
+        acc = random.choice(["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "LAUREL"])
+        print(f"{cat.name} gained an accessory: {acc}")
+        if acc not in cat.pelt.accessories:
+            cat.pelt.accessories.append(acc)
 
     def load_war_resources(self):
         resource_dir = "resources/dicts/events/"
@@ -1425,10 +1432,10 @@ class Events:
         if cat.dead or cat.outside:
             return
 
-        # check if cat already has acc
-        if cat.pelt.accessory:
-            self.ceremony_accessory = False
-            return
+        # # check if cat already has acc
+        # if cat.pelt.accessory:
+        #     self.ceremony_accessory = False
+        #     return
 
         # find other_cat
         other_cat = random.choice(list(Cat.all_cats.values()))

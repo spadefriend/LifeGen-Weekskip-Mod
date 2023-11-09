@@ -121,6 +121,7 @@ class ProfileScreen(Screens):
         self.backstory_background = None
         self.history_text_box = None
         self.conditions_tab_button = None
+        self.accessories_tab_button = None
         self.condition_container = None
         self.left_conditions_arrow = None
         self.right_conditions_arrow = None
@@ -194,6 +195,8 @@ class ProfileScreen(Screens):
                 self.toggle_history_tab()
             elif event.ui_element == self.conditions_tab_button:
                 self.toggle_conditions_tab()
+            elif event.ui_element == self.accessories_tab_button:
+                self.toggle_accessories_tab()
             elif "leader_ceremony" in self.profile_elements and \
                     event.ui_element == self.profile_elements["leader_ceremony"]:
                 self.change_screen('ceremony screen')
@@ -404,9 +407,8 @@ class ProfileScreen(Screens):
             object_id="#conditions_tab_button", manager=MANAGER
         )
 
-        self.placeholder_tab_3 = UIImageButton(scale(pygame.Rect((800, 1244), (352, 60))), "",
-                                               object_id="#cat_tab_3_blank_button", starting_height=1, manager=MANAGER)
-        self.placeholder_tab_3.disable()
+        self.accessories_tab_button = UIImageButton(scale(pygame.Rect((800, 1244), (352, 60))), "",
+                                               object_id="#accessories_tab_button", starting_height=1, manager=MANAGER)
 
         self.placeholder_tab_4 = UIImageButton(scale(pygame.Rect((1152, 1244), (352, 60))), "",
                                                object_id="#cat_tab_4_blank_button", manager=MANAGER)
@@ -442,7 +444,7 @@ class ProfileScreen(Screens):
         self.dangerous_tab_button.kill()
         self.backstory_tab_button.kill()
         self.conditions_tab_button.kill()
-        self.placeholder_tab_3.kill()
+        self.accessories_tab_button.kill()
         self.placeholder_tab_4.kill()
         self.inspect_button.kill()
         self.close_current_tab()
@@ -1636,6 +1638,22 @@ class ProfileScreen(Screens):
 
         text = "<br><br>".join(text_list)
         return text
+    
+    def toggle_accessories_tab(self):
+        """Opens accessories tab"""
+
+        previous_open_tab = self.open_tab
+
+        self.close_current_tab()
+
+        if previous_open_tab == 'accessories':
+            pass
+        else:
+            self.open_tab = "accessories"
+            self.backstory_background = pygame_gui.elements.UIImage(scale(pygame.Rect((178, 930), (1240, 314))),
+                                                                    self.backstory_tab)
+            self.backstory_background.disable()
+            self.update_disabled_buttons_and_text()
 
     def toggle_relations_tab(self):
         """Opens relations tab"""
@@ -1848,6 +1866,8 @@ class ProfileScreen(Screens):
                 self.kill_cat_button.enable()
             else:
                 self.kill_cat_button.disable()
+        elif self.open_tab == "accessories":
+            pass
         # History Tab:
         elif self.open_tab == 'history':
             # show/hide fav tab star
@@ -1994,7 +2014,8 @@ class ProfileScreen(Screens):
                     self.history_text_box.kill()
                 self.show_moons.kill()
                 self.no_moons.kill()
-
+        elif self.open_tab == "accessories":
+            self.backstory_background.kill()
         elif self.open_tab == 'conditions':
             self.left_conditions_arrow.kill()
             self.right_conditions_arrow.kill()
