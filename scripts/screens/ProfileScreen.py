@@ -163,18 +163,50 @@ class ProfileScreen(Screens):
                 self.change_screen(game.last_screen_forProfile)
             elif event.ui_element == self.previous_cat_button:
                 if isinstance(Cat.fetch_cat(self.previous_cat), Cat):
+                    self.previous_page_button.enable()
+                    self.next_page_button.enable()
                     self.clear_profile()
                     game.switches['cat'] = self.previous_cat
                     self.build_profile()
+                    self.page = 0
+                    self.max_pages = math.ceil(len(self.the_cat.pelt.inventory)/18)
+                    if self.page == 0 and self.max_pages == 1:
+                        self.previous_page_button.disable()
+                        self.next_page_button.disable()
+                    elif self.page == 0:
+                        self.previous_page_button.disable()
+                        self.next_page_button.enable()
+                    elif self.page == self.max_pages - 1:
+                        self.previous_page_button.enable()
+                        self.next_page_button.disable()
+                    else:
+                        self.previous_page_button.enable()
+                        self.next_page_button.enable()
                     self.update_disabled_buttons_and_text()
                 else:
                     print("invalid previous cat", self.previous_cat)
             elif event.ui_element == self.next_cat_button:
                 if isinstance(Cat.fetch_cat(self.next_cat), Cat):
+                    self.previous_page_button.enable()
+                    self.next_page_button.enable()
                     self.clear_profile()
                     game.switches['cat'] = self.next_cat
                     self.build_profile()
-                    self.update_disabled_buttons_and_text()
+                    self.page = 0
+                    self.max_pages = math.ceil(len(self.the_cat.pelt.inventory)/18)
+                    if self.page == 0 and self.max_pages == 1:
+                        self.previous_page_button.disable()
+                        self.next_page_button.disable()
+                    elif self.page == 0:
+                        self.previous_page_button.disable()
+                        self.next_page_button.enable()
+                    elif self.page == self.max_pages - 1:
+                        self.previous_page_button.enable()
+                        self.next_page_button.disable()
+                    else:
+                        self.previous_page_button.enable()
+                        self.next_page_button.enable()
+                        self.update_disabled_buttons_and_text()
                 else:
                     print("invalid next cat", self.previous_cat)
             elif event.ui_element == self.inspect_button:
@@ -201,22 +233,34 @@ class ProfileScreen(Screens):
             elif event.ui_element == self.accessories_tab_button:
                 self.toggle_accessories_tab()
             elif event.ui_element == self.previous_page_button:
-                if self.page - 1 < 0:
-                    self.page = 0
-                    
-                else:
+                if self.page > 0:
                     self.page -= 1
-                    
-                self.update_disabled_buttons_and_text()
-            elif event.ui_element == self.next_page_button:
-                if self.page + 1 >= self.max_pages:
-                    self.page = self.max_pages
-                else:
-                    self.page +=1
                 if self.page == 0:
                     self.previous_page_button.disable()
                     self.next_page_button.enable()
-                elif self.page == self.max_pages:
+                elif self.page == self.max_pages - 1:
+                    self.previous_page_button.enable()
+                    self.next_page_button.disable()
+                else:
+                    self.previous_page_button.enable()
+                    self.next_page_button.enable()
+                self.update_disabled_buttons_and_text()
+            elif event.ui_element == self.next_page_button:
+                if self.page < self.max_pages - 1:
+                    self.page += 1
+                    
+                if self.page == 0 and self.max_pages == 1:
+                    self.previous_page_button.disable()
+                    self.next_page_button.disable()
+                elif self.page == 0:
+                    self.previous_page_button.disable()
+                    self.next_page_button.enable()
+                elif self.page == self.max_pages - 1:
+                    self.previous_page_button.enable()
+                    self.next_page_button.disable()
+                else:
+                    self.previous_page_button.enable()
+                    self.next_page_button.enable()
                 self.update_disabled_buttons_and_text()
             elif "leader_ceremony" in self.profile_elements and \
                     event.ui_element == self.profile_elements["leader_ceremony"]:
@@ -1751,6 +1795,7 @@ class ProfileScreen(Screens):
 
         self.close_current_tab()
         self.page = 0
+        
 
         if previous_open_tab == 'accessories':
             pass
@@ -1763,6 +1808,7 @@ class ProfileScreen(Screens):
             self.previous_page_button = UIImageButton(scale(pygame.Rect((110, 1000), (68, 68))), "",
                                               object_id="#arrow_left_button"
                                               , manager=MANAGER)
+            self.previous_page_button.disable()
             self.next_page_button = UIImageButton(scale(pygame.Rect((1418, 1000), (68, 68))), "",
                                                   object_id="#arrow_right_button", manager=MANAGER)
 
@@ -1776,7 +1822,6 @@ class ProfileScreen(Screens):
         age = cat.age
         cat_sprite = str(cat.pelt.cat_sprites[cat.age])
 
-        
         # setting the cat_sprite (bc this makes things much easier)
         if cat.not_working() and age != 'newborn' and game.config['cat_sprites']['sick_sprites']:
             if age in ['kitten', 'adolescent']:
