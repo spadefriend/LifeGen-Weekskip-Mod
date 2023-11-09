@@ -890,7 +890,7 @@
     "plural": "small deathberries",
     "singular": "small deathberry"
   },
-  "ACORN": {
+  "ACORN2": {
     "default": "acorn",
     "plural": "acorns",
     "singular": "acorn"
@@ -905,7 +905,7 @@
     "plural": "vines",
     "singular": "bundle of vines"
   },
-  "CHERRY": {
+  "CHERRY2": {
     "default": "cherry",
     "plural": "cherries",
     "singular": "cherry"
@@ -991,6 +991,11 @@
     "singular": "small comet moth wing"
   },
   "LADYBUGS": {
+    "default": "ladybugs",
+    "plural": "ladybug",
+    "singular": "ladybugs"
+  },
+  "LADYBUG": {
     "default": "ladybugs",
     "plural": "ladybug",
     "singular": "ladybugs"

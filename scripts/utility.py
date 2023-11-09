@@ -1323,7 +1323,9 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
         # draw accessories
         for i in cat.pelt.accessories:
-            if not acc_hidden:        
+            if not acc_hidden:
+                if i == "cherry":
+                    print(i)
                 if i in cat.pelt.plant_accessories:
                     new_sprite.blit(sprites.sprites['acc_herbs' + i + cat_sprite], (0, 0))
                 elif i in cat.pelt.wild_accessories:
