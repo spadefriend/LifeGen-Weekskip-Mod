@@ -154,26 +154,26 @@ class StartScreen(Screens):
         # Create buttons
 
         self.continue_button = UIImageButton(scale(
-            pygame.Rect((140, 620), (384, 70))),
+            pygame.Rect((140, 660), (384, 70))),
             "",
             object_id="#continue_button",
             manager=MANAGER)
         self.switch_clan_button = UIImageButton(
-            scale(pygame.Rect((140, 710), (384, 70))),
+            scale(pygame.Rect((140, 750), (384, 70))),
             "",
             object_id="#switch_clan_button",
             manager=MANAGER)
         self.new_clan_button = UIImageButton(scale(
-            pygame.Rect((140, 800), (384, 70))),
+            pygame.Rect((140, 840), (384, 70))),
             "",
             object_id="#new_clan_button",
             manager=MANAGER)
         self.settings_button = UIImageButton(scale(
-            pygame.Rect((140, 890), (384, 70))),
+            pygame.Rect((140, 930), (384, 70))),
             "",
             object_id="#settings_button",
             manager=MANAGER)
-        self.quit = UIImageButton(scale(pygame.Rect((140, 980), (384, 70))),
+        self.quit = UIImageButton(scale(pygame.Rect((140, 1020), (384, 70))),
                                   "",
                                   object_id="#quit_button",
                                   manager=MANAGER)
