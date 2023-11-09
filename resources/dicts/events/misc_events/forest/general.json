@@ -45,6 +45,17 @@
             "Newleaf",
             "Greenleaf",
             "Leaf-fall",
+            "Leaf-bare"
+        ],
+        "event_text": "m_c picks up a pinecone, and decides to carry it around with {PRONOUN/m_c/object}!",
+        "accessories": ["PINECONE"]
+    },
+    {
+        "camp": "any",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
             "Leaf-bare",
             "other_cat",
             "to_both",

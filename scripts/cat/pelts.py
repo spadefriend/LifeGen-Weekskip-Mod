@@ -71,9 +71,13 @@ class Pelt():
     # make sure to add plural and singular forms of new accs to acc_display.json so that they will display nicely
     plant_accessories = ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "LAUREL",
                         "BLUEBELLS", "NETTLE", "POPPY", "LAVENDER", "HERBS", "PETALS", "DRY HERBS",
-                        "OAK LEAVES", "CATMINT", "MAPLE SEED", "JUNIPER"
+                        "OAK LEAVES", "CATMINT", "MAPLE SEED", "JUNIPER",  "OAK LEAVES", "CATMINT", "MAPLE SEED", "JUNIPER",
+                    "LILYPAD", "LARGE DEATHBERRY", "SMALL DEATHBERRY", "ACORN2", "PINECONE", "VINE",
+                    "CHERRY", "BLEEDING HEARTS", "SHELL PACK", "FERNS", "GOLD FERNS", "WHEAT", "BLACK WHEAT",
+                    "BERRIES", "CLOVERS", "CLOVER", "MOSS", "FLOWER MOSS", "MUSHROOMS"
                         ]
-    wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "MOTH WINGS", "CICADA WINGS"
+    wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "MOTH WINGS", "CICADA WINGS", "LARGE LUNA", "LARGE COMET", "SMALL LUNA", "SMALL COMET", "LADYBUG",
+                    "MUD PAWS", "ASHY PAWS"
                         ]
     tail_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"]
     collars = [

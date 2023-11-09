@@ -1058,7 +1058,7 @@
             "Leaf-fall"
         ],
         "event_text": "m_c spots an oak tree dropping acorns, and decided to take and wear one.",
-        "accessories": ["ACORN"]
+        "accessories": ["ACORN", "ACORN2"]
     },
     {
         "camp": "any",
@@ -1067,7 +1067,7 @@
         ],
         "event_text": "After m_c gets bonked on the head by a towering oak tree's falling acorns, {PRONOUN/m_c/subject} decide to take and wear one out of pure spite.",
         "cat_trait": ["vengeful", "fierce", "troublesome", "strange"],
-        "accessories": ["ACORN"]
+        "accessories": ["ACORN", "ACORN2"]
     },
     {
         "camp": "any",
@@ -1375,6 +1375,18 @@
             "Newleaf",
             "Greenleaf",
             "Leaf-fall",
+            "Leaf-bare"
+        ],
+        "event_text": "m_c proudly shows off something that {PRONOUN/m_c/subject} {VERB/m_c/have/has} found out in the territory -- a large bundle of deathberries. {PRONOUN/m_c/subject/CAP} decide to wear it, and {PRONOUN/m_c/subject} do so proudly.",
+        "cat_trait": ["bloodthirsty", "vengeful", "cold", "fierce", "shameless", "strange"],
+        "accessories": ["LARGE DEATHBERRY", "SMALL DEATHBERRY"]
+    },
+    {
+        "camp": "any",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
             "Leaf-bare",
             "other_cat",
             "to_both",
@@ -1460,5 +1472,38 @@
         ],
         "event_text": "m_c received a present, gently weaved acc_plural, from r_c and decided to keep it with {PRONOUN/m_c/object} on {PRONOUN/m_c/poss} pelt.",
         "accessories": ["DAISY CORSAGE"]
+    },
+    {
+        "camp": "any",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare"
+        ],
+        "event_text": "m_c fishes a lilypad out of a pond, and decides to carry it around with {PRONOUN/m_c/object}!",
+        "accessories": ["LILYPAD"]
+    },
+    {
+        "camp": "any",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare"
+        ],
+        "event_text": "m_c finds a acc_singular, and decides to carry it around with {PRONOUN/m_c/object}!",
+        "accessories": ["VINE", "CHERRY", "BLEEDING HEARTS", "SHELL PACK", "FERNS", "GOLD FERNS", "WHEAT", "BLACK WHEAT", "BERRIES", "CLOVERS", "MOSS", "FLOWER MOSS", "MUSHROOMS", "LARGE LUNA", "LARGE COMET", "SMALL LUNA", "SMALL COMET", "LADYBUG"]
+    },
+    {
+        "camp": "any",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare"
+        ],
+        "event_text": "m_c's paws are always filthy.",
+        "accessories": ["MUD PAWS", "ASHY PAWS"]
     }
 ]
