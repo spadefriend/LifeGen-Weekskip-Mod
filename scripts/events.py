@@ -847,7 +847,8 @@ class Events:
         game.switches['skip_conditions'].clear()
     
     def gain_accessory(self, cat):
-        acc = random.choice(["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "LAUREL"])
+        acc = random.choice(["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "LAUREL", "RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "MOTH WINGS", "CICADA WINGS", "CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME", "GREEN", "RAINBOW", "BLACK", "SPIKES", "WHITE", "CRIMSONBELL", "BLUEBELL", "YELLOWBELL", "CYANBELL", "REDBELL",
+            "LIMEBELL"])
         print(f"{cat.name} gained an accessory: {acc}")
         if acc not in cat.pelt.accessories:
             cat.pelt.accessories.append(acc)
