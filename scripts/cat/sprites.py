@@ -64,7 +64,6 @@ class Sprites():
         sprites_x -- Number of sprites horizontally (default: 3)
         sprites_y -- Number of sprites vertically (default: 3)
         """
-
         group_x_ofs = pos[0] * sprites_x * self.size
         group_y_ofs = pos[1] * sprites_y * self.size
         i = 0
@@ -87,6 +86,8 @@ class Sprites():
                             pygame.HWSURFACE | pygame.SRCALPHA
                         )
                     new_sprite = self.blank_sprite
+                while f'{name}{i}' in self.sprites:
+                    i+=1
                 self.sprites[f'{name}{i}'] = new_sprite
                 i += 1
 
@@ -445,31 +446,31 @@ class Sprites():
             "LILYPAD", "LARGE DEATHBERRY", "SMALL DEATHBERRY", "ACORN2", "PINECONE", "VINE"]):
             sprites.make_group('wildacc', (a, 0), f'acc_herbs{i}',sprites_x=3,sprites_y=3)
             sprites.make_group('wildaccextra', (a, 0),
-                               f'acc_herbsextra{i}',sprites_x=3,sprites_y=2)
+                               f'acc_herbs{i}',sprites_x=3,sprites_y=2)
         for a, i in enumerate(
                 ["CHERRY2", "BLEEDING HEARTS", "SHELL PACK", "FERNS", "GOLD FERNS"]):
             sprites.make_group('wildacc', (a, 1), f'acc_herbs{i}',sprites_x=3,sprites_y=3)
             sprites.make_group('wildaccextra', (a, 1),
-                               f'acc_herbsextra{i}',sprites_x=3,sprites_y=2)
+                               f'acc_herbs{i}',sprites_x=3,sprites_y=2)
         for a, i in enumerate(["WHEAT", "BLACK WHEAT"]):
             sprites.make_group('wildacc', (a, 2), f'acc_herbs{i}',sprites_x=3,sprites_y=3)
             sprites.make_group('wildaccextra', (a, 2),
-                               f'acc_herbsextra{i}',sprites_x=3,sprites_y=2)    
+                               f'acc_herbs{i}',sprites_x=3,sprites_y=2)    
 
         for a, i in enumerate([
             "BERRIES", "CLOVERS", "CLOVER", "MOSS", "FLOWER MOSS", "MUSHROOMS"]):
             sprites.make_group('wildacc2', (a, 0), f'acc_herbs{i}',sprites_x=3,sprites_y=3)
             sprites.make_group('wildacc2extra', (a, 0),
-                               f'acc_herbsextra{i}',sprites_x=3,sprites_y=2)
+                               f'acc_herbs{i}',sprites_x=3,sprites_y=2)
         for a, i in enumerate(
                 ["LARGE LUNA", "LARGE COMET", "SMALL LUNA", "SMALL COMET", "LADYBUG"]):
-            sprites.make_group('wildacc2', (a, 1), f'acc_wild{i}',sprites_x=3,sprites_y=3)
+            sprites.make_group('wildacc2', (a, 1), f'acc_wild{i}', sprites_x=3,sprites_y=3)
             sprites.make_group('wildacc2extra', (a, 1),
-                               f'acc_wildextra{i}',sprites_x=3,sprites_y=2)
+                               f'acc_wild{i}',sprites_x=3,sprites_y=2)
         for a, i in enumerate(["MUD PAWS", "ASHY PAWS"]):
             sprites.make_group('wildacc2', (a, 2), f'acc_wild{i}',sprites_x=3,sprites_y=3)
             sprites.make_group('wildacc2extra', (a, 2),
-                               f'acc_wildextra{i}',sprites_x=3,sprites_y=2)
+                               f'acc_wild{i}',sprites_x=3,sprites_y=2)
             
 
 # CREATE INSTANCE 

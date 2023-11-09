@@ -788,6 +788,33 @@ class Clan():
     def load_accessories(self):
         if game.clan.clan_settings['all accessories']:
             for c in Cat.all_cats_list:
+                cat = c
+                age = cat.age
+                cat_sprite = str(cat.pelt.cat_sprites[cat.age])
+
+                # setting the cat_sprite (bc this makes things much easier)
+                if cat.not_working() and age != 'newborn' and game.config['cat_sprites']['sick_sprites']:
+                    if age in ['kitten', 'adolescent']:
+                        cat_sprite = str(19)
+                    else:
+                        cat_sprite = str(18)
+                elif cat.pelt.paralyzed and age != 'newborn':
+                    if age in ['kitten', 'adolescent']:
+                        cat_sprite = str(17)
+                    else:
+                        if cat.pelt.length == 'long':
+                            cat_sprite = str(16)
+                        else:
+                            cat_sprite = str(15)
+                else:
+                    if age == 'elder' and not game.config['fun']['all_cats_are_newborn']:
+                        age = 'senior'
+                    
+                    if game.config['fun']['all_cats_are_newborn']:
+                        cat_sprite = str(cat.pelt.cat_sprites['newborn'])
+                    else:
+                        cat_sprite = str(cat.pelt.cat_sprites[age])
+
                 possible_accs = ["WILD", "PLANT", "COLLAR", "FLOWER", "PLANT2", "SNAKE", "SMALLANIMAL", "DEADINSECT", "ALIVEINSECT", "FRUIT", "CRAFTED", "TAIL2"]
                 acc_list = []
                 if "WILD" in possible_accs:
