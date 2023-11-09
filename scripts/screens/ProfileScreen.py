@@ -206,7 +206,7 @@ class ProfileScreen(Screens):
                     else:
                         self.previous_page_button.enable()
                         self.next_page_button.enable()
-                        self.update_disabled_buttons_and_text()
+                    self.update_disabled_buttons_and_text()
                 else:
                     print("invalid next cat", self.previous_cat)
             elif event.ui_element == self.inspect_button:
@@ -519,6 +519,7 @@ class ProfileScreen(Screens):
 
     def screen_switches(self):
         self.the_cat = Cat.all_cats.get(game.switches['cat'])
+        self.page = 0
 
         # Set up the menu buttons, which appear on all cat profile images.
         self.next_cat_button = UIImageButton(scale(pygame.Rect((1244, 50), (306, 60))), "", object_id="#next_cat_button"
@@ -1863,7 +1864,8 @@ class ProfileScreen(Screens):
                 cat.pelt.inventory.append(acc)
         
         self.max_pages = math.ceil(len(cat.pelt.inventory)/18)
-
+        if self.max_pages == 1:
+            self.next_page_button.disable()
         if cat.pelt.inventory:
             for a, accessory in enumerate(cat.pelt.inventory[start_index:end_index], start = start_index):
                 if accessory in cat.pelt.accessories:
