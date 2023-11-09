@@ -690,6 +690,7 @@ class ProfileScreen(Screens):
         self.hide_menu_buttons()  # Menu buttons don't appear on the profile screen
         if game.last_screen_forProfile == 'med den screen':
             self.toggle_conditions_tab()
+        game.clan.load_accessories()   
 
     def clear_profile(self):
         """Clears all profile objects. """
