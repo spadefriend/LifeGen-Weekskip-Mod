@@ -166,50 +166,52 @@ class ProfileScreen(Screens):
                 self.change_screen(game.last_screen_forProfile)
             elif event.ui_element == self.previous_cat_button:
                 if isinstance(Cat.fetch_cat(self.previous_cat), Cat):
-                    self.previous_page_button.enable()
-                    self.next_page_button.enable()
                     self.clear_profile()
                     game.switches['cat'] = self.previous_cat
                     self.build_profile()
                     self.page = 0
-                    self.max_pages = math.ceil(len(self.the_cat.pelt.inventory)/18)
-                    if self.page == 0 and self.max_pages == 1:
-                        self.previous_page_button.disable()
-                        self.next_page_button.disable()
-                    elif self.page == 0:
-                        self.previous_page_button.disable()
-                        self.next_page_button.enable()
-                    elif self.page == self.max_pages - 1:
-                        self.previous_page_button.enable()
-                        self.next_page_button.disable()
-                    else:
+                    if self.previous_page_button:
                         self.previous_page_button.enable()
                         self.next_page_button.enable()
-                    self.update_disabled_buttons_and_text()
+                        self.max_pages = math.ceil(len(self.the_cat.pelt.inventory)/18)
+                        if self.page == 0 and self.max_pages == 1:
+                            self.previous_page_button.disable()
+                            self.next_page_button.disable()
+                        elif self.page == 0:
+                            self.previous_page_button.disable()
+                            self.next_page_button.enable()
+                        elif self.page == self.max_pages - 1:
+                            self.previous_page_button.enable()
+                            self.next_page_button.disable()
+                        else:
+                            self.previous_page_button.enable()
+                            self.next_page_button.enable()
+                        self.update_disabled_buttons_and_text()
                 else:
                     print("invalid previous cat", self.previous_cat)
             elif event.ui_element == self.next_cat_button:
                 if isinstance(Cat.fetch_cat(self.next_cat), Cat):
-                    self.previous_page_button.enable()
-                    self.next_page_button.enable()
                     self.clear_profile()
                     game.switches['cat'] = self.next_cat
                     self.build_profile()
                     self.page = 0
-                    self.max_pages = math.ceil(len(self.the_cat.pelt.inventory)/18)
-                    if self.page == 0 and self.max_pages == 1:
-                        self.previous_page_button.disable()
-                        self.next_page_button.disable()
-                    elif self.page == 0:
-                        self.previous_page_button.disable()
-                        self.next_page_button.enable()
-                    elif self.page == self.max_pages - 1:
-                        self.previous_page_button.enable()
-                        self.next_page_button.disable()
-                    else:
+                    if self.previous_page_button:
                         self.previous_page_button.enable()
                         self.next_page_button.enable()
-                    self.update_disabled_buttons_and_text()
+                        self.max_pages = math.ceil(len(self.the_cat.pelt.inventory)/18)
+                        if self.page == 0 and self.max_pages == 1:
+                            self.previous_page_button.disable()
+                            self.next_page_button.disable()
+                        elif self.page == 0:
+                            self.previous_page_button.disable()
+                            self.next_page_button.enable()
+                        elif self.page == self.max_pages - 1:
+                            self.previous_page_button.enable()
+                            self.next_page_button.disable()
+                        else:
+                            self.previous_page_button.enable()
+                            self.next_page_button.enable()
+                        self.update_disabled_buttons_and_text()
                 else:
                     print("invalid next cat", self.previous_cat)
             elif event.ui_element == self.inspect_button:
