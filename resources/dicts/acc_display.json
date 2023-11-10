@@ -1059,5 +1059,25 @@
     "default": "lily",
     "plural": "lillies",
     "singular": "lily"
+  },
+  "PINKFLOWERCROWN": {
+    "default": "pink flower crown",
+    "plural": "pink flower crowns",
+    "singular": "pink flower crown"
+  },
+  "YELLOWFLOWERCROWN": {
+    "default": "yellow flower crown",
+    "plural": "yellow flower crowns",
+    "singular": "yellow flower crown"
+  },
+  "BLUEFLOWERCROWN": {
+    "default": "blue flower crown",
+    "plural": "blue flower crowns",
+    "singular": "blue flower crown"
+  },
+  "PURPLEFLOWERCROWN": {
+    "default": "purple flower crown",
+    "plural": "purple flower crowns",
+    "singular": "purple flower crown"
   }
 }

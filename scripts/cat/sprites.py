@@ -128,7 +128,10 @@ class Sprites():
             'wildacc', 'wildaccextra', 'wildacc2', 'wildacc2extra',
 
             #SUPERARTSI
-            'superartsi'
+            'superartsi',
+
+            #coffee
+            'coffee'
 
         ]:
             if 'lineart' in x and game.config['fun']['april_fools']:
@@ -483,6 +486,12 @@ class Sprites():
         for a, i in enumerate([
             "FERN", "MOREFERN", "BLEEDINGHEART", "LILY"]):
             self.make_group('superartsi', (a, 1), f'acc_wild{i}')
+
+        # coffee's accessories
+        for a, i in enumerate([
+            "PINKFLOWERCROWN", "YELLOWFLOWERCROWN", "BLUEFLOWERCROWN", "PURPLEFLOWERCROWN"]):
+            self.make_group('coffee', (a, 0), f'acc_flower{i}')
+
             
 
 # CREATE INSTANCE 
