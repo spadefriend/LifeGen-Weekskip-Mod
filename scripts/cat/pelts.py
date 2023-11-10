@@ -77,7 +77,8 @@ class Pelt():
                         "BERRIES", "CLOVERS", "CLOVER", "MOSS", "FLOWER MOSS", "MUSHROOMS"
                         ]
     wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "MOTH WINGS", "CICADA WINGS", "LARGE LUNA", "LARGE COMET", "SMALL LUNA", "SMALL COMET", "LADYBUG",
-                    "MUD PAWS", "ASHY PAWS"]
+                    "MUD PAWS", "ASHY PAWS", "ORANGEBUTTERFLY", "BLUEBUTTERFLY", "BROWNPELT", "GRAYPELT", "BROWNMOSSPELT", "GRAYMOSSPELT",
+ "FERN", "MOREFERN", "BLEEDINGHEART", "LILY"]
     tail_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"]
     collars = [
         "CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME", "GREEN", "RAINBOW",

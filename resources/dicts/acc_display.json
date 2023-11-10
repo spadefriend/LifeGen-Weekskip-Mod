@@ -1009,5 +1009,55 @@
     "default": "ashy paws",
     "plural": "ashy paws",
     "singular": "ashy paws"
+  },
+  "ORANGEBUTTERFLY": {
+    "default": "monarch butterfly",
+    "plural": "monarch butterflies",
+    "singular": "monarch butterfly"
+  },
+  "BLUEBUTTERFLY": {
+    "default": "blue butterfly",
+    "plural": "blue butterflies",
+    "singular": "blue butterfly"
+  },
+  "BROWNPELT": {
+    "default": "brown hide",
+    "plural": "brown hides",
+    "singular": "brown hide"
+  },
+  "GRAYPELT": {
+    "default": "gray hide",
+    "plural": "gray hides",
+    "singular": "gray hide"
+  },
+  "BROWNMOSSPELT": {
+    "default": "brown herb hide",
+    "plural": "brown herb hides",
+    "singular": "brown herb hide"
+  },
+  "GRAYMOSSPELT": {
+    "default": "gray herb hide",
+    "plural": "gray herb hides",
+    "singular": "gray herb hide"
+  },
+  "FERN": {
+    "default": "fern",
+    "plural": "ferns",
+    "singular": "fern"
+  },
+  "MOREFERN": {
+    "default": "fern wrap",
+    "plural": "fern wraps",
+    "singular": "fern wrap"
+  },
+  "BLEEDINGHEART": {
+    "default": "bleeding heart",
+    "plural": "bleeding hearts",
+    "singular": "bleeding heart"
+  },
+  "LILY": {
+    "default": "lily",
+    "plural": "lillies",
+    "singular": "lily"
   }
 }

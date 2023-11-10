@@ -260,9 +260,9 @@
 	},
 	"accessory_generation": {
 		"base_acc_chance": 100,
-		"med_modifier": -80,
-		"baby_modifier": -20,
-		"elder_modifier": 20,
+		"med_modifier": 0,
+		"baby_modifier": 0,
+		"elder_modifier": 0,
 		"happy_trait_modifier": -30,
 		"grumpy_trait_modifier": 30,
 		"ceremony_modifier": -20

@@ -125,7 +125,10 @@ class Sprites():
             'aliveInsect_accessories', 'fruit_accessories', 'crafted_accessories', 'tail2_accessories',
 
             #WILDS
-            'wildacc', 'wildaccextra', 'wildacc2', 'wildacc2extra'
+            'wildacc', 'wildaccextra', 'wildacc2', 'wildacc2extra',
+
+            #SUPERARTSI
+            'superartsi'
 
         ]:
             if 'lineart' in x and game.config['fun']['april_fools']:
@@ -471,6 +474,15 @@ class Sprites():
             sprites.make_group('wildacc2', (a, 2), f'acc_wild{i}',sprites_x=3,sprites_y=3)
             sprites.make_group('wildacc2extra', (a, 2),
                                f'acc_wild{i}',sprites_x=3,sprites_y=2)
+        
+        # superartsi's accessories
+
+        for a, i in enumerate([
+            "ORANGEBUTTERFLY", "BLUEBUTTERFLY", "BROWNPELT", "GRAYPELT", "BROWNMOSSPELT", "GRAYMOSSPELT"]):
+            self.make_group('superartsi', (a, 0), f'acc_wild{i}')
+        for a, i in enumerate([
+            "FERN", "MOREFERN", "BLEEDINGHEART", "LILY"]):
+            self.make_group('superartsi', (a, 1), f'acc_wild{i}')
             
 
 # CREATE INSTANCE 
