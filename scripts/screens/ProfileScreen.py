@@ -152,6 +152,8 @@ class ProfileScreen(Screens):
         self.page = 0
         self.max_pages = 1
         self.clear_accessories = None
+        self.previous_page_button = None
+        self.next_page_button = None
 
     def handle_event(self, event):
 
