@@ -131,7 +131,9 @@ class Sprites():
             'superartsi',
 
             #coffee
-            'coffee'
+            'coffee',
+
+            'eragona'
 
         ]:
             if 'lineart' in x and game.config['fun']['april_fools']:
