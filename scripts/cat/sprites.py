@@ -492,7 +492,16 @@ class Sprites():
             "PINKFLOWERCROWN", "YELLOWFLOWERCROWN", "BLUEFLOWERCROWN", "PURPLEFLOWERCROWN"]):
             self.make_group('coffee', (a, 0), f'acc_flower{i}')
 
-            
+        # eragona rose's accessories
 
+        for a, i in enumerate([
+            "REDHARNESS", "NAVYHARNESS", "YELLOWHARNESS", "TEALHARNESS", "ORANGEHARNESS", "GREENHARNESS"]):
+            self.make_group('eragona', (a, 0), f'collars{i}')
+        for a, i in enumerate([
+            "MOSSHARNESS", "RAINBOWHARNESS", "BLACKHARNESS", "BEEHARNESS", "CREAMHARNESS"]):
+            self.make_group('eragona', (a, 1), f'collars{i}')
+        for a, i in enumerate([
+            "PINKHARNESS", "MAGENTAHARNESS", "PEACHHARNESS", "VIOLETHARNESS"]):
+            self.make_group('eragona', (a, 2), f'collars{i}')
 # CREATE INSTANCE 
 sprites = Sprites()
