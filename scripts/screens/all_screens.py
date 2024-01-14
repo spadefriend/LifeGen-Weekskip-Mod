@@ -25,6 +25,7 @@ from .OutsideClanScreen import OutsideClanScreen
 from .MediationScreen import MediationScreen
 from .ClanSettingsScreen import ClanSettingsScreen
 from .ClearingScreen import ClearingScreen
+from .IntroScreen import IntroScreen
 
 # ---------------------------------------------------------------------------- #
 #                                  UI RULES                                    #
@@ -57,7 +58,7 @@ ceremony_screen = CeremonyScreen('ceremony screen')
 role_screen = RoleScreen('role screen')
 sprite_inspect_screen = SpriteInspectScreen("sprite inspect screen")
 
-
+intro_screen = IntroScreen('intro screen')
 make_clan_screen = MakeClanScreen('make clan screen')
 
 
