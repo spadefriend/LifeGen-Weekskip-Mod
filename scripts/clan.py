@@ -170,6 +170,7 @@ class Clan():
 
         self.faded_ids = [
         ]  # Stores ID's of faded cats, to ensure these IDs aren't reused.
+        self.moons_since_fed = 0
 
     def create_clan(self):
         """

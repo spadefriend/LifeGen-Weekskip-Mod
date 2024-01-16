@@ -1,27 +1,7 @@
-import os
-from random import choice
-
 import pygame
 
-from ..cat.history import History
-from ..housekeeping.datadir import get_save_dir
-from ..game_structure.windows import ChangeCatName, SpecifyCatGender, KillCat, ChangeCatToggles
-
-import ujson
-
-from scripts.utility import event_text_adjust, scale, ACC_DISPLAY, process_text, chunks
-
 from .Screens import Screens
-
-from scripts.utility import get_text_box_theme, scale_dimentions, shorten_text_to_fit
-from scripts.cat.cats import Cat, BACKSTORIES
-from scripts.cat.pelts import Pelt
-from scripts.game_structure import image_cache
-import pygame_gui
-from re import sub
-from scripts.game_structure.image_button import UIImageButton, UITextBoxTweaked
-from scripts.game_structure.game_essentials import game, MANAGER
-from scripts.clan_resources.freshkill import FRESHKILL_ACTIVE
+from scripts.game_structure.game_essentials import game
 
 class IntroScreen(Screens):
     def __init__(self, name=None):
@@ -87,7 +67,6 @@ class IntroScreen(Screens):
             
     def on_use(self):
         self.clock = pygame.time.Clock()
-        font = pygame.font.Font(None, 64)
 
         if self.fading_in:
             self.fade_in()
