@@ -26,6 +26,7 @@ from .MediationScreen import MediationScreen
 from .ClanSettingsScreen import ClanSettingsScreen
 from .ClearingScreen import ClearingScreen
 from .IntroScreen import IntroScreen
+from .TrialScreen import TrialScreen
 
 # ---------------------------------------------------------------------------- #
 #                                  UI RULES                                    #
@@ -81,7 +82,7 @@ switch_clan_screen = SwitchClanScreen('switch clan screen')
 
 
 patrol_screen = PatrolScreen('patrol screen')
-
+trial_screen = TrialScreen('trial screen')
 
 choose_mate_screen = ChooseMateScreen('choose mate screen')
 choose_mentor_screen = ChooseMentorScreen('choose mentor screen')
