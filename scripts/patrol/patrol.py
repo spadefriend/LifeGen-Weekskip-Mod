@@ -267,44 +267,46 @@ class Patrol():
         elif int(reputation) >= 71:
             welcoming_rep = True
             chance = welcoming_chance
+        if game.current_screen == "trial screen":
+            possible_patrols.extend(self.generate_patrol_events(self.TRIAL))
+        else:
+            possible_patrols.extend(self.generate_patrol_events(self.HUNTING))
+            possible_patrols.extend(self.generate_patrol_events(self.HUNTING_SZN))
+            possible_patrols.extend(self.generate_patrol_events(self.BORDER))
+            possible_patrols.extend(self.generate_patrol_events(self.BORDER_SZN))
+            possible_patrols.extend(self.generate_patrol_events(self.TRAINING))
+            possible_patrols.extend(self.generate_patrol_events(self.TRAINING_SZN))
+            possible_patrols.extend(self.generate_patrol_events(self.MEDCAT))
+            possible_patrols.extend(self.generate_patrol_events(self.MEDCAT_SZN))
+            possible_patrols.extend(self.generate_patrol_events(self.HUNTING_GEN))
+            possible_patrols.extend(self.generate_patrol_events(self.BORDER_GEN))
+            possible_patrols.extend(self.generate_patrol_events(self.TRAINING_GEN))
+            possible_patrols.extend(self.generate_patrol_events(self.MEDCAT_GEN))
 
-        possible_patrols.extend(self.generate_patrol_events(self.HUNTING))
-        possible_patrols.extend(self.generate_patrol_events(self.HUNTING_SZN))
-        possible_patrols.extend(self.generate_patrol_events(self.BORDER))
-        possible_patrols.extend(self.generate_patrol_events(self.BORDER_SZN))
-        possible_patrols.extend(self.generate_patrol_events(self.TRAINING))
-        possible_patrols.extend(self.generate_patrol_events(self.TRAINING_SZN))
-        possible_patrols.extend(self.generate_patrol_events(self.MEDCAT))
-        possible_patrols.extend(self.generate_patrol_events(self.MEDCAT_SZN))
-        possible_patrols.extend(self.generate_patrol_events(self.HUNTING_GEN))
-        possible_patrols.extend(self.generate_patrol_events(self.BORDER_GEN))
-        possible_patrols.extend(self.generate_patrol_events(self.TRAINING_GEN))
-        possible_patrols.extend(self.generate_patrol_events(self.MEDCAT_GEN))
+            if game_setting_disaster:
+                dis_chance = int(random.getrandbits(3))  # disaster patrol chance
+                if dis_chance == 1:
+                    possible_patrols.extend(self.generate_patrol_events(self.DISASTER))
 
-        if game_setting_disaster:
-            dis_chance = int(random.getrandbits(3))  # disaster patrol chance
-            if dis_chance == 1:
-                possible_patrols.extend(self.generate_patrol_events(self.DISASTER))
+            # new cat patrols
+            if chance == 1:
+                if welcoming_rep:
+                    possible_patrols.extend(self.generate_patrol_events(self.NEW_CAT_WELCOMING))
+                elif neutral_rep:
+                    possible_patrols.extend(self.generate_patrol_events(self.NEW_CAT))
+                elif hostile_rep:
+                    possible_patrols.extend(self.generate_patrol_events(self.NEW_CAT_HOSTILE))
 
-        # new cat patrols
-        if chance == 1:
-            if welcoming_rep:
-                possible_patrols.extend(self.generate_patrol_events(self.NEW_CAT_WELCOMING))
-            elif neutral_rep:
-                possible_patrols.extend(self.generate_patrol_events(self.NEW_CAT))
-            elif hostile_rep:
-                possible_patrols.extend(self.generate_patrol_events(self.NEW_CAT_HOSTILE))
+            # other Clan patrols
+            if other_clan_chance == 1:
+                if clan_neutral:
+                    possible_patrols.extend(self.generate_patrol_events(self.OTHER_CLAN))
+                elif clan_allies:
+                    possible_patrols.extend(self.generate_patrol_events(self.OTHER_CLAN_ALLIES))
+                elif clan_hostile:
+                    possible_patrols.extend(self.generate_patrol_events(self.OTHER_CLAN_HOSTILE))
 
-        # other Clan patrols
-        if other_clan_chance == 1:
-            if clan_neutral:
-                possible_patrols.extend(self.generate_patrol_events(self.OTHER_CLAN))
-            elif clan_allies:
-                possible_patrols.extend(self.generate_patrol_events(self.OTHER_CLAN_ALLIES))
-            elif clan_hostile:
-                possible_patrols.extend(self.generate_patrol_events(self.OTHER_CLAN_HOSTILE))
-
-        final_patrols, final_romance_patrols = self. get_filtered_patrols(possible_patrols, biome, current_season,
+        final_patrols, final_romance_patrols = self.get_filtered_patrols(possible_patrols, biome, current_season,
                                                                           patrol_type)
 
         # This is a debug option. If the patrol_id set isn "debug_ensure_patrol" is possible, 
@@ -554,7 +556,7 @@ class Patrol():
         special_date = get_special_date()
         # This make sure general only gets hunting, border, or training patrols
 		# chose fix type will make it not depending on the content amount
-        if patrol_type == "general":
+        if patrol_type == "general" and game.current_screen == "patrol screen":
             patrol_type = random.choice(["hunting", "border", "training"])
 
         # makes sure that it grabs patrols in the correct biomes, season, with the correct number of cats
@@ -734,6 +736,9 @@ class Patrol():
         
     def update_resources(self, biome_dir, leaf):
         resource_dir = "resources/dicts/patrols/"
+        self.TRIAL = None
+        with open(f"{resource_dir}general/trial.json", 'r', encoding='ascii') as read_file:
+            self.TRIAL = ujson.loads(read_file.read())
         # HUNTING #
         self.HUNTING_SZN = None
         with open(f"{resource_dir}{biome_dir}hunting/{leaf}.json", 'r', encoding='ascii') as read_file:

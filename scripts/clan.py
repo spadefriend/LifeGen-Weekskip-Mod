@@ -453,6 +453,8 @@ class Clan():
         # Patrolled cats
         clan_data["patrolled_cats"] = [str(i) for i in game.patrolled]
 
+        clan_data["moons_since_fed"] = self.moons_since_fed
+
         # OTHER CLANS
         # Clan Names
         clan_data["other_clans_names"] = ",".join(
@@ -724,6 +726,7 @@ class Clan():
         game.clan.deputy_predecessors = clan_data["deputy_predecessors"]
         game.clan.med_cat_predecessors = clan_data["med_cat_predecessors"]
         game.clan.med_cat_number = clan_data["med_cat_number"]
+        game.clan.moons_since_fed = clan_data["moons_since_fed"]
 
         # Instructor Info
         if clan_data["instructor"] in Cat.all_cats:
