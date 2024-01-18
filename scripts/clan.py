@@ -726,7 +726,7 @@ class Clan():
         game.clan.deputy_predecessors = clan_data["deputy_predecessors"]
         game.clan.med_cat_predecessors = clan_data["med_cat_predecessors"]
         game.clan.med_cat_number = clan_data["med_cat_number"]
-        game.clan.moons_since_fed = clan_data["moons_since_fed"]
+        game.clan.moons_since_fed = clan_data["moons_since_fed"] if "moons_since_fed" in clan_data else 0
 
         # Instructor Info
         if clan_data["instructor"] in Cat.all_cats:
