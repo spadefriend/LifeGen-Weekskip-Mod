@@ -1001,6 +1001,10 @@ class Patrol():
                         break
 
         text = text.replace('c_n', str(game.clan.name) + 'Clan')
+        if game.clan.leader and not game.clan.leader.outside and not game.clan.leader.dead:
+            text = text.replace('lead_name', str(game.clan.leader.name))
+        else:
+            text = text.replace('lead_name', "The protector of secrets")
 
         # Prey lists for forest random prey patrols
         fst_tinyprey_singlular = ['shrew', 'robin', 'vole', 'dormouse', 'blackbird',
