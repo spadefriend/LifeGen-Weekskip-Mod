@@ -227,12 +227,6 @@ class Cat():
 
         self.history = None
 
-        # new attributes here
-
-        self.fur_texture = choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse"])
-        self.build = choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate"])
-        self.height = choice(["short", "average", "average", "tall"])
-
         # setting ID
         if ID is None:
             potential_id = str(next(Cat.id_iter))
@@ -2938,9 +2932,9 @@ class Cat():
                 "opacity": self.pelt.opacity,
                 "prevent_fading": self.prevent_fading,
                 "favourite": self.favourite,
-                "fur_texture": self.fur_texture,
-                "height": self.height,
-                "build": self.build
+                "fur_texture": self.pelt.fur_texture,
+                "height": self.pelt.height,
+                "build": self.pelt.build
             }
 
 

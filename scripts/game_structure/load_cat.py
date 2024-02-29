@@ -105,7 +105,10 @@ def json_load():
                 tint=cat["tint"] if "tint" in cat else "none",
                 scars=cat["scars"] if "scars" in cat else [],
                 accessory=cat["accessory"],
-                opacity=cat["opacity"] if "opacity" in cat else 100
+                opacity=cat["opacity"] if "opacity" in cat else 100,
+                fur_texture=cat["fur_texture"] if "fur_texture" in cat else choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse"]),
+                build = cat['build'] if "build" in cat else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate"]),
+                height=cat["height"] if "height" in cat else choice(["short", "average", "average", "tall"])
             )
             
             # Runs a bunch of apperence-related convertion of old stuff. 
@@ -174,9 +177,6 @@ def json_load():
             new_cat.faded_offspring = cat["faded_offspring"] if "faded_offspring" in cat else []
             new_cat.prevent_fading = cat["prevent_fading"] if "prevent_fading" in cat else False
             new_cat.favourite = cat["favourite"] if "favourite" in cat else False
-            new_cat.fur_texture = cat["fur_texture"] if "fur_texture" in cat else choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse"])
-            new_cat.build = cat["build"] if "build" in cat else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate"])
-            new_cat.height = cat["height"] if "height" in cat else choice(["short", "average", "average", "tall"])
             
             if "died_by" in cat or "scar_event" in cat or "mentor_influence" in cat:
                 new_cat.convert_history(
