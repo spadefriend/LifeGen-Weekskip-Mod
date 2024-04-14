@@ -31,6 +31,19 @@ from scripts.cat_relations.inheritance import Inheritance
 class Cat():
     dead_cats = []
     used_screen = screen
+
+    dominance_hierarchy = ['N', 'F', 'W', 'E', 'D', 'S', 'K', 'X']
+    combinations = {
+        ('F', 'W'): 'Steam',
+        ('F', 'E'): 'Magma',
+        ('F', 'D'): 'Smoke',
+        ('E', 'W'): 'Mud',
+        ('E', 'D'): 'Sand',
+        ('D', 'W'): 'Storm',
+        ('F', 'K'): 'Hellfire',
+        ('K', 'S'): 'Deathberry',
+        ('D', 'S'): 'Ghost'
+    }
     
     ages = [
         'newborn', 'kitten', 'adolescent', 'young adult', 'adult', 'senior adult',
@@ -127,6 +140,7 @@ class Cat():
                  skill_dict=None,
                  pelt:Pelt=None,
                  loading_cat=False,  # Set to true if you are loading a cat at start-up.
+                 genes=None
                  **kwargs
                  ):
 
@@ -226,6 +240,19 @@ class Cat():
         self.inheritance = None
 
         self.history = None
+
+        if genes:
+            self.genes = genes
+        elif self.parent1 and self.parent2:
+            gene1 = choice(Cat.fetch_cat(self.parent1).genes)
+            gene2 = choice(Cat.fetch_cat(self.parent2).genes)
+            self.genes = (gene1, gene2)
+        elif self.parent1:
+            gene1 = choice(Cat.fetch_cat(self.parent1).genes)
+            gene2 = choice(self.dominance_hierarchy)
+            self.genes = (gene1, gene2)
+        else:
+            self.genes = (choice(self.dominance_hierarchy), choice(self.dominance_hierarchy))
 
         # setting ID
         if ID is None:
