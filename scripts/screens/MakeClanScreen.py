@@ -100,9 +100,9 @@ class MakeClanScreen(Screens):
     def screen_switches(self):
         # Reset variables
         self.game_mode = 'expanded'
-        self.clan_name = ""
+        self.clan_name = "Dawn"
         self.selected_camp_tab = 1
-        self.biome_selected = None
+        self.biome_selected = "Forest"
         self.selected_season = "Newleaf"
         self.choosing_rank = None
         self.leader = None  # To store the Clan leader before conformation
@@ -155,7 +155,7 @@ class MakeClanScreen(Screens):
         self.main_menu = UIImageButton(scale(pygame.Rect((100, 100), (306, 60))), "", object_id="#main_menu_button"
                                        , manager=MANAGER)
         create_example_cats()
-        self.open_name_clan()
+        self.open_choose_leader()
 
     def handle_event(self, event):
         if self.sub_screen == 'customize cat':
@@ -281,9 +281,6 @@ class MakeClanScreen(Screens):
             self.your_cat = self.selected_cat
             self.selected_cat = None
             self.open_name_cat()
-        elif event.ui_element == self.elements['previous_step']:
-            self.clan_name = ""
-            self.open_name_clan()
         elif event.ui_element == self.elements['customize']:
             self.open_customize_cat()
             
@@ -295,7 +292,8 @@ class MakeClanScreen(Screens):
                 self.elements["error"].show()
                 return
             self.your_cat.name.prefix = new_name
-            self.open_choose_background()
+            self.save_clan()
+            self.open_clan_saved_screen()
         elif event.ui_element == self.elements["random"]:
             self.elements["name_entry"].set_text(choice(names.names_dict["normal_prefixes"]))
         elif event.ui_element == self.elements['previous_step']:
@@ -305,82 +303,105 @@ class MakeClanScreen(Screens):
     def handle_create_other_cats(self):
         self.create_example_cats2()
         for cat in game.choose_cats.values():
-            if cat.status == "warrior":
-                if self.leader is None:
-                    self.leader = cat
-                elif self.deputy is None:
-                    self.deputy = cat
-                    cat.status = "deputy"
-                elif self.med_cat is None:
-                    self.med_cat = cat
-                    cat.status = "medicine cat"
-                else:
-                    self.members.append(cat)
+            if cat.status == "leader":
+                self.leader = cat
+            elif cat.status == "deputy":
+                self.deputy = cat
+            elif cat.status == "medicine cat":
+                self.med_cat = cat
             else:
                 self.members.append(cat)
         self.members.append(self.your_cat)
         
     def create_example_cats2(self):
-        e = random.sample(range(12), 3)
-        not_allowed = ['NOPAW', 'NOTAIL', 'HALFTAIL', 'NOEAR', 'BOTHBLIND', 'RIGHTBLIND', 'LEFTBLIND', 'BRIGHTHEART',
-                    'NOLEFTEAR', 'NORIGHTEAR', 'MANLEG']
-        c_size = 15
-        backstories = ["clan_founder"]
-        for i in range(1, 17):
-            backstories.append(f"clan_founder{i}")
-        if self.clan_age == "established":
-            backstories = ['halfclan1', 'halfclan2', 'outsider_roots1', 'outsider_roots2', 'loner1', 'loner2', 'kittypet1', 'kittypet2', 'kittypet3', 'kittypet4', 'rogue1', 'rogue2', 'rogue3', 'rogue4', 'rogue5', 'rogue6', 'rogue7', 'rogue8', 'abandoned1', 'abandoned2', 'abandoned3', 'abandoned4', 'otherclan1', 'otherclan2', 'otherclan3', 'otherclan4', 'otherclan5', 'otherclan6', 'otherclan7', 'otherclan8', 'otherclan9', 'otherclan10', 'disgraced1', 'disgraced2', 'disgraced3', 'refugee1', 'refugee2', 'refugee3', 'refugee4', 'refugee5', 'tragedy_survivor1', 'tragedy_survivor2', 'tragedy_survivor3', 'tragedy_survivor4', 'tragedy_survivor5', 'tragedy_survivor6', 'guided1', 'guided2', 'guided3', 'guided4', 'orphaned1', 'orphaned2', 'orphaned3', 'orphaned4', 'orphaned5', 'orphaned6', 'outsider1', 'outsider2', 'outsider3', 'kittypet5', 'kittypet6', 'kittypet7', 'guided5', 'guided6', 'outsider4', 'outsider5', 'outsider6', 'orphaned7', 'halfclan4', 'halfclan5', 'halfclan6', 'halfclan7', 'halfclan8', 'halfclan9', 'halfclan10', 'outsider_roots3', 'outsider_roots4', 'outsider_roots5', 'outsider_roots6', 'outsider_roots7', 'outsider_roots8']
 
-        if self.clan_size == "small":
-            c_size = 10
-        elif self.clan_size == 'large':
-            c_size = 20
-        for a in range(c_size):
-            if a in e:
-                game.choose_cats[a] = Cat(status='warrior', biome=None)
-            else:
-                r = random.randint(1,90)
-                s = "warrior"
-                if r > 85:
-                    s = "medicine cat"
-                elif r > 80:
-                    s = "medicine cat apprentice"
-                elif r > 40:
-                    s = "warrior"
-                elif r > 30:
-                    s = "apprentice"
-                elif r > 25:
-                    s = "kitten"
-                elif r > 20:
-                    s = "elder"
-                elif r > 15:
-                    s = "mediator"
-                elif r > 10:
-                    s = "mediator apprentice"
-                elif r > 5:
-                    s = "queen"
-                elif r >= 0:
-                    s = "queen's apprentice"
-                game.choose_cats[a] = Cat(status=s, biome=None)
-            if game.choose_cats[a].moons >= 160:
-                game.choose_cats[a].moons = choice(range(120, 155))
-            elif game.choose_cats[a].moons == 0:
-                game.choose_cats[a].moons = choice([1, 2, 3, 4, 5])
+        # Mumblestar
+        game.choose_cats[0] = Cat(prefix = "Mumble", gender="male", status='leader', backstory="clanborn", suffix="tooth", moons=131)
+        mumble_pelt = Pelt(name="Singlestripe",length="short",colour="DARKGREY",white_patches="BLAZE",eye_color="GREY",scars=["LEFTBLIND"],tint="black",skin="LIGHTBROWN",senior_sprite=12)
+        game.choose_cats[0].pelt=mumble_pelt
+        game.choose_cats[0].genderalign=None
 
-            if self.clan_age == "new":
-                if game.choose_cats[a].status not in ['newborn', 'kitten']:
-                    unique_backstories = ["clan_founder4", "clan_founder13", "clan_founder14", "clan_founder15"]
-                    unique = choice(unique_backstories)
-                    backstories = [story for story in backstories if story not in unique_backstories or story == unique]
-                    game.choose_cats[a].backstory = choice(backstories)
-                else:
-                    game.choose_cats[a].backstory = 'clanborn'
-            else:
-                if random.randint(1,5) == 1 and game.choose_cats[a].status not in ['newborn', 'kitten']:
-                    game.choose_cats[a].backstory = choice(backstories)
-                else:
-                    game.choose_cats[a].backstory = 'clanborn'
-    
+        #Sedgestripe
+        game.choose_cats[1] = Cat(prefix = "Sedge", gender="male", status='deputy', backstory="clanborn", suffix="stripe", moons=51)
+        # "pelt_name": "Mackerel",
+        # "pelt_color": "SILVER",
+        # "pelt_length": "short",
+        # "sprite_kitten": 0,
+        # "sprite_adolescent": 3,
+        # "sprite_adult": 7,
+        # "sprite_senior": 12,
+        # "sprite_para_adult": 0,
+        # "eye_colour": "PALEBLUE",
+        # "eye_colour2": null,
+        # "reverse": true,
+        # "white_patches": "SAVANNAH",
+        # "vitiligo": null,
+        # "points": null,
+        # "white_patches_tint": "offwhite",
+        # "pattern": null,
+        # "tortie_base": null,
+        # "tortie_color": null,
+        # "tortie_pattern": null,
+        # "skin": "PEACH",
+        # "tint": "blue",
+
+        # Redspots
+        game.choose_cats[2] = Cat(prefix = "Red", gender="male", status='medicine cat', backstory="clanborn", suffix="spots", moons=36)
+        #  "pelt_name": "Tortie",
+        # "pelt_color": "SIENNA",
+        # "pelt_length": "long",
+        # "sprite_kitten": 0,
+        # "sprite_adolescent": 3,
+        # "sprite_adult": 10,
+        # "sprite_senior": 12,
+        # "sprite_para_adult": 0,
+        # "eye_colour": "AMBER",
+        # "eye_colour2": null,
+        # "reverse": false,
+        # "white_patches": null,
+        # "vitiligo": null,
+        # "points": null,
+        # "white_patches_tint": "None",
+        # "pattern": "EYEDOT",
+        # "tortie_base": "speckled",
+        # "tortie_color": "GINGER",
+        # "tortie_pattern": "masked",
+        # "skin": "LIGHTMARBLED",
+        # "tint": "pink",
+        
+        # Lakeleaf
+        game.choose_cats[3] = Cat(prefix = "Lake", gender="female", status='mediator', backstory="clanborn", suffix="leaf", moons=30)
+
+        # Orchidpatch
+        game.choose_cats[4] = Cat(prefix = "Orchid", gender="female", status='warrior', backstory="clanborn", suffix="patch", moons=16)
+
+        # Timberhare
+        game.choose_cats[5] = Cat(prefix = "Timber", gender="male", status='warrior', backstory="clanborn", suffix="hare", moons=24)
+
+        # Flamefeather
+        game.choose_cats[6] = Cat(prefix = "Flame", gender="female", status='warrior', backstory="clanborn", suffix="feather", moons=62)
+
+        # Whitestem
+        game.choose_cats[7] = Cat(prefix = "White", gender="male", status='warrior', backstory="clanborn", suffix="stem", moons=70)
+
+        # Lilyface
+        game.choose_cats[8] = Cat(prefix = "Lily", gender="female", status='warrior', backstory="clanborn", suffix="face", moons=67)
+
+        # Sunfur
+        game.choose_cats[9] = Cat(prefix = "Sun", gender="male", status='warrior', backstory="clanborn", suffix="fur", moons=30)
+
+        # Rowanpaw
+        game.choose_cats[10] = Cat(prefix = "Rowan", gender="male", status='apprentice', backstory="clanborn", suffix="sun", moons=6)
+
+        # Snakepaw
+        game.choose_cats[11] = Cat(prefix = "Snake", gender="female", status='apprentice', backstory="clanborn", suffix="pelt", moons=7)
+
+        # Mallowcloud
+        game.choose_cats[12] = Cat(prefix = "Mallow", gender="female", status='queen', backstory="clanborn", suffix="cloud", moons=70)
+
+        # Oatwillow
+        game.choose_cats[13] = Cat(prefix = "Oat", gender="female", status='elder', backstory="clanborn", suffix="willow", moons=143)
+
     def handle_choose_background_event(self, event):
         if event.ui_element == self.elements['previous_step']:
             self.open_name_cat()
@@ -1040,19 +1061,23 @@ class MakeClanScreen(Screens):
         
         self.elements["large"] = UIImageButton(scale(pygame.Rect((1100,100), (192, 60))), "Large", object_id="#clan_size_large", manager=MANAGER)
 
+        self.elements["small"].hide()
+        self.elements["medium"].hide()
+        self.elements["large"].hide()
         self.elements["medium"].disable()
 
         self.elements["established"] = UIImageButton(scale(pygame.Rect((600,200), (192, 60))), "Old", object_id="#clan_age_old", tool_tip_text="The Clan has existed for many moons and cats' backstories will reflect this.",manager=MANAGER)
         self.elements["new"] = UIImageButton(scale(pygame.Rect((850,200), (192, 60))), "New", object_id="#clan_age_new", tool_tip_text="The Clan is newly established and cats' backstories will reflect this.", manager=MANAGER)
-        self.elements["established"].disable()
-
+        self.elements["established"].hide()
+        self.elements["new"].hide()
+    
     def clan_name_header(self):
         self.elements["name_backdrop"] = pygame_gui.elements.UIImage(scale(pygame.Rect((584, 200), (432, 100))),
-                                                                     MakeClanScreen.clan_frame_img, manager=MANAGER)
+                                                                    MakeClanScreen.clan_frame_img, manager=MANAGER)
         self.elements["clan_name"] = pygame_gui.elements.UITextBox(self.clan_name + "Clan",
-                                                                   scale(pygame.Rect((585, 212), (432, 100))),
-                                                                   object_id="#text_box_30_horizcenter_light",
-                                                                   manager=MANAGER)
+                                                                scale(pygame.Rect((585, 212), (432, 100))),
+                                                                object_id="#text_box_30_horizcenter_light",
+                                                                manager=MANAGER)
 
     def open_choose_leader(self):
         """Set up the screen for the choose leader phase. """
@@ -1138,7 +1163,7 @@ class MakeClanScreen(Screens):
         self.elements['next_step'] = UIImageButton(scale(pygame.Rect((800, 1290), (294, 60))), "",
                                                    object_id="#next_step_button", manager=MANAGER)
         self.elements['next_step'].disable()
-
+        self.elements['previous_step'].disable()
         self.elements['customize'] = UIImageButton(scale(pygame.Rect((100,200),(236,60))), "", object_id="#customize_button", manager=MANAGER,  tool_tip_text = "Customize your own cat")
 
         # draw cats to choose from
@@ -1978,16 +2003,17 @@ class MakeClanScreen(Screens):
         convert_camp = {1: 'camp1', 2: 'camp2', 3: 'camp3', 4: 'camp4', 5: 'camp5', 6: 'camp6'}
         self.your_cat.create_inheritance_new_cat()
         game.clan = Clan(self.clan_name,
-                         self.leader,
-                         self.deputy,
-                         self.med_cat,
-                         self.biome_selected,
-                         convert_camp[self.selected_camp_tab],
-                         self.game_mode, self.members,
-                         starting_season=self.selected_season,
-                         your_cat=self.your_cat)
+                        self.leader,
+                        self.deputy,
+                        self.med_cat,
+                        self.biome_selected,
+                        convert_camp[self.selected_camp_tab],
+                        self.game_mode, self.members,
+                        starting_season=self.selected_season,
+                        your_cat=self.your_cat)
         game.clan.your_cat.moons = -1
         game.clan.create_clan()
+        game.clan.leader_lives = 3
         #game.clan.starclan_cats.clear()
         game.cur_events_list.clear()
         game.herb_events_list.clear()

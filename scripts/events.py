@@ -3204,7 +3204,7 @@ class Events:
         resource_dir = "resources/dicts/events/disasters/"
         disaster_text = {}
         with open(f"{resource_dir}forest.json",
-                  encoding="ascii") as read_file:
+                encoding="ascii") as read_file:
             disaster_text = ujson.loads(read_file.read())
         
         current_disaster = disaster_text.get(game.clan.disaster)
