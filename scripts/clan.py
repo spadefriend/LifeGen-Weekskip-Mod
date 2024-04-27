@@ -884,8 +884,8 @@ class Clan():
         self.load_herbs(game.clan)
         self.load_disaster(game.clan)
         self.load_accessories()
-        if game.clan.game_mode != "classic":
-            self.load_freshkill_pile(game.clan)
+        # if game.clan.game_mode != "classic":
+        #     self.load_freshkill_pile(game.clan)
         game.switches['error_message'] = ''
         
         if "your_cat" in clan_data:

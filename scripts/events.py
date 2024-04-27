@@ -112,52 +112,52 @@ class Events:
         game.clan.age += 1
         get_current_season()
         Pregnancy_Events.handle_pregnancy_age(game.clan)
-        self.check_war()
-        if 'freshkill' in game.clan.clan_settings:
-            if game.clan.clan_settings['freshkill']:
-                self.add_freshkill()
+        # self.check_war()
+        # if 'freshkill' in game.clan.clan_settings:
+        #     if game.clan.clan_settings['freshkill']:
+        #         self.add_freshkill()
 
-        if game.clan.game_mode in ['expanded', 'cruel season'
-                                   ] and game.clan.freshkill_pile:
-            # feed the cats and update the nutrient status
-            relevant_cats = list(
-                filter(lambda _cat: _cat.is_alive() and not _cat.exiled and
-                                 not _cat.outside, Cat.all_cats.values()))
-            game.clan.freshkill_pile.time_skip(relevant_cats, game.freshkill_event_list)
-            # handle freshkill pile events, after feeding
-            # first 5 moons there will not be any freshkill pile event
-            if game.clan.age >= 5:
-                Freshkill_Events.handle_amount_freshkill_pile(game.clan.freshkill_pile, relevant_cats)
-            self.get_moon_freshkill()
-			# make a notification if the Clan has not enough prey
-            if FRESHKILL_EVENT_ACTIVE and not game.clan.freshkill_pile.clan_has_enough_food():
-                event_string = f"{game.clan.name}Clan doesn't have enough prey for next moon!"
-                game.cur_events_list.insert(0, Single_Event(event_string, "alert"))
-                game.freshkill_event_list.append(event_string)
+        # if game.clan.game_mode in ['expanded', 'cruel season'
+        #                            ] and game.clan.freshkill_pile:
+        #     # feed the cats and update the nutrient status
+        #     relevant_cats = list(
+        #         filter(lambda _cat: _cat.is_alive() and not _cat.exiled and
+        #                          not _cat.outside, Cat.all_cats.values()))
+        #     game.clan.freshkill_pile.time_skip(relevant_cats, game.freshkill_event_list)
+        #     # handle freshkill pile events, after feeding
+        #     # first 5 moons there will not be any freshkill pile event
+        #     if game.clan.age >= 5:
+        #         Freshkill_Events.handle_amount_freshkill_pile(game.clan.freshkill_pile, relevant_cats)
+        #     self.get_moon_freshkill()
+		# 	# make a notification if the Clan has not enough prey
+        #     if FRESHKILL_EVENT_ACTIVE and not game.clan.freshkill_pile.clan_has_enough_food():
+        #         event_string = f"{game.clan.name}Clan doesn't have enough prey for next moon!"
+        #         game.cur_events_list.insert(0, Single_Event(event_string, "alert"))
+        #         game.freshkill_event_list.append(event_string)
 
-        rejoin_upperbound = game.config["lost_cat"]["rejoin_chance"]
-        if random.randint(1, rejoin_upperbound) == 1:
-            self.handle_lost_cats_return()
+        # rejoin_upperbound = game.config["lost_cat"]["rejoin_chance"]
+        # if random.randint(1, rejoin_upperbound) == 1:
+        #     self.handle_lost_cats_return()
 
         # Calling of "one_moon" functions.
-        resource_dir = "resources/dicts/events/disasters/"
-        disaster_text = {}
-        with open(f"{resource_dir}forest.json",
-                  encoding="ascii") as read_file:
-            disaster_text = ujson.loads(read_file.read())
-        if not game.clan.disaster and random.randint(1,50) == 1:
-            game.clan.disaster = random.choice(list(disaster_text.keys()))
-            if "next_possible_disaster" in game.switches and game.switches["next_possible_disaster"]:
-                current_disaster =  disaster_text.get(game.switches["next_possible_disaster"])
-            else:
-                current_disaster = disaster_text.get(game.clan.disaster)
-            while not current_disaster or not disaster_text[game.clan.disaster]["trigger_events"] or (get_current_season() not in current_disaster["season"]):
-                game.clan.disaster = random.choice(list(disaster_text.keys()))
-                current_disaster = disaster_text.get(game.clan.disaster)
-        if game.clan.disaster and game.clan.disaster != "":
-            if "next_possible_disaster" in game.switches and game.clan.disaster == game.switches["next_possible_disaster"]:
-                game.switches["next_possible_disaster"] = None
-            self.handle_disaster()
+        # resource_dir = "resources/dicts/events/disasters/"
+        # disaster_text = {}
+        # with open(f"{resource_dir}forest.json",
+        #           encoding="ascii") as read_file:
+        #     disaster_text = ujson.loads(read_file.read())
+        # if not game.clan.disaster and random.randint(1,50) == 1:
+        #     game.clan.disaster = random.choice(list(disaster_text.keys()))
+        #     if "next_possible_disaster" in game.switches and game.switches["next_possible_disaster"]:
+        #         current_disaster =  disaster_text.get(game.switches["next_possible_disaster"])
+        #     else:
+        #         current_disaster = disaster_text.get(game.clan.disaster)
+        #     while not current_disaster or not disaster_text[game.clan.disaster]["trigger_events"] or (get_current_season() not in current_disaster["season"]):
+        #         game.clan.disaster = random.choice(list(disaster_text.keys()))
+        #         current_disaster = disaster_text.get(game.clan.disaster)
+        # if game.clan.disaster and game.clan.disaster != "":
+        #     if "next_possible_disaster" in game.switches and game.clan.disaster == game.switches["next_possible_disaster"]:
+        #         game.switches["next_possible_disaster"] = None
+        #     self.handle_disaster()
         
         for cat in Cat.all_cats.copy().values():
             if not cat.outside or cat.dead:
@@ -165,151 +165,151 @@ class Events:
             else:
                 self.one_moon_outside_cat(cat)
                 
-        if Cat.grief_strings:
-            # Grab all the dead or outside cats, who should not have grief text
-            for ID in Cat.grief_strings.copy():
-                check_cat = Cat.all_cats.get(ID)
-                if isinstance(check_cat, Cat):
-                    if check_cat.dead or check_cat.outside:
-                        Cat.grief_strings.pop(ID)
+        # if Cat.grief_strings:
+        #     # Grab all the dead or outside cats, who should not have grief text
+        #     for ID in Cat.grief_strings.copy():
+        #         check_cat = Cat.all_cats.get(ID)
+        #         if isinstance(check_cat, Cat):
+        #             if check_cat.dead or check_cat.outside:
+        #                 Cat.grief_strings.pop(ID)
 
-            # Generate events
+        #     # Generate events
             
-            for cat_id, values in Cat.grief_strings.items():
-                for _val in values:
-                    if _val[2] == "minor":
-                        # Apply the grief message as a thought to the cat
-                        text = event_text_adjust(Cat, _val[0], Cat.fetch_cat(cat_id), Cat.fetch_cat(_val[1][0]))
-                        Cat.fetch_cat(cat_id).thought = text
-                    else:
-                        game.cur_events_list.append(
-                            Single_Event(_val[0], ["birth_death", "relation"],
-                                        _val[1]))
+        #     for cat_id, values in Cat.grief_strings.items():
+        #         for _val in values:
+        #             if _val[2] == "minor":
+        #                 # Apply the grief message as a thought to the cat
+        #                 text = event_text_adjust(Cat, _val[0], Cat.fetch_cat(cat_id), Cat.fetch_cat(_val[1][0]))
+        #                 Cat.fetch_cat(cat_id).thought = text
+        #             else:
+        #                 game.cur_events_list.append(
+        #                     Single_Event(_val[0], ["birth_death", "relation"],
+        #                                 _val[1]))
             
             
                 
-            Cat.grief_strings.clear()
+            # Cat.grief_strings.clear()
 
-        if Cat.dead_cats:
-            ghost_names = []
-            shaken_cats = []
-            extra_event = None
-            for ghost in Cat.dead_cats:
-                if not ghost.dead_for > 1:
-                    ghost_names.append(str(ghost.name))
-                else:
-                    continue # keeps encountered DF cats out of death events
-            insert = ""
-            if ghost_names:
-                insert = adjust_list_text(ghost_names)
-            if insert:
-                if len(Cat.dead_cats) > 1 and game.clan.game_mode != 'classic':
-                    event = f"The past moon, {insert} have taken their place in StarClan. {game.clan.name}Clan mourns their " \
-                            f"loss, and their Clanmates will miss where they had been in their lives. Moments of their " \
-                            f"lives are shared in stories around the circle of mourners as those that were closest to them " \
-                            f"take them to their final resting place."
+        # if Cat.dead_cats:
+        #     ghost_names = []
+        #     shaken_cats = []
+        #     extra_event = None
+        #     for ghost in Cat.dead_cats:
+        #         if not ghost.dead_for > 1:
+        #             ghost_names.append(str(ghost.name))
+        #         else:
+        #             continue # keeps encountered DF cats out of death events
+        #     insert = ""
+        #     if ghost_names:
+        #         insert = adjust_list_text(ghost_names)
+        #     if insert:
+        #         if len(Cat.dead_cats) > 1 and game.clan.game_mode != 'classic':
+        #             event = f"The past moon, {insert} have taken their place in StarClan. {game.clan.name}Clan mourns their " \
+        #                     f"loss, and their Clanmates will miss where they had been in their lives. Moments of their " \
+        #                     f"lives are shared in stories around the circle of mourners as those that were closest to them " \
+        #                     f"take them to their final resting place."
 
-                    if len(ghost_names) > 2:
-                        alive_cats = list(
-                            filter(
-                                lambda kitty: (kitty.status != "leader" and not kitty.dead and
-                                            not kitty.outside and not kitty.exiled), Cat.all_cats.values()))
-                        # finds a percentage of the living Clan to become shaken
+        #             if len(ghost_names) > 2:
+        #                 alive_cats = list(
+        #                     filter(
+        #                         lambda kitty: (kitty.status != "leader" and not kitty.dead and
+        #                                     not kitty.outside and not kitty.exiled), Cat.all_cats.values()))
+        #                 # finds a percentage of the living Clan to become shaken
 
-                        if len(alive_cats) == 0:
-                            return
-                        else:
-                            shaken_cats = random.sample(alive_cats,
-                                                        k=max(int((len(alive_cats) * random.choice([4, 5, 6])) / 100), 1))
+        #                 if len(alive_cats) == 0:
+        #                     return
+        #                 else:
+        #                     shaken_cats = random.sample(alive_cats,
+        #                                                 k=max(int((len(alive_cats) * random.choice([4, 5, 6])) / 100), 1))
 
-                        shaken_cat_names = []
-                        for cat in shaken_cats:
-                            shaken_cat_names.append(str(cat.name))
-                            cat.get_injured("shock", event_triggered=False, lethal=False, severity='minor')
+        #                 shaken_cat_names = []
+        #                 for cat in shaken_cats:
+        #                     shaken_cat_names.append(str(cat.name))
+        #                     cat.get_injured("shock", event_triggered=False, lethal=False, severity='minor')
 
-                        insert = adjust_list_text(shaken_cat_names)
+        #                 insert = adjust_list_text(shaken_cat_names)
 
-                        if len(shaken_cats) == 1:
-                            extra_event = f"So much grief and death has taken its toll on the cats of {game.clan.name}Clan. {insert} is particularly shaken by it."
-                        else:
-                            extra_event = f"So much grief and death has taken its toll on the cats of {game.clan.name}Clan. {insert} are particularly shaken by it. "
+        #                 if len(shaken_cats) == 1:
+        #                     extra_event = f"So much grief and death has taken its toll on the cats of {game.clan.name}Clan. {insert} is particularly shaken by it."
+        #                 else:
+        #                     extra_event = f"So much grief and death has taken its toll on the cats of {game.clan.name}Clan. {insert} are particularly shaken by it. "
 
-                else:
-                    event = f"The past moon, {insert} has taken their place in StarClan. {game.clan.name}Clan mourns their " \
-                            f"loss, and their Clanmates will miss the spot they took up in their lives. Moments of their " \
-                            f"life are shared in stories around the circle of mourners as those that were closest to them " \
-                            f"take them to their final resting place."
+        #         else:
+        #             event = f"The past moon, {insert} has taken their place in StarClan. {game.clan.name}Clan mourns their " \
+        #                     f"loss, and their Clanmates will miss the spot they took up in their lives. Moments of their " \
+        #                     f"life are shared in stories around the circle of mourners as those that were closest to them " \
+        #                     f"take them to their final resting place."
 
-                game.cur_events_list.append(
-                    Single_Event(event, ["birth_death"],
-                                [i.ID for i in Cat.dead_cats]))
-                if extra_event:
-                    game.cur_events_list.append(
-                        Single_Event(extra_event, ["birth_death"],
-                                    [i.ID for i in shaken_cats]))
-                Cat.dead_cats.clear()
+        #         game.cur_events_list.append(
+        #             Single_Event(event, ["birth_death"],
+        #                         [i.ID for i in Cat.dead_cats]))
+        #         if extra_event:
+        #             game.cur_events_list.append(
+        #                 Single_Event(extra_event, ["birth_death"],
+        #                             [i.ID for i in shaken_cats]))
+        #         Cat.dead_cats.clear()
 
-        self.herb_destruction()
-        self.herb_gather()
+        # self.herb_destruction()
+        # self.herb_gather()
         game.switches['have kits'] = True
         
         # Clear the list of cats that died this moon.
         game.just_died.clear()
 
-        for cat in Cat.all_cats.copy().values():
-            if cat.shunned == 1:
-                if cat.status == "leader":
-                    string = f"Due to the cries of outrage from their Clan after the reveal of their crime, {game.clan.leader.name} has stepped down as leader of {game.clan.name}Clan."
-                    cat.specsuffix_hidden = True
-                    game.clan.leader_lives = 1
-                    # ^^ to keep the leader status for dialogue but take away "star".
-                    # they can also only die once now
-                    game.cur_events_list.insert(0, Single_Event(string, "alert"))
+        # for cat in Cat.all_cats.copy().values():
+        #     if cat.shunned == 1:
+        #         if cat.status == "leader":
+        #             string = f"Due to the cries of outrage from their Clan after the reveal of their crime, {game.clan.leader.name} has stepped down as leader of {game.clan.name}Clan."
+        #             cat.specsuffix_hidden = True
+        #             game.clan.leader_lives = 1
+        #             # ^^ to keep the leader status for dialogue but take away "star".
+        #             # they can also only die once now
+        #             game.cur_events_list.insert(0, Single_Event(string, "alert"))
 
-                elif cat.status == "deputy":
-                    string = f"{game.clan.leader.name} has thrown {game.clan.deputy.name} from their position as {game.clan.name}Clan's deputy."
-                    game.cur_events_list.insert(0, Single_Event(string, "alert"))
+        #         elif cat.status == "deputy":
+        #             string = f"{game.clan.leader.name} has thrown {game.clan.deputy.name} from their position as {game.clan.name}Clan's deputy."
+        #             game.cur_events_list.insert(0, Single_Event(string, "alert"))
                 
-                elif cat.status in ["medicine cat", "medicine cat apprentice"]:
-                    string = f"{cat.name} has been forced to step down as a medicine cat due to their crimes."
+        #         elif cat.status in ["medicine cat", "medicine cat apprentice"]:
+        #             string = f"{cat.name} has been forced to step down as a medicine cat due to their crimes."
                     
-                    game.cur_events_list.insert(0, Single_Event(string, "alert"))
+        #             game.cur_events_list.insert(0, Single_Event(string, "alert"))
 
-                elif cat.status in ["mediator", "mediator appentice"]:
-                    string = f"{cat.name} has been forced to step down as a mediator due to their crimes."
-                    game.cur_events_list.insert(0, Single_Event(string, "alert"))
+        #         elif cat.status in ["mediator", "mediator appentice"]:
+        #             string = f"{cat.name} has been forced to step down as a mediator due to their crimes."
+        #             game.cur_events_list.insert(0, Single_Event(string, "alert"))
 
-                elif cat.status in ["queen", "queen's apprentice"]:
-                    string = f"{cat.name} can no longer be trusted with the Clan's youngest, and has been stripped of their status as a queen."
-                    game.cur_events_list.insert(0, Single_Event(string, "alert"))
+        #         elif cat.status in ["queen", "queen's apprentice"]:
+        #             string = f"{cat.name} can no longer be trusted with the Clan's youngest, and has been stripped of their status as a queen."
+        #             game.cur_events_list.insert(0, Single_Event(string, "alert"))
 
-                elif cat.status in ["warrior", "apprentice", "kitten"]:
-                    string = f"{cat.name} has been shunned from the Clan."
+        #         elif cat.status in ["warrior", "apprentice", "kitten"]:
+        #             string = f"{cat.name} has been shunned from the Clan."
                     
-                    game.cur_events_list.insert(0, Single_Event(string, "alert"))
+        #             game.cur_events_list.insert(0, Single_Event(string, "alert"))
 
             
 
         # Promote leader and deputy, if needed.
-        self.check_and_promote_leader()
-        self.check_and_promote_deputy()
+        # self.check_and_promote_leader()
+        # self.check_and_promote_deputy()
 
-        if game.clan.game_mode in ["expanded", "cruel season"]:
-            amount_per_med = get_amount_cat_for_one_medic(game.clan)
-            med_fullfilled = medical_cats_condition_fulfilled(
-                Cat.all_cats.values(), amount_per_med)
-            if not med_fullfilled:
-                string = f"{game.clan.name}Clan does not have enough healthy medicine cats! Cats will be sick/hurt " \
-                            f"for longer and have a higher chance of dying. "
-                game.cur_events_list.insert(0, Single_Event(string, "alert"))
-        else:
-            has_med = any(
-                str(cat.status) in {"medicine cat", "medicine cat apprentice"}
-                and not cat.dead and not cat.outside and not cat.shunned
-                for cat in Cat.all_cats.values())
-            if not has_med:
-                string = f"{game.clan.name}Clan has no medicine cat!"
-                game.cur_events_list.insert(0, Single_Event(string, "alert"))
+        # if game.clan.game_mode in ["expanded", "cruel season"]:
+        #     amount_per_med = get_amount_cat_for_one_medic(game.clan)
+        #     med_fullfilled = medical_cats_condition_fulfilled(
+        #         Cat.all_cats.values(), amount_per_med)
+        #     if not med_fullfilled:
+        #         string = f"{game.clan.name}Clan does not have enough healthy medicine cats! Cats will be sick/hurt " \
+        #                     f"for longer and have a higher chance of dying. "
+        #         game.cur_events_list.insert(0, Single_Event(string, "alert"))
+        # else:
+        #     has_med = any(
+        #         str(cat.status) in {"medicine cat", "medicine cat apprentice"}
+        #         and not cat.dead and not cat.outside and not cat.shunned
+        #         for cat in Cat.all_cats.values())
+        #     if not has_med:
+        #         string = f"{game.clan.name}Clan has no medicine cat!"
+        #         game.cur_events_list.insert(0, Single_Event(string, "alert"))
         
 
         new_list = []
@@ -1947,18 +1947,18 @@ class Events:
             cat.talked_to = False
             return
         
-        if cat.shunned > 0 and cat.status != "former Clancat":
-            cat.shunned += 1
-            if cat.shunned >3:
-                exilechance = random.randint(1,15)
-                # Chance for a cat to be exiled, forgiven, or leave before the ten moon limit
-                if exilechance == 1:
-                    self.exile_or_forgive(cat)
-                else:
-                # Max number of moons a cat can be shunned before the clan makes up their damn mind
-                # Currently ten, but it was also roll if its set to more than that in a cat's save
-                    if cat.shunned > 9:
-                        self.exile_or_forgive(cat)
+        # if cat.shunned > 0 and cat.status != "former Clancat":
+        #     cat.shunned += 1
+        #     if cat.shunned >3:
+        #         exilechance = random.randint(1,15)
+        #         # Chance for a cat to be exiled, forgiven, or leave before the ten moon limit
+        #         if exilechance == 1:
+        #             self.exile_or_forgive(cat)
+        #         else:
+        #         # Max number of moons a cat can be shunned before the clan makes up their damn mind
+        #         # Currently ten, but it was also roll if its set to more than that in a cat's save
+        #             if cat.shunned > 9:
+        #                 self.exile_or_forgive(cat)
         
         if cat.status == 'leader' and cat.shunned > 0 and cat.name.specsuffix_hidden is False:
             cat.name.specsuffix_hidden = True
@@ -1972,18 +1972,18 @@ class Events:
 
 
         # Handle Mediator Events
-        self.mediator_events(cat)
+        # self.mediator_events(cat)
 
        
 
         # handle nutrition amount
         # (CARE: the cats has to be fed before - should be handled in "one_moon" function)
-        if game.clan.game_mode in ['expanded', 'cruel season'
-                                   ] and game.clan.freshkill_pile:
-            Freshkill_Events.handle_nutrient(
-                cat, game.clan.freshkill_pile.nutrition_info)
-            if cat.dead:
-                return
+        # if game.clan.game_mode in ['expanded', 'cruel season'
+        #                            ] and game.clan.freshkill_pile:
+        #     Freshkill_Events.handle_nutrient(
+        #         cat, game.clan.freshkill_pile.nutrition_info)
+        #     if cat.dead:
+        #         return
 
         cat.talked_to = False
         cat.insulted = False

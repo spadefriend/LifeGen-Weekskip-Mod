@@ -316,91 +316,237 @@ class MakeClanScreen(Screens):
     def create_example_cats2(self):
 
         # Mumblestar
-        game.choose_cats[0] = Cat(prefix = "Mumble", gender="male", status='leader', backstory="clanborn", suffix="tooth", moons=131)
-        mumble_pelt = Pelt(name="Singlestripe",length="short",colour="DARKGREY",white_patches="BLAZE",eye_color="GREY",scars=["LEFTBLIND"],tint="black",skin="LIGHTBROWN",senior_sprite=12)
+        game.choose_cats[0] = Cat(prefix = "Mumble", gender="male", status='leader', backstory="clanborn", suffix="tooth", moons=131, skill_dict={
+            "primary": "LANGUAGE,7,False",
+            "secondary": "SLEEPER,16,False",
+            "hidden": None
+        })
+        mumble_pelt = Pelt(name="Singlestripe",length="short",colour="DARKGREY",white_patches="BLAZE",eye_color="GREY",scars=["LEFTBLIND"],tint="black",skin="LIGHTBROWN")
         game.choose_cats[0].pelt=mumble_pelt
-        game.choose_cats[0].genderalign=None
-
-        #Sedgestripe
-        game.choose_cats[1] = Cat(prefix = "Sedge", gender="male", status='deputy', backstory="clanborn", suffix="stripe", moons=51)
-        # "pelt_name": "Mackerel",
-        # "pelt_color": "SILVER",
-        # "pelt_length": "short",
-        # "sprite_kitten": 0,
-        # "sprite_adolescent": 3,
-        # "sprite_adult": 7,
-        # "sprite_senior": 12,
-        # "sprite_para_adult": 0,
-        # "eye_colour": "PALEBLUE",
-        # "eye_colour2": null,
-        # "reverse": true,
-        # "white_patches": "SAVANNAH",
-        # "vitiligo": null,
-        # "points": null,
-        # "white_patches_tint": "offwhite",
-        # "pattern": null,
-        # "tortie_base": null,
-        # "tortie_color": null,
-        # "tortie_pattern": null,
-        # "skin": "PEACH",
-        # "tint": "blue",
-
+        game.choose_cats[0].genderalign = "male"
+        # Sedgestripe
+        game.choose_cats[1] = Cat(prefix = "Sedge", gender="male", status='deputy', backstory="clanborn", suffix="stripe", moons=51,
+        skill_dict={
+            "primary": "LORE,7,False",
+            "secondary": "COOPERATIVE,16,False",
+            "hidden": None
+        })
+        sedge_pelt = Pelt(name="Mackerel", length="short", colour="SILVER", white_patches="SAVANNAH", eye_color="PALEBLUE", skin="PEACH", tint="blue", white_patches_tint= "offwhite")
+        game.choose_cats[1].pelt=sedge_pelt
         # Redspots
-        game.choose_cats[2] = Cat(prefix = "Red", gender="male", status='medicine cat', backstory="clanborn", suffix="spots", moons=36)
-        #  "pelt_name": "Tortie",
-        # "pelt_color": "SIENNA",
-        # "pelt_length": "long",
-        # "sprite_kitten": 0,
-        # "sprite_adolescent": 3,
-        # "sprite_adult": 10,
-        # "sprite_senior": 12,
-        # "sprite_para_adult": 0,
-        # "eye_colour": "AMBER",
-        # "eye_colour2": null,
-        # "reverse": false,
-        # "white_patches": null,
-        # "vitiligo": null,
-        # "points": null,
-        # "white_patches_tint": "None",
-        # "pattern": "EYEDOT",
-        # "tortie_base": "speckled",
-        # "tortie_color": "GINGER",
-        # "tortie_pattern": "masked",
-        # "skin": "LIGHTMARBLED",
-        # "tint": "pink",
+        game.choose_cats[2] = Cat(prefix = "Red", gender="male", status='medicine cat', backstory="clanborn", suffix="spots", moons=36,
+        skill_dict={
+            "primary": "PROPHET,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        red_pelt = Pelt(name= "Tortie", colour= "SIENNA", length= "long", eye_color= "AMBER", pattern= "EYEDOT", tortiebase= "speckled", tortiecolour= "GINGER", tortiepattern= "masked", skin= "LIGHTMARBLED", tint= "pink")
+        game.choose_cats[2].pelt=red_pelt
+        game.choose_cats[2].genderalign="male"
+
+        # Littlewish
+        game.choose_cats[3] = Cat(prefix = "Little", gender="male", status='mediator', backstory="clanborn", suffix="wish", moons=30,
+        skill_dict={
+            "primary": "DREAM,7,False",
+            "secondary": "TEACHER,6,False",
+            "hidden": None
+        })
+        # little_pelt = 
+        # game.choose_cats[3].pelt=little_pelt
+        game.choose_cats[3].genderalign="nonbinary"
         
-        # Lakeleaf
-        game.choose_cats[3] = Cat(prefix = "Lake", gender="female", status='mediator', backstory="clanborn", suffix="leaf", moons=30)
-
-        # Orchidpatch
-        game.choose_cats[4] = Cat(prefix = "Orchid", gender="female", status='warrior', backstory="clanborn", suffix="patch", moons=16)
-
-        # Timberhare
-        game.choose_cats[5] = Cat(prefix = "Timber", gender="male", status='warrior', backstory="clanborn", suffix="hare", moons=24)
-
         # Flamefeather
-        game.choose_cats[6] = Cat(prefix = "Flame", gender="female", status='warrior', backstory="clanborn", suffix="feather", moons=62)
-
-        # Whitestem
-        game.choose_cats[7] = Cat(prefix = "White", gender="male", status='warrior', backstory="clanborn", suffix="stem", moons=70)
+        game.choose_cats[4] = Cat(prefix = "Flame", gender="female", status='warrior', backstory="clanborn", suffix="feather", moons=62,
+        skill_dict={
+            "primary": "FIGHTER,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        flame_pelt = Pelt(name="Calico", colour="BLACK", length="long", eye_color="YELLOW", white_patches="MISTER", pattern="BODY", tortiebase="tabby", tortiecolour="DARKGINGER", tortiepattern="tabby", skin="RED", tint="red")
+        game.choose_cats[4].pelt=flame_pelt
+        game.choose_cats[4].genderalign="male"
 
         # Lilyface
-        game.choose_cats[8] = Cat(prefix = "Lily", gender="female", status='warrior', backstory="clanborn", suffix="face", moons=67)
+        game.choose_cats[5] = Cat(prefix = "Lily", gender="female", status='warrior', backstory="clanborn", suffix="face", moons=67,
+        skill_dict={
+            "primary": "SPEAKER,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        lily_pelt = Pelt(name="Marbled", colour="LILAC", length="medium", eye_color="HEATHERBLUE", reverse=True, white_patches="FANCY", points="SEALPOINT", white_patches_tint="pink", pattern="ARMTAIL", tortiebase="marbled", tortiecolour="PALEGREY", tortiepattern="tabby", skin="PEACH", tint="pink")
+        game.choose_cats[5].pelt=lily_pelt
+        game.choose_cats[5].genderalign=None
 
-        # Sunfur
-        game.choose_cats[9] = Cat(prefix = "Sun", gender="male", status='warrior', backstory="clanborn", suffix="fur", moons=30)
+        # Honeystumble
+        game.choose_cats[6] = Cat(prefix = "Honey", gender="female", status='warrior', backstory="clanborn", suffix="stumble", moons=67,
+        skill_dict={
+            "primary": "MATCHMAKER,7,False",
+            "secondary": "SWIMMER,7,False",
+            "hidden": None
+        })
+        honey_pelt = Pelt(name="Rosette", colour="DARKBROWN", length="medium", eye_color="DARKBLUE", white_patches="HONEY", white_patches_tint="offwhite", skin="BLACK", tint="purple")
+        game.choose_cats[6].pelt=honey_pelt
+        game.choose_cats[6].genderalign=None
 
-        # Rowanpaw
-        game.choose_cats[10] = Cat(prefix = "Rowan", gender="male", status='apprentice', backstory="clanborn", suffix="sun", moons=6)
+        # Appleclaw
+        game.choose_cats[7] = Cat(prefix = "Apple", gender="male", status='warrior', backstory="clanborn", suffix="claw", moons=67,
+        skill_dict={
+            "primary": "CLIMBER,7,False",
+            "secondary": "CAMP,7,False",
+            "hidden": None
+        })
+        apple_pelt = Pelt(name="Smoke", colour="CHOCOLATE", length="short", eye_color="GREENYELLOW", white_patches="FADEBELLY", skin="DARKMARBLED", tint="red", accessories=["LIMEBOW"])
+        game.choose_cats[7].pelt=apple_pelt
+        game.choose_cats[7].genderalign=None
+
+        # Magpieswoop
+        game.choose_cats[8] = Cat(prefix = "Magpie", gender="male", status='warrior', backstory="clanborn", suffix="swoop", moons=97,
+        skill_dict={
+            "primary": "CLEVER,7,False",
+            "secondary": "SPEAKER,7,False",
+            "hidden": None
+        })
+        magpie_pelt = Pelt(name="Marbled", colour="BLACK", length="long", eye_color="AMBER", reverse=True, white_patches="RINGTAIL", skin="DARKSALMON")
+        game.choose_cats[8].pelt=magpie_pelt
+        game.choose_cats[8].genderalign=None
+
+        # Monarchhaze
+        game.choose_cats[9] = Cat(prefix = "Monarch", gender="female", status='warrior', backstory="clanborn", suffix="haze", moons=49,
+        skill_dict={
+            "primary": "CLEVER,7,False",
+            "secondary": "TRACKER,7,False",
+            "hidden": None
+        })
+        monarch_pelt = Pelt(name="Calico", colour="CREAM", length="long", eye_color="BLUE", reverse=True, white_patches="FRECKLES", pattern="CHIMERA", tortiebase="smoke", tortiecolour="DARKGREY", tortiepattern="smoke", skin="DARKSALMON", tint="purple")
+        game.choose_cats[9].pelt=monarch_pelt
+        game.choose_cats[9].genderalign=None
+
+        # Dizzypaw
+        game.choose_cats[10] = Cat(prefix = "Dizzy", gender="male", status='apprentice', backstory="clanborn", suffix="sun", moons=6)
+        # dizzy_pelt = 
+        # game.choose_cats[10].pelt=dizzy_pelt
+        game.choose_cats[10].genderalign=None
 
         # Snakepaw
-        game.choose_cats[11] = Cat(prefix = "Snake", gender="female", status='apprentice', backstory="clanborn", suffix="pelt", moons=7)
+        game.choose_cats[11] = Cat(prefix = "Snake", gender="female", status='apprentice', backstory="clanborn", suffix="pelt", moons=8,
+        skill_dict={
+            "primary": "SCHOLAR,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        snake_pelt = Pelt(name="Tortie", colour="GHOST", length="medium", eye_color="CYAN", reverse=True, white_patches="ANYTWO", white_patches_tint="cream", pattern="MINIMALTHREE", tortiebase="bengal", tortiecolour="PALEGREY", tortiepattern="smoke", skin="BROWN")
+        game.choose_cats[11].pelt=snake_pelt
+        game.choose_cats[11].genderalign=None
+
+        # Brightpaw
+        game.choose_cats[12] = Cat(prefix = "Bright", gender="female", status='apprentice', backstory="clanborn", suffix="river", moons=6)
+        bright_pelt = Pelt(name="Mackerel", colour="CREAM", length="short", eye_color="PALEBLUE", reverse=True, points="SEALPOINT", skin="BLACK", tint="yellow", accessories=["BEE"])
+        game.choose_cats[12].pelt=bright_pelt
+        game.choose_cats[12].genderalign=None
 
         # Mallowcloud
-        game.choose_cats[12] = Cat(prefix = "Mallow", gender="female", status='queen', backstory="clanborn", suffix="cloud", moons=70)
+        game.choose_cats[13] = Cat(prefix = "Mallow", gender="female", status='queen', backstory="clanborn", suffix="cloud", moons=70,
+        skill_dict={
+            "primary": "HEALER,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        mallow_pelt = Pelt(name="Tortie", colour="SILVER", length="long", eye_color="SILVER", vitiligo="MOON", points="MINKPOINT", pattern="ROBIN", tortiebase="smoke", tortiecolour="WHITE", tortiepattern="classic", skin="GREY")
+        game.choose_cats[13].pelt=mallow_pelt
+        game.choose_cats[13].genderalign=None
 
         # Oatwillow
-        game.choose_cats[13] = Cat(prefix = "Oat", gender="female", status='elder', backstory="clanborn", suffix="willow", moons=143)
+        game.choose_cats[14] = Cat(prefix = "Oat", gender="female", status='elder', backstory="clanborn", suffix="willow", moons=133,
+        skill_dict={
+            "primary": "COMFORTER,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        oat_pelt = Pelt(name="Tortie", colour="GOLDEN-BROWN", length="medium", eye_color="EMERALD", white_patches="TIP", pattern="MINIMALONE", tortiebase="masked", tortiecolour="GINGER", tortiepattern="smoke", skin="DARKBROWN")
+        game.choose_cats[14].pelt=oat_pelt
+        game.choose_cats[14].genderalign=None
+
+        # Runninglily
+        game.choose_cats[15] = Cat(prefix = "Running", gender="female", status='elder', backstory="clanborn", suffix="lily", moons=145,
+        skill_dict={
+            "primary": "TEACHER,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        running_pelt = Pelt(name="TwoColour", colour="DARKBROWN", length="short", eye_color="PALEBLUE", reverse=True, white_patches="MOORISH", white_patches_tint="darkcream", skin="DARKMARBLED", tint="purple")
+        game.choose_cats[15].pelt=running_pelt
+        game.choose_cats[15].genderalign=None
+
+        # Ryekit
+        game.choose_cats[16] = Cat(prefix = "Rye", gender="male", status='kitten', backstory="clanborn", suffix="splash", moons=2,
+        skill_dict={
+            "primary": "LORE,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        rye_pelt=Pelt(name="Calico", colour="BLACK", length="long", eye_color="YELLOW", white_patches="MISTER", pattern="BODY", tortiebase="tabby", tortiecolour="DARKGINGER", tortiepattern="tabby", skin="RED", tint="red")
+        game.choose_cats[16].pelt=rye_pelt
+        game.choose_cats[16].genderalign=None
+
+        # Cowkit
+        game.choose_cats[17] = Cat(prefix = "Cow", gender="male", status='kitten', backstory="clanborn", suffix="flower", moons=2,
+        skill_dict={
+            "primary": "SCHOLAR,7,False",
+            "secondary": None,
+            "hidden": None
+        })
+        cow_pelt=Pelt(name="Marbled", colour="GHOST", length="long", eye_color="SAGE", reverse=True, white_patches="COW", pattern="THREE", tortiebase="rosette", tortiecolour="LIGHTBROWN", tortiepattern="smoke", skin="BLUE", tint="red")
+        game.choose_cats[17].pelt=cow_pelt
+        game.choose_cats[17].genderalign=None
+
+        # Birchstar
+        game.choose_cats[18] = Cat(prefix = "Birch", gender="female", status='DuskClan leader', backstory="clanborn", suffix="star", moons=86,
+        skill_dict={
+            "primary": "FIGHTER,7,False",
+            "secondary": "SENSE,7,False",
+            "hidden": None
+        })
+        birch_pelt=Pelt(name="Bengal", colour="LIGHTBROWN", length="short", eye_color="SUNLITICE", white_patches="WOODPECKER", white_patches_tint="cream", skin="GREY", tint="orange")
+        game.choose_cats[18].pelt=birch_pelt
+        game.choose_cats[18].genderalign=None
+        game.choose_cats[18].outside = True
+
+        # Kestrelsnow
+        game.choose_cats[19] = Cat(prefix = "Kestrel", gender="female", status='DuskClan deputy', backstory="clanborn", suffix="snow", moons=62,
+        skill_dict={
+            "primary": "TREASURE,7,False",
+            "secondary": "TEACHER,7,False",
+            "hidden": None
+        })
+        kestrel_pelt=Pelt(name="Tortie", colour="DARKGINGER", length="long", eye_color="SUNLITICE", eye_colour2="GREEN", reverse=True, white_patches="BUZZARDFANG", pattern="SMOKE", tortiebase="rosette", tortiecolour="PALEGREY", tortiepattern="rosette", skin="LIGHTMARBLED")
+        game.choose_cats[19].pelt=kestrel_pelt
+        game.choose_cats[19].genderalign=None
+        game.choose_cats[19].outside = True
+
+        # Flutteringray
+        game.choose_cats[20] = Cat(prefix = "Fluttering", status='DuskClan medicine cat', backstory="clanborn", suffix="ray", moons=70,
+        skill_dict={
+            "primary": "DARK,7,False",
+            "secondary": "DREAM,7,False",
+            "hidden": None
+        })
+        fluttering_pelt=Pelt(name="Tortie", colour="DARKGINGER", length="long", eye_color="HEATHERBLUE", white_patches="MITAINE", white_patches_tint="cream", pattern="DAUB", tortiebase="single", tortiecolour="BLACK", tortiepattern="single", skin="SALMON", tint="red", accessories=["BLUEBUTTERFLY"])
+        game.choose_cats[20].pelt=fluttering_pelt
+        game.choose_cats[20].genderalign="nonbinary"
+        game.choose_cats[20].outside = True
+
+        # Mistmask
+        game.choose_cats[21] = Cat(prefix = "Mist", gender="male", status='DuskClan mediator', backstory="clanborn", suffix="mask", moons=28,
+        skill_dict={
+            "primary": "OMEN,7,False",
+            "secondary": "SONG,7,False",
+            "hidden": None
+        })
+        mist_pelt=Pelt(name="Tortie", colour="GREY", length="medium", eye_color="BLUE", reverse=True, vitiligo="PHANTOM", points="MINKPOINT", pattern="REDTAIL", tortiebase="smoke", tortiecolour="DARKGREY", tortiepattern="masked", skin="BLUE", tint="blue")
+        game.choose_cats[21].pelt=mist_pelt
+        game.choose_cats[21].genderalign=None
+        game.choose_cats[21].outside = True
+
 
     def handle_choose_background_event(self, event):
         if event.ui_element == self.elements['previous_step']:

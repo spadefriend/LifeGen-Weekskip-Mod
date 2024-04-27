@@ -1457,31 +1457,7 @@ class ProfileScreen(Screens):
         output = ""
 
         # STATUS
-        if the_cat.outside and not (the_cat.exiled or the_cat.df) and the_cat.status not in ['kittypet', 'loner', 'rogue',
-                                                                             'former Clancat']:
-            output += "<font color='#FF0000'>lost</font>"
-        elif the_cat.exiled:
-            output += "<font color='#FF0000'>exiled</font>"
-        elif the_cat.shunned > 0 and not the_cat.dead:
-            if the_cat.status != "former Clancat":
-                if game.settings['dark mode']:
-                    output += "<font color='#FF9999'>shunned " + the_cat.status + "</font>"
-                else:
-                    output += "<font color='#950000'>shunned " + the_cat.status + "</font>"
-            else:
-                output += the_cat.status
-        elif the_cat.df:
-            if game.settings['dark mode']:
-                output += "<font color='#FF9999' >" + "Dark Forest "+ the_cat.status + "</font>"
-            else:
-                output += "<font color='#950000' >" + "Dark Forest "+ the_cat.status + "</font>"
-        elif the_cat.dead and not the_cat.df and not the_cat.outside:
-            if game.settings['dark mode']:
-                output += "<font color ='#A8BBFF'>" "StarClan " + the_cat.status + "</font>"
-            else:
-                output += "<font color ='#2B3DC3'>" "StarClan " + the_cat.status + "</font>"
-        else:
-            output += the_cat.status
+        output += the_cat.status
 
         # NEWLINE ----------
         output += "\n"
@@ -1591,20 +1567,20 @@ class ProfileScreen(Screens):
         # NEWLINE ----------
         output += "\n"
 
-        # NUTRITION INFO (if the game is in the correct mode)
-        if game.clan.game_mode in ["expanded", "cruel season"] and the_cat.is_alive() and FRESHKILL_ACTIVE:
-            # Check to only show nutrition for clan cats
-            if str(the_cat.status) not in ["loner", "kittypet", "rogue", "former Clancat", "exiled"]:
-                nutr = None
-                if the_cat.ID in game.clan.freshkill_pile.nutrition_info:
-                    nutr = game.clan.freshkill_pile.nutrition_info[the_cat.ID]
-                if not nutr:
-                    game.clan.freshkill_pile.add_cat_to_nutrition(the_cat)
-                    nutr = game.clan.freshkill_pile.nutrition_info[the_cat.ID]
-                output += "nutrition: " + nutr.nutrition_text
-                if game.clan.clan_settings['showxp']:
-                    output += ' (' + str(int(nutr.percentage)) + ')'
-                output += "\n"
+        # # NUTRITION INFO (if the game is in the correct mode)
+        # if game.clan.game_mode in ["expanded", "cruel season"] and the_cat.is_alive() and FRESHKILL_ACTIVE:
+        #     # Check to only show nutrition for clan cats
+        #     if str(the_cat.status) not in ["loner", "kittypet", "rogue", "former Clancat", "exiled"]:
+        #         nutr = None
+        #         if the_cat.ID in game.clan.freshkill_pile.nutrition_info:
+        #             nutr = game.clan.freshkill_pile.nutrition_info[the_cat.ID]
+        #         if not nutr:
+        #             game.clan.freshkill_pile.add_cat_to_nutrition(the_cat)
+        #             nutr = game.clan.freshkill_pile.nutrition_info[the_cat.ID]
+        #         output += "nutrition: " + nutr.nutrition_text
+        #         if game.clan.clan_settings['showxp']:
+        #             output += ' (' + str(int(nutr.percentage)) + ')'
+        #         output += "\n"
 
         if the_cat.is_disabled():
             for condition in the_cat.permanent_condition:
