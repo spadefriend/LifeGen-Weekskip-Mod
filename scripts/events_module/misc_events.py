@@ -3,6 +3,7 @@ import random
 from scripts.cat.cats import Cat
 from scripts.cat.history import History
 from scripts.cat.pelts import Pelt
+from scripts.cat_relations.relationship import Relationship
 from scripts.events_module.generate_events import GenerateEvents
 from scripts.utility import event_text_adjust, change_clan_relations, change_relationship_values
 from scripts.game_structure.game_essentials import game
@@ -92,12 +93,43 @@ class MiscEvents():
             change_clan_relations(other_clan, difference=difference)
 
         event_text = event_text_adjust(Cat, misc_event.event_text, cat, other_cat, other_clan_name, murder_reveal=reveal, victim=victim)
+        
+        if event_text:
+            # Add event text to the relationship log if two cats are involved
+            if other_cat:
+                pos_rel_event = ["romantic", "platonic", "neg_dislike", "respect", "comfort", "neg_jealousy", "trust"]
+                neg_rel_event = ["neg_romantic", "neg_platonic", "dislike", "neg_respect", "neg_comfort", "jealousy", "neg_trust"]
+                effect = ""
+                if any(tag in misc_event.tags for tag in pos_rel_event):
+                    effect = " (positive effect)"
+                elif any(tag in misc_event.tags for tag in neg_rel_event):
+                    effect = " (negative effect)"
+
+                log_text = event_text + effect
+
+                if other_cat.ID not in cat.relationships:
+                    cat.relationships[other_cat.ID] = Relationship(cat, other_cat)
+
+                if cat.ID not in other_cat.relationships:
+                    other_cat.relationships[cat.ID] = Relationship(other_cat, cat)
+
+                if cat.moons == 1:
+                    cat.relationships[other_cat.ID].log.append(log_text + f" - {cat.name} was {cat.moons} moon old")
+                else:
+                    cat.relationships[other_cat.ID].log.append(log_text + f" - {cat.name} was {cat.moons} moons old")
 
         types = ["misc"]
         if "other_clan" in misc_event.tags:
             types.append("other_clans")
         if ceremony:
             types.append("ceremony")
+
+        # to remove double the event
+        # (example which might happen would be: "The tension between c_n and o_c is palpable, with even the smallest actions potentially leading to violence.")
+        same_text_events = [event for event in game.cur_events_list if event.text == event_text]
+        if len(same_text_events) > 0:
+            return
+
         game.cur_events_list.append(Single_Event(event_text, types, involved_cats))
 
         if reveal:

@@ -47,6 +47,7 @@ class PatrolScreen(Screens):
         self.results_text = ""
         self.start_patrol_thread = None
         self.proceed_patrol_thread = None
+        self.outcome_art = None
 
     def handle_event(self, event):
         if game.switches["window_open"]:
@@ -264,47 +265,39 @@ class PatrolScreen(Screens):
                 if self.patrol_type == 'med':
                     self.patrol_type = 'general'
 
-            if game.clan.game_mode != 'classic':
-                self.elements['paw'].enable()
-                self.elements['mouse'].enable()
-                self.elements['claws'].enable()
-                self.elements['herb'].enable()
+            self.elements['paw'].enable()
+            self.elements['mouse'].enable()
+            self.elements['claws'].enable()
+            self.elements['herb'].enable()
+            self.elements['info'].kill()  # clearing the text before displaying new text
 
-                self.elements['info'].kill()  # clearing the text before displaying new text
-
-                if self.patrol_type != 'med' and self.current_patrol:
-                    self.elements['herb'].disable()
-                    if self.patrol_type == 'med':
-                        self.patrol_type = 'general'
-
-                if self.patrol_type == 'general':
-                    text = 'random patrol type'
-                elif self.patrol_type == 'training':
-                    text = 'training'
-                elif self.patrol_type == 'border':
-                    text = 'border'
-                elif self.patrol_type == 'hunting':
-                    text = 'hunting'
-                elif self.patrol_type == 'med':
-                    if self.current_patrol:
-                        text = 'herb gathering'
-                        self.elements['mouse'].disable()
-                        self.elements['claws'].disable()
-                        self.elements['paw'].disable()
-                    else:
-                        text = 'herb gathering'
+            if self.patrol_type != 'med' and self.current_patrol:
+                self.elements['herb'].disable()
+                if self.patrol_type == 'med':
+                    self.patrol_type = 'general'
+            if self.patrol_type == 'general':
+                text = 'random patrol type'
+            elif self.patrol_type == 'training':
+                text = 'training'
+            elif self.patrol_type == 'border':
+                text = 'border'
+            elif self.patrol_type == 'hunting':
+                text = 'hunting'
+            elif self.patrol_type == 'med':
+                if self.current_patrol:
+                    text = 'herb gathering'
+                    self.elements['mouse'].disable()
+                    self.elements['claws'].disable()
+                    self.elements['paw'].disable()
                 else:
-                    text = ""
-
-                self.elements['info'] = pygame_gui.elements.UITextBox(
-                    text, scale(pygame.Rect((500, 1050), (600, 800))),
-                    object_id=get_text_box_theme("#text_box_30_horizcenter"), manager=MANAGER
-                )
+                    text = 'herb gathering'
             else:
-                self.elements['paw'].hide()
-                self.elements['mouse'].hide()
-                self.elements['claws'].hide()
-                self.elements['herb'].hide()
+                text = ""
+
+            self.elements['info'] = pygame_gui.elements.UITextBox(
+                text, scale(pygame.Rect((500, 1050), (600, 800))),
+                object_id=get_text_box_theme("#text_box_30_horizcenter"), manager=MANAGER
+            )
 
             able_no_med = [cat for cat in self.able_cats if
                            cat.status not in ['medicine cat', 'medicine cat apprentice']]
@@ -467,6 +460,18 @@ class PatrolScreen(Screens):
                                                       object_id="#start_patrol_button", manager=MANAGER)
         self.elements['patrol_start'].disable()
 
+        # add prey information
+        if game.clan.game_mode != 'classic':
+            current_amount =  round(game.clan.freshkill_pile.total_amount,2)
+            self.elements['current_prey'] = pygame_gui.elements.UITextBox(
+                f"current prey: {current_amount}", scale(pygame.Rect((600, 1260), (400, 800))),
+                object_id=get_text_box_theme("#text_box_30_horizcenter"), manager=MANAGER
+            )
+            needed_amount = round(game.clan.freshkill_pile.amount_food_needed(),2)
+            self.elements['needed_prey'] = pygame_gui.elements.UITextBox(
+                f"needed prey: {needed_amount}", scale(pygame.Rect((600, 1295), (400, 800))),
+                object_id=get_text_box_theme("#text_box_30_horizcenter"), manager=MANAGER
+            )
         self.update_cat_images_buttons()
         self.update_button()
 
@@ -515,6 +520,7 @@ class PatrolScreen(Screens):
                         pygame.transform.scale(
                             self.patrol_obj.get_patrol_art(), (600, 600))
                     )
+        
 
         # Prepare Intro Text
         # adjusting text for solo patrols
@@ -583,11 +589,11 @@ class PatrolScreen(Screens):
         """Proceeds the patrol - to be run in the seperate thread. """
         
         if user_input in ["nopro", "notproceed"]:
-            self.display_text, self.results_text = self.patrol_obj.proceed_patrol("decline")
+            self.display_text, self.results_text, self.outcome_art = self.patrol_obj.proceed_patrol("decline")
         elif user_input in ["antag", "antagonize"]:
-            self.display_text, self.results_text = self.patrol_obj.proceed_patrol("antag")
+            self.display_text, self.results_text, self.outcome_art = self.patrol_obj.proceed_patrol("antag")
         else:
-            self.display_text, self.results_text = self.patrol_obj.proceed_patrol("proceed")
+            self.display_text, self.results_text, self.outcome_art = self.patrol_obj.proceed_patrol("proceed")
 
     def open_patrol_complete_screen(self):
         """Deals with the next stage of the patrol, including antagonize, proceed, and do not proceed.
@@ -602,8 +608,9 @@ class PatrolScreen(Screens):
         self.elements['patrol_again'] = UIImageButton(scale(pygame.Rect((1120, 274), (324, 60))), "",
                                                       object_id="#patrol_again", manager=MANAGER)
                 
-        # Adjust text for solo patrols
-        #display_text = adjust_patrol_text(display_text, self.patrol_obj)
+        # Update patrol art, if needed.
+        if self.outcome_art is not None and self.elements.get('intro_image') is not None:
+            self.elements['intro_image'].set_image(self.outcome_art)
 
         self.elements["patrol_results"] = pygame_gui.elements.UITextBox("",
                                                                         scale(pygame.Rect((1100, 1000), (344, 300))),
@@ -641,11 +648,7 @@ class PatrolScreen(Screens):
         else:
             all_pages = self.chunks(self.able_cats, 15)
 
-        if self.current_page > len(all_pages):
-            if len(all_pages) == 0:
-                self.current_page = 1
-            else:
-                self.current_page = len(all_pages)
+        self.current_page = max(1, min(self.current_page, len(all_pages)))
 
         # Check for empty list (no able cats)
         if all_pages:
@@ -944,11 +947,12 @@ class PatrolScreen(Screens):
     def exit_screen(self):
         self.clear_page()
         self.clear_cat_buttons()
+        self.hide_menu_buttons()
 
     def on_use(self):
         
-        self.loading_screen_on_use(self.start_patrol_thread, self.open_patrol_event_screen)
-        self.loading_screen_on_use(self.proceed_patrol_thread, self.open_patrol_complete_screen)
+        self.loading_screen_on_use(self.start_patrol_thread, self.open_patrol_event_screen, (700, 500))
+        self.loading_screen_on_use(self.proceed_patrol_thread, self.open_patrol_complete_screen, (350, 500))
 
     def chunks(self, L, n):
         return [L[x: x + n] for x in range(0, len(L), n)]
