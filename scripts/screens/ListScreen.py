@@ -180,8 +180,6 @@ class ListScreen(Screens):
 
     def screen_switches(self):
         # Determine the starting list of cats.
-        # print(self.current_group)
-        # print(game.last_list_forProfile)
         if game.last_list_forProfile:
             if game.last_list_forProfile == 'sc':
                 self.get_sc_cats()
@@ -200,7 +198,7 @@ class ListScreen(Screens):
 
         self.show_menu_buttons()
 
-        y_pos = 248  # controls y_pos of cat list bar
+        y_pos = 268  # controls y_pos of cat list bar
 
         # favorite cat view
         self.filter_fav = UIImageButton(scale(pygame.Rect((209, y_pos), (76, 68))), "",
@@ -223,7 +221,7 @@ class ListScreen(Screens):
                                                                 "resources/images/search_bar.png").convert_alpha(),
                                                             manager=MANAGER)
 
-        self.search_bar = pygame_gui.elements.UITextEntryLine(scale(pygame.Rect((299, 257), (230, 55))),
+        self.search_bar = pygame_gui.elements.UITextEntryLine(scale(pygame.Rect((299, 277), (230, 55))),
                                                               object_id="#search_entry_box",
                                                               initial_text="name search",
                                                               manager=MANAGER)
@@ -240,6 +238,8 @@ class ListScreen(Screens):
             self.show_dead_button.hide()
         else:
             self.show_living_button.hide()
+            if game.sort_type == 'death':
+                game.sort_type = 'rank'
 
         x_pos = 717
         self.choose_group_button = UIImageButton(scale(pygame.Rect((x_pos, y_pos), (380, 68))), "",
@@ -292,7 +292,7 @@ class ListScreen(Screens):
                                                          , manager=MANAGER)  # Text will be filled in later
 
         x_pos = 1093
-        y_pos = 247
+        y_pos = 267
 
         # filter buttons ... there's a lot of them
         self.filter_by_rank = UIImageButton(
@@ -392,7 +392,6 @@ class ListScreen(Screens):
             screen.blit(self.ur_bg, (0, 0))
 
     def update_filter_buttons(self):
-        # print(game.sort_type)
         # hide them all now
         self.filter_by_rank.hide()
         self.filter_by_ID.hide()
@@ -510,7 +509,7 @@ class ListScreen(Screens):
     def get_sc_cats(self):
         self.current_group = 'sc'
         self.death_status = 'dead'
-        self.full_cat_list = [game.clan.instructor] if not game.clan.instructor.df else []
+        self.full_cat_list = []
         for the_cat in Cat.all_cats_list:
             if the_cat.dead and the_cat.ID != game.clan.instructor.ID and not the_cat.outside and not the_cat.df and \
                     not the_cat.faded:
@@ -519,7 +518,7 @@ class ListScreen(Screens):
     def get_df_cats(self):
         self.current_group = 'df'
         self.death_status = 'dead'
-        self.full_cat_list = [game.clan.instructor] if game.clan.instructor.df else []
+        self.full_cat_list = []
 
         for the_cat in Cat.all_cats_list:
             if the_cat.dead and the_cat.ID != game.clan.instructor.ID and the_cat.df and \
@@ -538,6 +537,15 @@ class ListScreen(Screens):
         """Run this function when the search text changes, or when the screen is switched to."""
         self.current_listed_cats = []
         Cat.sort_cats(self.full_cat_list)
+
+        # adding in the guide if necessary, this ensures the guide isn't affected by sorting as we always want them to
+        # be the first cat on the list
+        if (self.current_group == 'df' and game.clan.instructor.df) or (self.current_group == 'sc' and not game.clan.instructor.df):
+            if game.clan.instructor in self.full_cat_list:
+                self.full_cat_list.remove(game.clan.instructor)
+            self.full_cat_list.insert(0, game.clan.instructor)
+
+
         search_text = search_text.strip()
         if search_text not in ['', 'name search']:
             for cat in self.full_cat_list:
@@ -549,6 +557,7 @@ class ListScreen(Screens):
         self.all_pages = int(ceil(len(self.current_listed_cats) /
                                   20.0)) if len(self.current_listed_cats) > 20 else 1
 
+        Cat.ordered_cat_list = self.current_listed_cats
         self.update_page()
 
     def update_page(self):
@@ -566,10 +575,8 @@ class ListScreen(Screens):
         elif self.current_group == 'df':
             self.update_heading_text(f'Dark Forest')
 
-        # If the number of pages becomes smaller than the number of our current page, set
-        #   the current page to the last page
-        if self.list_page > self.all_pages:
-            self.list_page = self.all_pages
+        # clamp current page to a valid page number
+        self.list_page = max(1, min(self.list_page, self.all_pages))
 
         # Handle which next buttons are clickable.
         if self.all_pages <= 1:
@@ -647,6 +654,8 @@ class ListScreen(Screens):
 
     def on_use(self):
         # Only update the positions if the search text changes
+        if self.search_bar.is_focused and self.search_bar.get_text() == "name search":
+            self.search_bar.set_text("")
         if self.search_bar.get_text() != self.previous_search_text:
             self.update_search_cats(self.search_bar.get_text())
         self.previous_search_text = self.search_bar.get_text()
