@@ -632,6 +632,8 @@ class Events:
                 achievements.add("33")
             if Cat.all_cats.get(cat).status == 'kitten' and Cat.all_cats.get(cat).moons > 5:
                 achievements.add("34")
+            if Cat.all_cats.get(cat).backstory == 'dfkit' or Cat.all_cats.get(cat).backstory == 'dfkit2':
+                achievements.add("35")
             ##WILDCARD check, because I've lost control of my life
             ##Declare Lists of wildcard combos for comparison. (Will be made more professional later.)
             not_wildcard_patterns = ['tabby', 'ticked', 'mackerel', 'classic', 'agouti', 'smoke', 'single']

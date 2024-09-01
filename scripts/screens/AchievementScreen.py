@@ -109,8 +109,11 @@ class AchievementScreen(Screens):
                 achievements.add("33")
             if Cat.all_cats.get(cat).status == 'kitten' and Cat.all_cats.get(cat).moons > 5:
                 achievements.add("34")
+            if Cat.all_cats.get(cat).backstory == 'dfkit1' or Cat.all_cats.get(cat).backstory == 'dfkit2':
+                achievements.add("35")
             ##WILDCARD check, because I've lost control of my life
             ##Declare Lists of wildcard combos for comparison. (Will be made more professional later.)
+            ##For Mod creators, you may need to edit this code if you're adding new pelts that have unique Wildcards
             not_wildcard_patterns = ['tabby', 'ticked', 'mackerel', 'classic', 'agouti', 'smoke', 'single']
             ##Actual check for wildcardness
             if Cat.all_cats.get(cat).pelt.name == "Tortie" or Cat.all_cats.get(cat).pelt.name == "Calico":
