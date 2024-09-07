@@ -1234,7 +1234,7 @@ class ProfileScreen(Screens):
             dead_talk = self.get_dead_cat_talk()
 
             if (
-                self.the_cat.outside or
+                (not self.the_cat.dead and self.the_cat.outside) or
                 game.clan.your_cat.moons < 0 or
                 self.the_cat.ID == game.clan.your_cat.ID or
                 ((game.clan.your_cat.dead or self.the_cat.dead) and dead_talk is False)
@@ -1279,7 +1279,6 @@ class ProfileScreen(Screens):
             else:
                 self.profile_elements["insult"].enable()
 
-
             # FLIRT
             cant_flirt = False
             if (
@@ -1302,7 +1301,15 @@ class ProfileScreen(Screens):
                 object_id="#flirt_button",
                 tool_tip_text="Flirt with this Cat", manager=MANAGER
             )
-            if self.the_cat.flirted or cant_flirt:
+            if self.the_cat.flirted:
+                self.profile_elements["flirt"].disable()
+            elif cant_flirt:
+                self.profile_elements["flirt"].kill()
+
+                self.profile_elements["flirt"] = pygame_gui.elements.UIImage(
+                scale(pygame.Rect((666, 220), (68, 68))), image_cache.load_image(
+                    "resources/images/flirt_impossible.png").convert_alpha())
+
                 self.profile_elements["flirt"].disable()
             else:
                 self.profile_elements["flirt"].enable()
@@ -1314,7 +1321,6 @@ class ProfileScreen(Screens):
             y_pos = 220
         else:
             y_pos = 142
-
 
         if self.the_cat.status == 'leader' and not self.the_cat.dead:
             self.profile_elements["leader_ceremony"] = UIImageButton(scale(pygame.Rect(
@@ -1341,7 +1347,7 @@ class ProfileScreen(Screens):
             )
             if self.the_cat.dead or self.the_cat.outside or self.the_cat.shunned > 0:
                 self.profile_elements["queen"].disable()
-        elif self.the_cat.status in ["medicine cat", "medicine cat apprentice"] and self.the_cat.ID == game.clan.your_cat.ID and self.the_cat.moons >= 6:
+        if self.the_cat.status in ["medicine cat", "medicine cat apprentice"] and self.the_cat.ID == game.clan.your_cat.ID and self.the_cat.moons >= 6:
             self.profile_elements["halfmoon"] = UIImageButton(scale(pygame.Rect(
                 (746, y_pos), (68, 68))),
                 "",
@@ -1374,7 +1380,6 @@ class ProfileScreen(Screens):
                 self.profile_elements["halfmoon"].disable()
             elif "attended half-moon" in game.switches and game.switches["attended half-moon"]:
                 self.profile_elements["halfmoon"].disable()
-
         
         if self.the_cat.ID == game.clan.your_cat.ID and not game.clan.your_cat.dead and not game.clan.your_cat.outside:
             if self.open_tab == "faith":
@@ -2061,7 +2066,10 @@ class ProfileScreen(Screens):
 
         beginning = History.get_beginning(self.the_cat)
         if beginning:
-            if self.the_cat.df == False:
+            if (
+                ("encountered" in beginning and beginning['encountered'] is False)
+                or "encountered" not in beginning
+                ):
                 if 'clan_born' in beginning and beginning['clan_born']:
                     text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/were/was} born on Moon " + str(
                         beginning['moon']) + " during " + str(beginning['birth_season']) + "."
@@ -2071,7 +2079,7 @@ class ProfileScreen(Screens):
                 else:
                     text += "<br>You met {PRONOUN/m_c/object} on Moon " + str(beginning['moon']) + "."
             else:
-                text += "<br>You met {PRONOUN/m_c/object} on Moon " + str(beginning['moon']) + "."
+                text += "<br>You encountered {PRONOUN/m_c/object} on Moon " + str(beginning['moon']) + "."
 
         text = process_text(text, cat_dict)
         if "o_c" in text:
@@ -3276,7 +3284,12 @@ class ProfileScreen(Screens):
                                                     manager=MANAGER)
                 self.request_apprentice_button.disable()
             
-            if self.the_cat.moons > 0 and not self.the_cat.dead and not self.the_cat.outside:
+            if (
+                self.the_cat.moons > 0
+                and not self.the_cat.dead
+                and not self.the_cat.outside
+                and len(self.the_cat.pelt.inventory) > 0
+                ):
                 self.gift_accessory_button = UIImageButton(scale(pygame.Rect((804, 1028), (344, 72))), "",
                                                     starting_height=2, object_id="#gift_clanmate_button",
                                                     manager=MANAGER)
@@ -3716,7 +3729,6 @@ class ProfileScreen(Screens):
             (game.clan.your_cat.skills.meets_skill_requirement(SkillPath.GHOST) and
             game.clan.your_cat.moons >=1))
             )
-
 
         # you SC
         cat_alive_condition_sc = (

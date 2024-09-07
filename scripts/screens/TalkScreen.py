@@ -516,22 +516,12 @@ class TalkScreen(Screens):
         ]
         skill_list = [
             'teacher', 'hunter', 'fighter', 'runner', 'climber', 'swimmer', 'speaker',
-            'mediator1', 'clever', 'insightful', 'sense', 'kit', 'story', 'lore',
+            'mediator1', 'clever', 'insightful', 'sense', 'kitsitter', 'story', 'lore',
             'camp', 'healer', 'star', 'omen', 'dream', 'clairvoyant', 'prophet',
             'ghost', 'explorer', 'tracker', 'artistan', 'guardian', 'tunneler', 'navigator',
             'song', 'grace', 'clean', 'innovator', 'comforter', 'matchmaker', 'thinker',
             'cooperative', 'scholar', 'time', 'treasure', 'fisher', 'language', 'sleeper', 'dark'
         ]
-        # you_skill_list = [
-        #     'you_teacher', 'you_hunter', 'you_fighter', 'you_runner', 'you_climber', 'you_swimmer',
-        #     'you_speaker', 'you_mediator1', 'you_clever', 'you_insightful', 'you_sense', 'you_kit',
-        #     'you_story', 'you_lore', 'you_camp', 'you_healer', 'you_star', 'you_omen', 'you_dream',
-        #     'you_clairvoyant', 'you_prophet', 'you_ghost', 'you_explorer', 'you_tracker',
-        #     'you_artistan', 'you_guardian', 'you_tunneler', 'you_navigator', 'you_song', 'you_grace',
-        #     'you_clean', 'you_innovator', 'you_comforter', 'you_matchmaker', 'you_thinker',
-        #     'you_cooperative', 'you_scholar', 'you_time', 'you_treasure', 'you_fisher',
-        #     'you_language', 'you_sleeper', 'you_dark'
-        # ]
         for talk_key, talk in possible_texts.items():
             tags = talk["tags"] if "tags" in talk else talk[0]
             for i in range(len(tags)):
@@ -856,29 +846,32 @@ class TalkScreen(Screens):
                     continue
 
             # Skill tags
-            skip = False
+            skip1 = False
+            skip2 = False
             for i in skill_list:
                 if i == "mediator1":
                     skill = "mediator"
                 else:
                     skill = i
-                if (
-                    f"you_{i}" in tags
-                    and skill.upper() not in str(you.skills.primary.path)
-                    and you.skills.secondary
-                    and skill.upper() not in str(you.skills.secondary.path)
-                    ):
-                    skip = True
-                if (
-                    f"they_{i}" in tags
-                    and skill.upper() not in str(cat.skills.primary.path)
-                    and cat.skills.secondary
-                    and skill.upper() not in str(cat.skills.secondary.path)
-                    ):
-                    skip = True
-            if skip is True:
+                if f"you_{i}" in tags:
+                    if (
+                        skill.upper() not in str(you.skills.primary.path)
+                        and (you.skills.secondary is None or (you.skills.secondary
+                        and skill.upper() not in str(you.skills.secondary.path)))
+                        ):
+                        skip1 = True
+                if f"they_{i}" in tags:
+                    if (
+                        skill.upper() not in str(cat.skills.primary.path)
+                        and (cat.skills.secondary is None or (cat.skills.secondary
+                        and skill.upper() not in str(cat.skills.secondary.path)))
+                        ):
+                        skip2 = True
+            if skip1 is True:
                 continue
-            
+            if skip2 is True:
+                continue
+
             # Season tags
             if ('leafbare' in tags and game.clan.current_season != 'Leaf-bare') or ('newleaf' in tags and game.clan.current_season != 'Newleaf') or ('leaffall' in tags and game.clan.current_season != 'Leaf-fall') or ('greenleaf' in tags and game.clan.current_season != 'Greenleaf'):
                 continue
@@ -1576,6 +1569,7 @@ class TalkScreen(Screens):
                     cat.connected_dialogue[text_chosen_key_split[0]] = int(text_chosen_key_split[1])
                 return new_text
             print("Could not find debug ensure dialogue within possible dialogues")
+
 
         # Try to find a valid, unused text
         for _ in range(MAX_RETRIES):
