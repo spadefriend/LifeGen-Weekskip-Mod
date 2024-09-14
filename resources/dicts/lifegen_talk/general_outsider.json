@@ -540,7 +540,7 @@
             "any"
         ],
         [
-            "[You catch a glimpse of t_c out of the conrer of your eye, but {PRONOUN/t_c/subject} {VERB/t_c/disappear/disappears} every time you turn around.]",
+            "[You catch a glimpse of t_c out of the corner of your eye, but {PRONOUN/t_c/subject} {VERB/t_c/disappear/disappears} every time you turn around.]",
             "[The ghostly cat has no scent, so you have no other way to find {PRONOUN/t_c/object}.]"
         ]
     ],
@@ -583,6 +583,18 @@
         [
             "[While laying in camp, trying your best to fall asleep, you feel your temperature drop.]",
             "[t_c must be walking past.]"
+        ]
+    ],
+    "deaf_sc_Guy1": [
+        [
+            "they_sc",
+            "any",
+            "they_deaf",
+            "you_deaf",
+            "they_blind"
+        ],
+        [
+            "[t_c raises {PRONOUN/t_c/poss} sparkling tail in welcome.]"
         ]
     ]
 }
