@@ -673,6 +673,10 @@ class Events:
                     achievements.add('23')
                 elif count_alive_cats >= 100:
                     achievements.add('24')
+                elif count_alive_cats >= 400:
+                    achievements.add('39')
+                elif count_alive_cats == 0:
+                    achievements.add('40')
 
         if you.joined_df:
             achievements.add("7")

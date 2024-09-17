@@ -154,14 +154,29 @@ class AchievementScreen(Screens):
                                 countranks += 1
                             if countranks >= 3:
                                 achievements.add("31")
+
+            ##achievement block to check MC has a df mate for achieve 36. Not a copy of above code. Above code checks for Any cats
+            mcMateIDs = you.mate 
+            #for loop list is in case you have multiple mates to search through. 
+            for i in mcMateIDs:
+                if Cat.all_cats.get(cat).ID in mcMateIDs and you.dead == False:
+                    if Cat.all_cats.get(cat).history.beginning["encountered"] == True and Cat.all_cats.get(cat).df == True:
+                        achievements.add("36")
+
+
         #code for achievement 23 + 24
-            if Clan.age >= 1:                          
+            if Clan.age >= 1:
+                count_alive_cats = 0
                 if not Cat.all_cats.get(cat).dead and not Cat.all_cats.get(cat).outside:
                     count_alive_cats += 1
                 if count_alive_cats == 1 and Cat.all_cats.get(cat).ID == you.ID:
                     achievements.add('23')
                 elif count_alive_cats >= 100:
                     achievements.add('24')
+                elif count_alive_cats >= 400:
+                    achievements.add('39')
+                elif count_alive_cats == 0:
+                    achievements.add('40')
 
         if you.joined_df:
             achievements.add("7")
