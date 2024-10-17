@@ -70,10 +70,10 @@ class Pregnancy_Events:
         # Handles if a cat is already pregnant
         if cat.ID in clan.pregnancy_data:
             moons = clan.pregnancy_data[cat.ID]["moons"]
-            if moons == 1:
+            if moons == 4:
                 Pregnancy_Events.handle_one_moon_pregnant(cat, clan)
                 return
-            if moons >= 2:
+            if moons >= 8:
                 Pregnancy_Events.handle_two_moon_pregnant(cat, clan)
                 # events.ceremony_accessory = True
                 return
@@ -521,7 +521,7 @@ class Pregnancy_Events:
         # decide chances of having kits, and if it's possible at all.
         # Including - age, dead statis, having kits turned off.
         not_correct_age = (
-            cat.age in ["newborn", "kitten", "adolescent"] or cat.moons < 15
+            cat.age in ["newborn", "kitten", "adolescent"] or cat.moons < 65
         )
         if not_correct_age or cat.no_kits or cat.dead:
             return False
