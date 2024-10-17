@@ -331,7 +331,7 @@ class Clan:
         """Generates up to three pairs of mates."""
 
         def get_adult_mateless_cat():
-            alive_cats = [i for i in Cat.all_cats.values() if i.moons >= 14 and not i.dead and not i.outside and not i.mate]
+            alive_cats = [i for i in Cat.all_cats.values() if i.moons >= 61 and not i.dead and not i.outside and not i.mate]
             if alive_cats:
                 return random.choice(alive_cats)
             return None
@@ -351,7 +351,7 @@ class Clan:
     def generate_families(self):
 
         def get_kit_parent():
-            alive_cats = [i for i in Cat.all_cats.values() if i.moons >= 20 and i.moons <= 100 and not i.dead and not i.outside]
+            alive_cats = [i for i in Cat.all_cats.values() if i.moons >= 87 and i.moons <= 435 and not i.dead and not i.outside]
 
             for cat in alive_cats:
                 if not cat.inheritance:
@@ -364,7 +364,7 @@ class Clan:
             return None
 
         def get_app_parent():
-            alive_cats = [i for i in Cat.all_cats.values() if i.moons >= 40 and i.moons <= 100 and not i.dead and not i.outside]
+            alive_cats = [i for i in Cat.all_cats.values() if i.moons >= 174 and i.moons <= 435 and not i.dead and not i.outside]
 
             for cat in alive_cats:
                 if not cat.inheritance:
