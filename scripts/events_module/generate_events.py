@@ -291,7 +291,7 @@ class GenerateEvents:
             # make complete leader death less likely until the leader is over 150 moons (or unless it's a murder)
             if cat.status == "leader":
                 if "all_lives" in event.tags and "murder" not in event.sub_type:
-                    if int(cat.moons) < 150 and int(random.random() * 5):
+                    if int(cat.moons) < 651 and int(random.random() * 5):
                         continue
 
                 leader_lives = game.clan.leader_lives
