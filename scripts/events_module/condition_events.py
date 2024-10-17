@@ -927,7 +927,7 @@ class Condition_Events:
                             not game.clan.leader.dead
                             and not game.clan.leader.exiled
                             and not game.clan.leader.outside
-                            and cat.moons < 120
+                            and cat.moons < 521
                         ):
                             retire_involved.append(game.clan.leader.ID)
                             event = (
