@@ -95,7 +95,7 @@ class AchievementScreen(Screens):
                 if num_victims >= 50:
                     achievements.add("4")
         else:
-            if you.moons >= 120:
+            if you.moons >= 521:
                 achievements.add("25")
                 
         for cat in clan_cats:
@@ -107,7 +107,7 @@ class AchievementScreen(Screens):
                 achievements.add("30")
             if Cat.all_cats.get(cat).status == 'apprentice' and Cat.all_cats.get(cat).name.prefix == "Pea" and Cat.all_cats.get(cat).pelt.white_colours:
                 achievements.add("33")
-            if Cat.all_cats.get(cat).status == 'kitten' and Cat.all_cats.get(cat).moons > 5:
+            if Cat.all_cats.get(cat).status == 'kitten' and Cat.all_cats.get(cat).moons > 26:
                 achievements.add("34")
             ##WILDCARD check, because I've lost control of my life
             ##Declare Lists of wildcard combos for comparison. (Will be made more professional later.)
@@ -193,18 +193,18 @@ class AchievementScreen(Screens):
         elif you.status == 'queen':
             achievements.add('32')
         
-        if you.moons >= 200:
+        if you.moons >= 869:
             achievements.add('20')
         if you.exiled:
             achievements.add('21')
         elif you.outside:
             achievements.add('22')
             
-        if you.experience >= 100:
+        if you.experience >= 600:
             achievements.add('26')
-        if you.experience >= 200:
+        if you.experience >= 900:
             achievements.add('27')
-        if you.experience >= 300:
+        if you.experience >= 1200:
             achievements.add('28')        
         
         for i in game.clan.achievements:
