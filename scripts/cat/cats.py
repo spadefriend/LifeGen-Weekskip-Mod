@@ -113,12 +113,12 @@ class Cat:
     # Ranges are inclusive to both bounds
     experience_levels_range = {
         "untrained": (0, 0),
-        "trainee": (1, 50),
-        "prepared": (51, 110),
-        "competent": (110, 170),
-        "proficient": (171, 240),
-        "expert": (241, 320),
-        "master": (321, 321),
+        "trainee": (1, 200),
+        "prepared": (201, 440),
+        "competent": (441, 680),
+        "proficient": (681, 960),
+        "expert": (961, 1280),
+        "master": (1281, 1281)
     }
 
     default_pronouns = [
@@ -312,7 +312,7 @@ class Cat:
             self.age = choice(self.ages)
         elif moons is not None:
             self.moons = moons
-            if moons > 300:
+            if moons > 1200:
                 # Out of range, always elder
                 self.age = "senior"
             elif moons == 0 or moons == -1:
@@ -441,7 +441,7 @@ class Cat:
         :param moons: Age in moons
         :return: None
         """
-        if moons > 300:
+        if moons > 1200:
             # Out of range, always elder
             self.age = "senior"
         elif moons == 0:
@@ -715,11 +715,11 @@ class Cat:
                 event_text = event_text + f"and, after a Clan meeting is held, it's decided that they will be allowed back in."
                 exiled_cat.exiled = False
                 Cat.add_to_clan(exiled_cat)
-                if exiled_cat.moons > 119:
+                if exiled_cat.moons > 517:
                     exiled_cat.status = "elder"
-                elif exiled_cat.moons > 12:
+                elif exiled_cat.moons > 52:
                     exiled_cat.status = "warrior"
-                elif exiled_cat.moons > 6:
+                elif exiled_cat.moons > 26:
                     exiled_cat.status = "apprentice"
                 else:
                     exiled_cat.status = "kitten"
@@ -856,11 +856,11 @@ class Cat:
         if acceptchance == 1:
             event_text = event_text + f"When one finally comes, they're wary, but they agree to take you back to camp, and a Clan meeting is held. After much deliberation, it's decided that you will be allowed back home."
             you.exiled = False
-            if you.moons > 119:
+            if you.moons > 517:
                 you.status_change("elder")
-            elif you.moons > 12:
+            elif you.moons > 52:
                 you.status_change("warrior")
-            elif you.moons > 6:
+            elif you.moons > 26:
                 you.status_change("apprentice")
             else:
                 you.status_change("kitten")
@@ -874,11 +874,11 @@ class Cat:
         elif killchance == 1:
             event_text = event_text + f"The patrol immediately meets you with hostility, and when you ask to visit camp, the more vengeful among the group instantly attack you, spitting at you that you don't deserve to step foot on {game.clan.name}Clan's territory after what you did. As your vision begins to blur, the last thing you hear is a former Clanmate damning you to the Dark Forest."
             Cat.die(you)
-            if you.moons > 119:
+            if you.moons > 517:
                 you.status_change("elder")
-            elif you.moons > 12:
+            elif you.moons > 52:
                 you.status_change("warrior")
-            elif you.moons > 6:
+            elif you.moons > 26:
                 you.status_change("apprentice")
             else:
                 you.status_change("kitten")
@@ -918,7 +918,7 @@ class Cat:
 
         # apply grief to cats with high positive relationships to dead cat
         for cat in Cat.all_cats.values():
-            if cat.dead or cat.outside or cat.moons < 1:
+            if cat.dead or cat.outside or cat.moons < 4:
                 continue
 
             to_self = cat.relationships.get(self.ID)
@@ -1114,7 +1114,7 @@ class Cat:
                 child.outside
                 and not child.exiled
                 and not child.dead
-                and child.moons < 12
+                and child.moons < 52
             ):
                 child.add_to_clan()
                 History.add_beginning(child)
@@ -2470,7 +2470,7 @@ class Cat:
         #There are some special tasks we need to do for apprentice
         # Note that although you can unretire cats, they will be a full warrior/med_cat/mediator
 
-        if self.moons > 6 and self.status in ["apprentice", "medicine cat apprentice", "mediator apprentice", "queen's apprentice"]:
+        if self.moons > 27 and self.status in ["apprentice", "medicine cat apprentice", "mediator apprentice", "queen's apprentice"]:
             _ment = Cat.fetch_cat(self.mentor) if self.mentor else None
             self.status_change(
                 "warrior"
@@ -2656,9 +2656,9 @@ class Cat:
             return
         if self.ID in mentor_cat.apprentice:
             mentor_cat.apprentice.remove(self.ID)
-        if self.moons > 6 and self.ID not in mentor_cat.former_apprentices:
+        if self.moons > 27 and self.ID not in mentor_cat.former_apprentices:
             mentor_cat.former_apprentices.append(self.ID)
-        if self.moons > 6 and mentor_cat.ID not in self.former_mentor:
+        if self.moons > 27 and mentor_cat.ID not in self.former_mentor:
             self.former_mentor.append(mentor_cat.ID)
         self.mentor = None
 
@@ -2712,7 +2712,7 @@ class Cat:
                         priority_mentors.append(cat)
             # First try for a cat who currently has no apprentices and is working
             if 'request apprentice' in game.switches:
-                if game.switches['request apprentice'] and self.moons == 6:
+                if game.switches['request apprentice'] and self.moons == 27:
                     new_mentor = game.clan.your_cat
                 else:
                     if priority_mentors:  # length of list > 0
@@ -2733,7 +2733,7 @@ class Cat:
         
         potential_mentors = []
         for c in Cat.all_cats_list:
-            if c.dead and c.df and c.moons >= 6 and self.ID != c.ID:
+            if c.dead and c.df and c.moons >= 27 and self.ID != c.ID:
                 potential_mentors.append(c)
 
         priority_mentors = []
@@ -2790,7 +2790,7 @@ class Cat:
 
         # check for age
         if age_restriction:
-            if (self.moons < 14 or other_cat.moons < 14) and not for_love_interest:
+            if (self.moons < 61 or other_cat.moons < 61) and not for_love_interest:
                 return False
 
             # the +1 is necessary because both might not already be aged up
@@ -2872,7 +2872,7 @@ class Cat:
         # check age. allow adolescents to flirt with each other. prevent kittens and newborns from flirting
 
         if age_restriction:
-            if (self.moons < 12 or other_cat.moons < 12):
+            if (self.moons < 52 or other_cat.moons < 52):
                 if self.age in ["adolescent"] or other_cat.age in ["adolescent"]:
                     if self.age != other_cat.age:
                         return False
@@ -3088,8 +3088,8 @@ class Cat:
                             admiration = randint(0, 20)
                             if (
                                 randint(1, 100 - like) == 1
-                                and self.moons > 11
-                                and the_cat.moons > 11
+                                and self.moons > 51
+                                and the_cat.moons > 51
                             ):
                                 romantic_love = randint(15, 30)
                                 comfortable = int(comfortable * 1.3)
@@ -3107,8 +3107,8 @@ class Cat:
                             admiration = randint(0, 20)
                             if (
                                 randint(1, 100 - like) == 1
-                                and self.moons > 11
-                                and the_cat.moons > 11
+                                and self.moons > 51
+                                and the_cat.moons > 51
                             ):
                                 romantic_love = randint(15, 30)
                                 comfortable = int(comfortable * 1.3)
@@ -4189,10 +4189,10 @@ def create_cat(status, moons=None, biome=None):
     if moons is not None:
         new_cat.moons = moons
     else:
-        if new_cat.moons >= 160:
-            new_cat.moons = choice(range(120, 155))
-        elif new_cat.moons == 0:
-            new_cat.moons = choice([1, 2, 3, 4, 5])
+        if new_cat.moons >= 695:
+            new_cat.moons = choice(range(521, 674))
+        elif new_cat.moons <= 4:
+            new_cat.moons = choice(range(5, 26)))
 
     not_allowed_scars = [
         "NOPAW",
@@ -4226,10 +4226,10 @@ def create_example_cats():
         else:
             game.choose_cats[a] = Cat(status=choice(
                 ['kitten']), biome=None)
-        if game.choose_cats[a].moons >= 160:
-            game.choose_cats[a].moons = choice(range(120, 155))
-        elif game.choose_cats[a].moons == 0:
-            game.choose_cats[a].moons = choice([1, 2, 3, 4, 5])
+        if game.choose_cats[a].moons >= 695:
+            game.choose_cats[a].moons = choice(range(521, 674))
+        elif game.choose_cats[a].moons <= 4:
+            game.choose_cats[a].moons = choice(range(5, 26))
         for scar in game.choose_cats[a].pelt.scars:
             if scar in not_allowed:
                 game.choose_cats[a].pelt.scars.remove(scar)
