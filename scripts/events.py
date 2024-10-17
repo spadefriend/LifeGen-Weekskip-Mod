@@ -414,22 +414,22 @@ class Events:
         if not game.clan.your_cat.dead and game.clan.your_cat.status != 'exiled' and not game.clan.your_cat.outside:
             if game.clan.your_cat.moons == 0:
                 self.generate_birth_event()
-            elif game.clan.your_cat.moons < 6:
+            elif game.clan.your_cat.moons < 27:
                 self.generate_events() 
-            elif game.clan.your_cat.moons == 6:
+            elif game.clan.your_cat.moons == 27:
                 self.generate_app_ceremony()
             elif game.clan.your_cat.status in ['apprentice', 'medicine cat apprentice', 'mediator apprentice', "queen's apprentice"]:
                 self.generate_events()
             elif game.clan.your_cat.status in ['warrior', 'medicine cat', 'mediator', "queen"] and not game.clan.your_cat.w_done and game.clan.your_cat.shunned == 0:
                 self.generate_ceremony()
-            elif game.clan.your_cat.status != 'elder' and game.clan.your_cat.moons != 119:
+            elif game.clan.your_cat.status != 'elder' and game.clan.your_cat.moons != 520:
                 self.generate_events()
-            elif game.clan.your_cat.moons == 119 and not game.clan.your_cat.outside and game.clan.your_cat.shunned == 0:
+            elif game.clan.your_cat.moons == 520 and not game.clan.your_cat.outside and game.clan.your_cat.shunned == 0:
                 if not game.switches['window_open']:
                     RetireScreen('events screen')
                 else:
                     game.switches['windows_dict'].append('retire')
-            elif game.clan.your_cat.moons == 120 and game.clan.your_cat.status == 'elder' and game.clan.your_cat.shunned == 0:
+            elif game.clan.your_cat.moons == 521 and game.clan.your_cat.status == 'elder' and game.clan.your_cat.shunned == 0:
                 self.generate_elder_ceremony()
             elif game.clan.your_cat.status == 'elder':
                 self.generate_events()
@@ -437,7 +437,7 @@ class Events:
             if game.clan.your_cat.joined_df:
                 self.generate_df_events()
             
-            if game.clan.your_cat.moons >= 12:
+            if game.clan.your_cat.moons >= 52:
                 self.check_leader(self.checks)
                 if game.clan.your_cat.shunned == 0:
                     self.check_gain_app(self.checks)
@@ -607,7 +607,7 @@ class Events:
                 if num_victims >= 50:
                     achievements.add("4")
         else:
-            if you.moons >= 120:
+            if you.moons >= 521:
                 achievements.add("25")
             
 
@@ -620,7 +620,7 @@ class Events:
                 achievements.add("30")
             if Cat.all_cats.get(cat).status == 'apprentice' and Cat.all_cats.get(cat).name.prefix == "Pea" and Cat.all_cats.get(cat).pelt.white_colours:
                 achievements.add("33")
-            if Cat.all_cats.get(cat).status == 'kitten' and Cat.all_cats.get(cat).moons > 5:
+            if Cat.all_cats.get(cat).status == 'kitten' and Cat.all_cats.get(cat).moons > 26:
                 achievements.add("34")
             ##WILDCARD check, because I've lost control of my life
             ##Declare Lists of wildcard combos for comparison. (Will be made more professional later.)
@@ -706,7 +706,7 @@ class Events:
         elif you.status == 'queen':
             achievements.add('32')
         
-        if you.moons >= 200:
+        if you.moons >= 869:
             achievements.add('20')
         if you.exiled:
             achievements.add('21')
@@ -751,7 +751,7 @@ class Events:
                 if not game.clan.clan_settings["same sex birth"]:
                     is_gender_compatible = (other_parent_gender is None) or (cat.gender != other_parent_gender)
                 return (cat.ID != game.clan.your_cat.ID and cat.ID != other_parent_id and not cat.dead and not cat.outside
-                        and cat.age in ["young adult", "adult", "senior adult"] and cat.moons > 17
+                        and cat.age in ["young adult", "adult", "senior adult"] and cat.moons > 73
                         and "apprentice" not in cat.status and is_age_compatible and is_gender_compatible and is_relation_compatible)
 
             for _ in range(MAX_ATTEMPTS):
@@ -1308,7 +1308,7 @@ class Events:
             general_events = ujson.loads(read_file.read())
 
         status = game.clan.your_cat.status
-        if game.clan.your_cat.status == 'elder' and game.clan.your_cat.moons < 100:
+        if game.clan.your_cat.status == 'elder' and game.clan.your_cat.moons < 435:
             status = "young elder"
             with open(f"{resource_dir}{status}.json", encoding="ascii") as read_file:
                 all_events = ujson.loads(read_file.read())
@@ -1352,7 +1352,7 @@ class Events:
     def generate_kit_events(self):
         # Parent events for moons 1-5
         if game.clan.your_cat.parent1:
-            moons_list = range(2, 6)
+            moons_list = range(8, 26)
             parents_txt = {1: "one_parent", 2: "two_parents"}
             for moons in moons_list:
                 if game.clan.your_cat.moons == moons:
@@ -2438,7 +2438,7 @@ class Events:
                 "kitten",
                 "newborn",
             ]:
-                if x.moons >= 15:
+                if x.moons >= 65:
                     if x.status == "medicine cat apprentice":
                         self.ceremony(x, "medicine cat")
                     elif x.status == "mediator apprentice":
@@ -2455,19 +2455,19 @@ class Events:
                         "mediator apprentice",
                         "queen's apprentice"
                     ]
-                    and x.moons >= 6
+                    and x.moons >= 27
                 ):
                     self.ceremony(x, "apprentice")
             elif x.status != "medicine cat":
                 if x.moons == 0:
                     x.status = "newborn"
-                elif x.moons < 6:
+                elif x.moons < 27:
                     x.status = "kitten"
-                elif x.moons < 12 and x.status != "apprentice":
+                elif x.moons < 52 and x.status != "apprentice":
                     x.status_change("apprentice")
-                elif x.moons < 120 and x.status != "warrior":
+                elif x.moons < 521 and x.status != "warrior":
                     x.status_change("warrior")
-                elif x.moons > 120:
+                elif x.moons > 521:
                     x.status_change("elder")
 
     def handle_fading(self, cat):
@@ -2913,11 +2913,11 @@ class Events:
                 not cat.no_retire
                 and cat.status in ["warrior", "deputy"]
                 and len(cat.apprentice) < 1
-                and cat.moons > 114
+                and cat.moons > 495
             ):
                 # There is some variation in the age.
-                if cat.moons > 140 or not int(
-                    random.random() * (-0.7 * cat.moons + 100)
+                if cat.moons > 608 or not int(
+                    random.random() * (-0.7 * cat.moons + 420)
                 ):
                     if cat.status == "deputy":
                         game.clan.deputy = None
@@ -2963,7 +2963,7 @@ class Events:
                     very_old_med = [
                         c
                         for c in med_cat_list
-                        if c.moons >= 150 and c.status == "medicine cat"
+                        if c.moons >= 651 and c.status == "medicine cat"
                     ]
 
                     # check if the Clan has sufficient med cats
@@ -3077,7 +3077,7 @@ class Events:
             ] and cat.shunned == 0:
 
                 if game.clan.clan_settings["12_moon_graduation"]:
-                    _ready = cat.moons >= 12
+                    _ready = cat.moons >= 52
                 else:
                     _ready = (
                         cat.experience_level not in ["untrained", "trainee"]
@@ -3673,7 +3673,7 @@ class Events:
                                              freshkill_pile=game.clan.freshkill_pile)
             return True
         # max age has been indicated to be 300, so if a cat reaches that age, they die of old age
-        elif cat.moons >= 300:
+        elif cat.moons >= 1303:
             handle_short_events.handle_event(event_type="birth_death",
                                              main_cat=cat,
                                              random_cat=random_cat,
@@ -3881,11 +3881,11 @@ class Events:
         for i in range(random.randint(0,2)):
             cat = Cat.all_cats.get(random.choice(game.clan.clan_cats))
             for j in range(20):
-                if cat.outside or cat.dead or cat.moons < 6:
+                if cat.outside or cat.dead or cat.moons < 27:
                     cat = Cat.all_cats.get(random.choice(game.clan.clan_cats))
                 else:
                     break
-            if cat.outside or cat.dead or cat.moons < 6:
+            if cat.outside or cat.dead or cat.moons < 27:
                 return
             if current_disaster["collateral_damage"]:
                 if random.randint(1,10) == 1:
@@ -4130,7 +4130,7 @@ class Events:
                         if cat.status == 'deputy':
                             game.clan.deputy.status_change('warrior')
                     else:
-                        if cat.moons < 119:
+                        if cat.moons < 520:
                             newstatus = 'warrior'
                         else:
                             newstatus = 'elder'
@@ -4155,18 +4155,18 @@ class Events:
                         print("exile_or_forgive ceremony for", cat.name, ",", cat.status)
                         self.ceremony(cat, cat.status)
 
-                    elif cat.status in ["kitten", "newborn"] and cat.moons >= 6:
+                    elif cat.status in ["kitten", "newborn"] and cat.moons >= 27:
                         self.ceremony(cat, "apprentice")
                         print("exile_or_forgive ceremony for", cat.name, ",", cat.status)
                         
                     else:
-                        if cat.moons == 0:
+                        if cat.moons < 4:
                             cat.status = 'newborn'
-                        elif cat.moons < 6:
+                        elif cat.moons < 27:
                             cat.status = "kitten"
-                        elif cat.moons < 12:
+                        elif cat.moons < 52:
                             cat.status_change('apprentice')
-                        elif cat.moons < 120:
+                        elif cat.moons < 521:
                             cat.status_change('warrior')
                         else:
                             cat.status_change('elder')
@@ -4189,7 +4189,7 @@ class Events:
                             text = text + " You will not return as the Clan's leader."
                         else:
                             text = text + " They will not return as the Clan's leader."
-                        if cat.moons < 119:
+                        if cat.moons < 520:
                             cat.status_change('warrior')
                         else:
                             cat.status_change('elder')
@@ -4201,7 +4201,7 @@ class Events:
                 cat.outside = True
                 cat.status = "former Clancat"
                 game.clan.add_to_outside(cat)
-                if cat.moons < 6:
+                if cat.moons < 27:
                     if cat.ID == game.clan.your_cat.ID:
                         text = f"You know that {game.clan.name}Clan would be better off without you. As fast as your little legs can carry you, you run out of camp one night, never to return."
                     else:
@@ -4230,7 +4230,7 @@ class Events:
         """turnin' the kitties trans..."""
         # TODO: should figure out how to handle these as a ShortEvent, we don't want hardcoded text
         if cat.genderalign == cat.gender:
-            if cat.moons < 6:
+            if cat.moons < 27:
                 return
 
             involved_cats = [cat.ID]
