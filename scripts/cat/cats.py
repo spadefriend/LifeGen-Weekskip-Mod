@@ -315,7 +315,7 @@ class Cat:
             if moons > 1200:
                 # Out of range, always elder
                 self.age = "senior"
-            elif moons == 0 or moons == -1:
+            elif moons < 4 or moons == -1:
                 self.age = "newborn"
             else:
                 # In range
@@ -444,7 +444,7 @@ class Cat:
         if moons > 1200:
             # Out of range, always elder
             self.age = "senior"
-        elif moons == 0:
+        elif moons < 4:
             self.age = "newborn"
         else:
             # In range
@@ -1795,9 +1795,9 @@ class Cat:
         """Handles a moon skip for an alive cat."""
         old_age = self.age
         self.moons += 1
-        if self.moons == 0 and self.status != "newborn":
+        if self.moons < 4 and self.status != "newborn":
             self.status = "newborn"
-        if self.moons == 1 and self.status == "newborn":
+        if self.moons > 4 and self.status == "newborn":
             self.status = "kitten"
         self.in_camp = 1
 
