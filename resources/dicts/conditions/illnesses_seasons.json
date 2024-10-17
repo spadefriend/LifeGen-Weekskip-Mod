@@ -5,18 +5,18 @@
     },
     "Greenleaf":{
         "fleas": 8,
-        "stomachache":4,
-        "heat exhaustion":12,
-        "heat stroke":4
+        "stomachache": 4,
+        "heat exhaustion": 12,
+        "heat stroke": 4
     },
     "Leaf-fall":{
-        "stomachache":4,
+        "stomachache": 4,
         "greencough": 4,
         "kittencough": 16,
         "running nose": 12
     },
     "Leaf-bare":{
-        "stomachache":4,
+        "stomachache": 4,
         "greencough": 12,
         "running nose": 4,
         "kittencough": 16,
