@@ -70,7 +70,7 @@ class Relation_Events:
         It will boost the romantic values of either mate or possible mates.
         This also increase the chance of affairs.
         """
-        if cat.moons < 12:
+        if cat.moons < 52:
             return
 
         if not Relation_Events.can_trigger_events(cat):
