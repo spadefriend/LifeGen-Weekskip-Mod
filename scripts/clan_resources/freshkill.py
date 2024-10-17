@@ -128,7 +128,7 @@ class FreshkillPile:
             queen = Cat.fetch_cat(queen_id)
             if queen and (queen.outside or queen.status == "exiled"):
                 continue
-            young_kits = [kit for kit in their_kits if kit.moons < 3]
+            young_kits = [kit for kit in their_kits if kit.moons < 13]
             if len(young_kits) > 0:
                 relevant_queens.append(queen)
         pregnant_cats = [
@@ -261,7 +261,7 @@ class FreshkillPile:
         # kits under 3 months are feed by the queen
         for queen_id, their_kits in queen_dict.items():
             queen = Cat.fetch_cat(queen_id)
-            young_kits = [kit for kit in their_kits if kit.moons < 3]
+            young_kits = [kit for kit in their_kits if kit.moons < 13]
             if len(young_kits) > 0:
                 fed_kits.extend(young_kits)
                 relevant_queens.append(queen)
@@ -338,7 +338,7 @@ class FreshkillPile:
         # kits under 3 months are feed by the queen
         for queen_id, their_kits in queen_dict.items():
             queen = Cat.fetch_cat(queen_id)
-            young_kits = [kit for kit in their_kits if kit.moons < 3]
+            young_kits = [kit for kit in their_kits if kit.moons < 13]
             if len(young_kits) > 0:
                 fed_kits.extend(young_kits)
                 relevant_queens.append(queen)
@@ -627,7 +627,7 @@ class FreshkillPile:
                 factor = 3
                 status_ = str(cat.status)
                 if str(cat.status) in ["newborn", "kitten"] or (
-                    cat.moons > 114 and str(cat.status) == "elder"
+                    cat.moons > 495 and str(cat.status) == "elder"
                 ):
                     factor = 2
                 if cat.ID in queen_dict.keys() or "pregnant" in cat.injuries:
