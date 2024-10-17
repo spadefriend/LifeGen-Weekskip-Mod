@@ -350,7 +350,7 @@ class HandleShortEvents:
         # Check to see if any young litters joined with alive parents.
         # If so, see if recovering from birth condition is needed and give the condition
         for sub in self.new_cats:
-            if sub[0].moons < 3:
+            if sub[0].moons < 13:
                 # Search for parent
                 for sub_sub in self.new_cats:
                     if (
