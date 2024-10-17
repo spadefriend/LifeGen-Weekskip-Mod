@@ -36,15 +36,15 @@
         "risks": [
             {
                 "name": "an infected wound",
-                "chance": 70
+                "chance": 280
             },
             {
                 "name": "phantom pain",
-                "chance": 20
+                "chance": 80
             },
             {
                 "name": "sore",
-                "chance": 20
+                "chance": 80
             }
         ],
         "herbs": [
@@ -72,11 +72,11 @@
         "risks": [
             {
                 "name": "sore",
-                "chance": 20
+                "chance": 80
             },
             {
                 "name": "joint pain",
-                "chance": 40
+                "chance": 160
             }
         ],
         "herbs": [
@@ -89,7 +89,7 @@
     "weak leg": {
         "severity": "minor",
         "congenital": "sometimes",
-        "moons_until": 3,
+        "moons_until": 12,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -104,11 +104,11 @@
         "risks": [
             {
                 "name": "sore",
-                "chance": 20
+                "chance": 80
             },
             {
                 "name": "joint pain",
-                "chance": 40
+                "chance": 160
             }
         ],
         "herbs": [
@@ -121,7 +121,7 @@
     "twisted leg": {
         "severity": "major",
         "congenital": "sometimes",
-        "moons_until": 1,
+        "moons_until": 4,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -136,11 +136,11 @@
         "risks": [
             {
                 "name": "sore",
-                "chance": 20
+                "chance": 80
             },
             {
                 "name": "joint pain",
-                "chance": 40
+                "chance": 160
             }
         ],
         "herbs": [
@@ -168,11 +168,11 @@
         "risks": [
             {
                 "name": "an infected wound",
-                "chance": 70
+                "chance": 280
             },
             {
                 "name": "phantom pain",
-                "chance": 10
+                "chance": 40
             }
         ],
         "herbs": [
@@ -217,19 +217,19 @@
         "risks": [
             {
                 "name": "an infected wound",
-                "chance": 60
+                "chance": 240
             },
             {
                 "name": "torn pelt",
-                "chance": 30
+                "chance": 120
             },
             {
                 "name": "sore",
-                "chance": 20
+                "chance": 80
             },
             {
                 "name": "joint pain",
-                "chance": 20
+                "chance": 80
             }
         ],
         "herbs": [
@@ -242,7 +242,7 @@
     "raspy lungs": {
         "severity": "minor",
         "congenital": "sometimes",
-        "moons_until": 3,
+        "moons_until": 12,
         "mortality": {
             "newborn": 20,
             "kitten": 20,
@@ -257,7 +257,7 @@
         "risks": [
             {
                 "name": "whitecough",
-                "chance": 20
+                "chance": 80
             }
         ],
         "herbs": [
@@ -268,7 +268,7 @@
     "wasting disease": {
         "severity": "major",
         "congenital": "sometimes",
-        "moons_until": 1,
+        "moons_until": 4,
         "mortality": {
             "newborn": 10,
             "kitten": 10,
@@ -299,15 +299,15 @@
         "risks": [
             {
                 "name": "running nose",
-                "chance": 10
+                "chance": 40
             },
             {
                 "name": "yellowcough",
-                "chance": 50
+                "chance": 800
             },
             {
                 "name": "redcough",
-                "chance": 60
+                "chance": 240
             }
         ],
         "herbs": [
@@ -318,7 +318,7 @@
     "blind": {
         "severity": "major",
         "congenital": "sometimes",
-        "moons_until": 1,
+        "moons_until": 4,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -337,7 +337,7 @@
     "one bad eye": {
         "severity": "major",
         "congenital": "sometimes",
-        "moons_until": 2,
+        "moons_until": 8,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -351,7 +351,7 @@
         ],
         "risks": [{
                 "name": "failing eyesight",
-                "chance": 80
+                "chance": 320
             }
         ],
         "herbs": []
@@ -359,7 +359,7 @@
     "failing eyesight": {
         "severity": "major",
         "congenital": "sometimes",
-        "moons_until": 3,
+        "moons_until": 12,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -374,7 +374,7 @@
         "risks": [
             {
                 "name": "blind",
-                "chance": 50
+                "chance": 800
             }
         ],
         "herbs": []
@@ -382,7 +382,7 @@
     "partial hearing loss": {
         "severity": "minor",
         "congenital": "sometimes",
-        "moons_until": 2,
+        "moons_until": 8,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -397,7 +397,7 @@
         "risks": [
             {
                 "name": "deaf",
-                "chance": 80
+                "chance": 320
             }
         ],
         "herbs": []
@@ -405,7 +405,7 @@
     "deaf": {
         "severity": "major",
         "congenital": "sometimes",
-        "moons_until": 1,
+        "moons_until": 4,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -425,7 +425,7 @@
     "constant joint pain": {
         "severity": "minor",
         "congenital": "sometimes",
-        "moons_until": 2,
+        "moons_until": 8,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -440,7 +440,7 @@
         "risks": [
             {
                 "name": "joint pain",
-                "chance": 10
+                "chance": 40
             }
         ],
         "herbs": [
@@ -453,7 +453,7 @@
     "seizure prone": {
         "severity": "major",
         "congenital": "sometimes",
-        "moons_until": 3,
+        "moons_until": 12,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -468,7 +468,7 @@
         "risks": [
             {
                 "name": "seizure",
-                "chance": 10
+                "chance": 40
             }
         ],
         "herbs": [
@@ -479,7 +479,7 @@
     "allergies": {
         "severity": "minor",
         "congenital": "always",
-        "moons_until": 2,
+        "moons_until": 8,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -494,7 +494,7 @@
         "risks": [
             {
                 "name": "running nose",
-                "chance": 20
+                "chance": 80
             }
         ],
         "herbs": []
@@ -517,7 +517,7 @@
         "risks": [
             {
                 "name": "headache",
-                "chance": 20
+                "chance": 80
             }
         ],
         "herbs": []
@@ -540,7 +540,7 @@
         "risks": [
             {
                 "name": "constant nightmares",
-                "chance": 20
+                "chance": 80
             }
         ],
         "herbs": [
@@ -567,7 +567,7 @@
         "risks": [
             {
                 "name": "grief stricken",
-                "chance": 50
+                "chance": 800
             }
         ],
         "herbs": [
@@ -579,7 +579,7 @@
     "persistent headaches": {
         "severity": "major",
         "congenital": "sometimes",
-        "moons_until": 4,
+        "moons_until": 17,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -594,11 +594,11 @@
         "risks": [
             {
                 "name": "severe headache",
-                "chance": 20
+                "chance": 80
             },
             {
                 "name": "headache",
-                "chance": 20
+                "chance": 80
             }
         ],
         "herbs": [
